@@ -8,7 +8,7 @@
 <!-- Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.    -->
 
 <messages>
-<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;/home/peacesong/Documents/Workspace/2019-1/Logic_Design/Lab8/shift_reg_8b_test.v&quot; into library work</arg>
+<msg type="info" file="ProjectMgmt" num="1845" ><arg fmt="%s" index="1">Analyzing Verilog file &quot;/home/peacesong/Documents/Workspace/2019-1/Logic_Design/Lab8/shift_reg_8b.v&quot; into library work</arg>
 </msg>
 
 </messages>

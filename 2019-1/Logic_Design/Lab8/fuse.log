@@ -1,4 +1,4 @@
-Running: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -relaunch -intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "/home/peacesong/Documents/Workspace/2019-1/Logic_Design/Lab8/shift_reg_8b_test_isim_beh.exe" -prj "/home/peacesong/Documents/Workspace/2019-1/Logic_Design/Lab8/shift_reg_8b_test_beh.prj" "work.shift_reg_8b_test" "work.glbl" 
+Running: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -o /home/peacesong/Documents/Workspace/2019-1/Logic_Design/Lab8/shift_reg_8b_test_isim_beh.exe -prj /home/peacesong/Documents/Workspace/2019-1/Logic_Design/Lab8/shift_reg_8b_test_beh.prj work.shift_reg_8b_test work.glbl 
 ISim P.20131013 (signature 0xfbc00daa)
 Number of CPUs detected in this system: 3
 Turning on mult-threading, number of parallel sub-compilation jobs: 6 
@@ -9,8 +9,8 @@ Analyzing Verilog file "/home/peacesong/Documents/Workspace/2019-1/Logic_Design/
 Analyzing Verilog file "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
 Starting static elaboration
 Completed static elaboration
-Fuse Memory Usage: 95496 KB
-Fuse CPU Usage: 470 ms
+Fuse Memory Usage: 95504 KB
+Fuse CPU Usage: 560 ms
 Compiling module shift_reg_8b
 Compiling module shift_reg_8b_test
 Compiling module glbl
@@ -18,6 +18,6 @@ Time Resolution for simulation is 1ps.
 Waiting for 1 sub-compilation(s) to finish...
 Compiled 3 Verilog Units
 Built simulation executable /home/peacesong/Documents/Workspace/2019-1/Logic_Design/Lab8/shift_reg_8b_test_isim_beh.exe
-Fuse Memory Usage: 524588 KB
-Fuse CPU Usage: 480 ms
-GCC CPU Usage: 170 ms
+Fuse Memory Usage: 459060 KB
+Fuse CPU Usage: 570 ms
+GCC CPU Usage: 410 ms

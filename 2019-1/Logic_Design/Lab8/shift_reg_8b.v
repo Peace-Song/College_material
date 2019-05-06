@@ -11,7 +11,7 @@ module shift_reg_8b(
 
 reg [7:0] Q;
 
-always @ (posedge CLK or negedge CLRb) begin
+always @ (posedge CLK or CLRb) begin
 	if(CLRb == 0) Q = 0;
 	else begin
 		case(s)

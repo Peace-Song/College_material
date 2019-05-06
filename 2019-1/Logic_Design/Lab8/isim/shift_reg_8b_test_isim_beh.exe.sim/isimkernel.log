@@ -2,12 +2,12 @@ Command line:
    shift_reg_8b_test_isim_beh.exe
      -simmode  gui
      -simrunnum  0
-     -socket  55143
+     -socket  40109
 
-Tue May  7 00:50:37 2019
+Tue May  7 01:19:37 2019
 
 
- Elaboration Time: 0.02 sec
+ Elaboration Time: 0.03 sec
 
  Current Memory Usage: 197.03 Meg
 
@@ -21,9 +21,9 @@ Tue May  7 00:50:37 2019
  Total Scalar Nets and Variables : 137
 Total Line Count : 51
 
- Total Simulation Time: 0.03 sec
+ Total Simulation Time: 0.04 sec
 
  Current Memory Usage: 272.531 Meg
 
-Tue May  7 01:03:32 2019
+Tue May  7 01:20:18 2019
 
