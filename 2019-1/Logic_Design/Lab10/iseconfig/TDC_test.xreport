@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2019-05-13T00:47:09</DateModified>
+  <DateModified>2019-05-13T00:48:24</DateModified>
   <ModuleName>TDC_test</ModuleName>
   <SummaryTimeStamp>Unknown</SummaryTimeStamp>
-  <SavedFilePath>/home/peacesong/Documents/Workspace/2019-1/Logic_Design/Lab9/iseconfig/TDC_test.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>/home/peacesong/Documents/Workspace/2019-1/Logic_Design/Lab9/</ImplementationReportsDirectory>
-  <DateInitialized>2019-05-08T00:34:54</DateInitialized>
+  <SavedFilePath>/home/peacesong/Documents/Workspace/2019-1/Logic_Design/Lab10/iseconfig/TDC_test.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>/home/peacesong/Documents/Workspace/2019-1/Logic_Design/Lab10</ImplementationReportsDirectory>
+  <DateInitialized>2019-05-13T00:48:24</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>
  <body>
