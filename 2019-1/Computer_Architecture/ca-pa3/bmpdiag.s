@@ -32,29 +32,94 @@ bmp_diag:
 	#------------------------------------------------------------
 
 	# --> FILL HERE <--
+
+    #point imgptr to leftuppermost pixel    
+    movq %rsi, %r8
+    imulq $0x3, %r8
     pushq %rsi
     callq get_padding
     popq %rsi
-
-    movq %rcx, %r8
-
-.row_iter:
-    pushq %rdi
-    pushq %rax
-    callq paint_row
-    popq %rax
-    popq %rdi
-    # index calculation
-    
-    addq (%rax, %rsi, 2), %rdi
-    addq %rsi, %rdi
-    #addq (%rax, %rsi, 3), %rdi
-
+    addq %rax, %r8
     decq %rdx
-    cmpq $0x00, %rdx
-    jle .row_iter
+    imulq %rdx, %r8
+    incq %rdx
 
+    addq %r8, %rdi
+    
+    callq LU_to_RL
+
+
+
+LU_to_RL:
+    movq $0x0, %r8
+
+    #temporarily assign current imgptr to %rdx
+    pushq %rdx
+    movq %rdi, %rdx
+
+    #save original imgptr
+    pushq %rdi
+
+    #r8 will incr at the end, considered as pointer not scalar
+.paint_next:
+    pushq %rdx
+    
+    #temporarily assign actual length of width to %rdx 
+    movq %rsi, %rdx
+    imulq $0x3, %rdx
+    pushq %rsi
+    callq get_padding
+    popq %rsi
+    addq %rax, %rdx
+    movq %rdx, %rax
+  
+    popq %rdx # now %rdx has address of one row above
+
+
+    movq %rdx, %rdi
+    subq %rax, %rdx
+
+    popq %rax
+    cmpq %rax, %rdi # compare ptr of this row : original imgptr
+    jl .finalize_LU_to_RL
+    pushq %rax
+
+    movq $0x0, %rax
+
+    addq %r8, %rdi
+    addq %r8, %rdi
+    addq %r8, %rdi
+    addq %r8, %rax 
+    
+.paint_row:
+    movb $0x00, (%rdi)
+    movb $0x00, 1(%rdi)
+    movb $0xff, 2(%rdi)
+
+    addq (, %rcx, 2), %rdi
+    addq %rcx, %rdi
+    inc %rax
+
+    #compare current width : width
+    cmpq %rsi, %rax
+    jl .paint_row
+    
+    #compare current initial gap : gap
+    cmpq %rcx, %r8
+    jl .initial_gap_rising
+    movq $0x0, %r8
+    jmp .paint_next
+
+    
+.initial_gap_rising:
+    incq %r8
+    jmp .paint_row
+
+.finalize_LU_to_RL:
+    popq %rdx
     ret
+
+
 
 get_padding:
 .gp_0:
@@ -69,39 +134,12 @@ get_padding:
     movq %rsi, %rax
     ret
 
-.nuliffy:
-    movq $0x00, %r8
-    jmp .nullified
 
-paint_row:
-    # initialize for the row
-    addq $0x03, %r8
-    cmpq %rcx, %r8
-    jge .nuliffy
-.nullified:
 
-    movq $0x00, %rax
 
-    addq %r8, %rdi
 
-.paint_px:
-    # turn to red
-    movb $0x00, (%rdi)
-    movb $0x00, 1(%rdi)
-    movb $0xff, 2(%rdi)
 
-    addq (, %rcx, 2), %rdi
-    addq %rcx, %rdi
-    #addq (,%rcx,3), %rdi
-    incq %rax
-
-    # if %rax < %rsi, that is, current width < width
-    cmpq %rsi, %rax
-    jl .paint_px
-    
-    ret
-
-	# Example: Initially, the %rdi register points to the first 
+   	# Example: Initially, the %rdi register points to the first 
 	# pixel in the last row of the image.  The following three 
 	# instructions change its color to red.
 
