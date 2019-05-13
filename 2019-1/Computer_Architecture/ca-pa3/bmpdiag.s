@@ -48,7 +48,7 @@ bmp_diag:
     
     callq LU_to_RL
 
-
+    ret
 
 LU_to_RL:
     movq $0x0, %r8
