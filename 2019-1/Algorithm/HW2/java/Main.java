@@ -6,7 +6,7 @@ public class Main{
     public static void main(String[] args){
         int[] opt_seq = { 0, 0, 0, 0, 0 }; // 0: ins | 1: del | 2: sel | 3: rank
         int[] in_seq = { 1, 2, 3, 3, 1 };
-        int[] out_seq = { 1, 2, 3, 0, 1 };
+        int[] out_seq = { 1, 2, 3, 0, 0 };
         if(Hw2.check(opt_seq, in_seq, out_seq, 5)){
             System.out.println("correct");
         }
@@ -16,11 +16,11 @@ public class Main{
         
         Hw2.init();
 
-        int[] opt_seq2 = { 0, 1, 0, 0, 2, 3 };
-        int[] in_seq2 = { 1, 1, 1, 2, 1, 2 };
-        int[] out_seq2 = new int[6];
+        int[] opt_seq2 = { 0, 1, 0, 0, 2, 3, 0, 0, 0, 1, 0, 2, 3, 0, 0, 1, 1, 0 };
+        int[] in_seq2  = { 1, 1, 1, 2, 1, 2, 3, 4, 5, 3, 6, 4, 2, 3, 7, 1, 7, 1 };
+        int[] out_seq2 = new int[opt_seq2.length];
         
-        for(int i=0;i<6;i++){
+        for(int i=0;i<opt_seq2.length;i++){
             if(opt_seq2[i]==0){
                 out_seq2[i] = Hw2.osInsert(in_seq2[i]);
             }
@@ -33,9 +33,14 @@ public class Main{
             else if(opt_seq2[i]==3){
                 out_seq2[i] = Hw2.osRank(in_seq2[i]);
             }
+
+            System.out.print("DEBUG: inorder = ");
+            Hw2.rbtree.print();
         }
 
-        if(Hw2.check(opt_seq2,in_seq2,out_seq2,6)){
+            
+
+        if(Hw2.check(opt_seq2,in_seq2,out_seq2,opt_seq2.length)){
             System.out.println("correct");
         }
         else{

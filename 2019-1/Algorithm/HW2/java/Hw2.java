@@ -12,8 +12,12 @@ public class Hw2{ // insert red black tree instead of arraylist
     public static int osInsert(int x){ // returns x if x not in tree, 0 otherwise
         if(!rbtree.search(x)){
             rbtree.insert(x);
+
+            System.out.println("DEBUG: osInsert returns " + x);
             return x;
         }
+
+        System.out.println("DEBUG: osInsert returns " + 0);
 
         return 0;
     }
@@ -21,28 +25,84 @@ public class Hw2{ // insert red black tree instead of arraylist
     public static int osDelete(int x){ // returns x if x in tree, 0 otherwise
         if(rbtree.search(x)){
             rbtree.delete(x);
+
+            System.out.println("DEBUG: osDelete returns " + x);
             return x;
         }
+
+        System.out.println("DEBUG: osDelete returns " + 0);
 
         return 0;
     }
     
     public static int osSelect(int i){ // returns i-th smallest int in tree if |T|>=i, 0 otherwise
-        if(rbtree.size >= i)
+        if(rbtree.size >= i){
+            System.out.println("DEBUG: osSelect returns " + rbtree.select(i));
             return rbtree.select(i);
+        }
+
+        System.out.println("DEBUG: osSelect returns " + 0);
 
         return 0;
     }
     
     public static int osRank(int x){ // returns the rank of x if x in tree, 0 otherwise
-        if(rbtree.search(x))
+        if(rbtree.search(x)){
+            System.out.println("DEBUG: osRank returns " + rbtree.rank(x));
             return rbtree.rank(x);
+        }
+
+        System.out.println("DEBUG: osRank   returns " + 0);
 
         return 0;
     }
     
     public static boolean check(int[] opt_seq, int[] in_seq, int[] out_seq, int n){
+        ArrayList<Integer> list = new ArrayList<>();
+        int target = 0;
+
+        for(int i = 0; i < n; i++){
+            switch(opt_seq[i]){
+                case 0: // insert 
+                    if(list.contains(in_seq[i])) target = 0;
+                    else{
+                        list.add(in_seq[i]);
+                        list.sort(Comparator.naturalOrder());
+                        target = in_seq[i];
+                    }
+                    break;
+                case 1: // delete
+                    if(!list.contains(in_seq[i])) target = 0;
+                    else{
+                        list.remove(Integer.valueOf(in_seq[i]));
+                        list.sort(Comparator.naturalOrder());
+                        target = in_seq[i];
+                    }
+                    break;
+                case 2: // select
+                    if(!(list.size() >= in_seq[i])) target = 0;
+                    else target = list.get(in_seq[i] - 1);                        
+                    break;
+                case 3: // rank
+                    if(!list.contains(in_seq[i])) target = 0;
+                    else target = list.indexOf(in_seq[i]) + 1;
+                    break;
+            }
+            
+            System.out.println("DEBUG: target = " + target);
+            printlist(list);
+
+            if(out_seq[i] != target) return false;
+        }
+
         return true;
+    }
+
+    private static void printlist(ArrayList<Integer> list){
+        System.out.print("DEBUG: ArrayList = ");
+        for(int i = 0; i < list.size(); i++)
+            System.out.print(list.get(i));
+        System.out.println("");
     }
 }
 
@@ -80,7 +140,20 @@ class RBT{
         size = 1;
     }
 
+    public void print(){
+        printInorder(root);
+        System.out.println("");
+    }
+
+    public void printInorder(Node node){
+        if(node == nil) return;
+        printInorder(node.left);
+        System.out.print(node.element + " ");
+        printInorder(node.right);
+    }
+
     public int select(int i){
+        System.out.println("DEBUG: select " + i);
         return select_helper(root, i);
     }
 
@@ -93,6 +166,7 @@ class RBT{
     }
 
     public int rank(int element){
+        System.out.println("DEBUG: rank " + element);
         Node node = search_node(element);
         Node current = node;
         int rank = node.left.size + 1;
@@ -163,20 +237,50 @@ class RBT{
         Node current = root;    
         Node parent = current.parent;
 
+        System.out.println("DEBUG: insert " + element);
+
         if(root == nil){
             root = new Node(element, nil, nil, nil);
             root.color = BLACK;
+            size++;
 
             return;
         }
-
+        
         while(current != nil){ // if loop out, current is nil
+            System.out.println("DEBUG: current.element = " + current.element);
+            
             current.size++;
             parent = current;
             current = current.element < element ? current.right : current.left;
+
+            System.out.println("DEBUG: current.element = " + current.element);
         }
 
-        current = new Node(element, nil, nil, parent);
+        System.out.println(root.element + "|" + root.left.element + "|" + root.right.element + "");
+
+        if(parent.left == nil && parent.right == nil){
+            if(parent.element < element){
+                parent.right = new Node(element, nil, nil, parent);
+                current = parent.right;
+            }
+            else{
+                parent.left = new Node(element, nil, nil, parent);
+                current = parent.left;
+            }
+        }
+        else if(parent.left == nil){
+            parent.left = new Node(element, nil, nil, parent);
+            current = parent.left;
+        }
+        else{
+            parent.right = new Node(element, nil, nil, parent);
+            current = parent.right;
+        }
+
+        System.out.println(root.element + "|" + root.left.element + "|" + root.right.element + "");
+
+        //System.out.println("insert: current = " + current.element);
 
         insertFixup(current);
 
@@ -186,6 +290,7 @@ class RBT{
     }
 
     public void delete(int element){
+        System.out.println("DEBUG: delete " + element);
         Node rightLeftmost;
         Node node = search_delete(element);
         Node fixup_node;
@@ -198,6 +303,7 @@ class RBT{
             if(node == root){
                 root = nil;
 
+                size--;
                 return;
             }
 
@@ -213,6 +319,7 @@ class RBT{
                 root.parent = nil;
                 root.color = BLACK;
 
+                size--;
                 return;
             }
 
@@ -234,6 +341,7 @@ class RBT{
                 root.parent = nil;
                 root.color = BLACK;
 
+                size--;
                 return;
             }
 
@@ -273,8 +381,10 @@ class RBT{
 
      
     public void insertFixup(Node node){
+        //System.out.println("DEBUG: insertFixup: node.element = " + node.element);
         Node parent = node.parent;
-        Node grand = parent.parent;
+        //System.out.println("DEBUG: insertFixup: parent.element = " + parent.element);
+        Node grand = node != root ? parent.parent : nil;
         Node uncle = parent == grand.left ? grand.right : grand.left;
         Node sibling = node == parent.left ? parent.right : parent.left;
 
