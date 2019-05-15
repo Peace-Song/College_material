@@ -34,8 +34,6 @@ public class Main{
                 out_seq2[i] = Hw2.osRank(in_seq2[i]);
             }
 
-            System.out.print("DEBUG: inorder = ");
-            Hw2.rbtree.print();
         }
 
             

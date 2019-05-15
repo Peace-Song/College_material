@@ -13,11 +13,11 @@ public class Hw2{ // insert red black tree instead of arraylist
         if(!rbtree.search(x)){
             rbtree.insert(x);
 
-            System.out.println("DEBUG: osInsert returns " + x);
+            // System.out.println("DEBUG: osInsert returns " + x);
             return x;
         }
 
-        System.out.println("DEBUG: osInsert returns " + 0);
+        // System.out.println("DEBUG: osInsert returns " + 0);
 
         return 0;
     }
@@ -26,39 +26,39 @@ public class Hw2{ // insert red black tree instead of arraylist
         if(rbtree.search(x)){
             rbtree.delete(x);
 
-            System.out.println("DEBUG: osDelete returns " + x);
+            // System.out.println("DEBUG: osDelete returns " + x);
             return x;
         }
 
-        System.out.println("DEBUG: osDelete returns " + 0);
+        // System.out.println("DEBUG: osDelete returns " + 0);
 
         return 0;
     }
     
     public static int osSelect(int i){ // returns i-th smallest int in tree if |T|>=i, 0 otherwise
         if(rbtree.size >= i){
-            System.out.println("DEBUG: osSelect returns " + rbtree.select(i));
+            // System.out.println("DEBUG: osSelect returns " + rbtree.select(i));
             return rbtree.select(i);
         }
 
-        System.out.println("DEBUG: osSelect returns " + 0);
+        // System.out.println("DEBUG: osSelect returns " + 0);
 
         return 0;
     }
     
     public static int osRank(int x){ // returns the rank of x if x in tree, 0 otherwise
         if(rbtree.search(x)){
-            System.out.println("DEBUG: osRank returns " + rbtree.rank(x));
+            // System.out.println("DEBUG: osRank returns " + rbtree.rank(x));
             return rbtree.rank(x);
         }
 
-        System.out.println("DEBUG: osRank   returns " + 0);
+        // System.out.println("DEBUG: osRank   returns " + 0);
 
         return 0;
     }
     
     public static boolean check(int[] opt_seq, int[] in_seq, int[] out_seq, int n){
-        ArrayList<Integer> list = new ArrayList<>();
+        ArrayList<Integer> list = new ArrayList<Integer>();
         int target = 0;
 
         for(int i = 0; i < n; i++){
@@ -89,8 +89,8 @@ public class Hw2{ // insert red black tree instead of arraylist
                     break;
             }
             
-            System.out.println("DEBUG: target = " + target);
-            printlist(list);
+            // System.out.println("DEBUG: target = " + target);
+            //printlist(list);
 
             if(out_seq[i] != target) return false;
         }
@@ -98,12 +98,12 @@ public class Hw2{ // insert red black tree instead of arraylist
         return true;
     }
 
-    private static void printlist(ArrayList<Integer> list){
+    /*private static void printlist(ArrayList<Integer> list){
         System.out.print("DEBUG: ArrayList = ");
         for(int i = 0; i < list.size(); i++)
             System.out.print(list.get(i));
         System.out.println("");
-    }
+    }*/
 }
 
 class RBT{ 
@@ -142,18 +142,18 @@ class RBT{
 
     public void print(){
         printInorder(root);
-        System.out.println("");
+        //System.out.println("");
     }
 
     public void printInorder(Node node){
         if(node == nil) return;
         printInorder(node.left);
-        System.out.print(node.element + " ");
+        //System.out.print(node.element + " ");
         printInorder(node.right);
     }
 
     public int select(int i){
-        System.out.println("DEBUG: select " + i);
+        //System.out.println("DEBUG: select " + i);
         return select_helper(root, i);
     }
 
@@ -166,7 +166,7 @@ class RBT{
     }
 
     public int rank(int element){
-        System.out.println("DEBUG: rank " + element);
+        //System.out.println("DEBUG: rank " + element);
         Node node = search_node(element);
         Node current = node;
         int rank = node.left.size + 1;
@@ -205,7 +205,7 @@ class RBT{
             current = current.element < element ? current.right : current.left;
 
             if(current == nil){
-                System.out.println("No such element exists. Returning nil.");
+                // System.out.println("No such element exists. Returning nil.");
                 return current;
             }
             
@@ -224,7 +224,7 @@ class RBT{
             current = current.element < element ? current.right : current.left;
 
             if(current == nil){
-                System.out.println("No such element exists. Returning nil.");
+                // System.out.println("No such element exists. Returning nil.");
                 return current;
             }
             
@@ -237,7 +237,7 @@ class RBT{
         Node current = root;    
         Node parent = current.parent;
 
-        System.out.println("DEBUG: insert " + element);
+        // System.out.println("DEBUG: insert " + element);
 
         if(root == nil){
             root = new Node(element, nil, nil, nil);
@@ -248,16 +248,16 @@ class RBT{
         }
         
         while(current != nil){ // if loop out, current is nil
-            System.out.println("DEBUG: current.element = " + current.element);
+            // System.out.println("DEBUG: current.element = " + current.element);
             
             current.size++;
             parent = current;
             current = current.element < element ? current.right : current.left;
 
-            System.out.println("DEBUG: current.element = " + current.element);
+            // System.out.println("DEBUG: current.element = " + current.element);
         }
 
-        System.out.println(root.element + "|" + root.left.element + "|" + root.right.element + "");
+        // System.out.println(root.element + "|" + root.left.element + "|" + root.right.element + "");
 
         if(parent.left == nil && parent.right == nil){
             if(parent.element < element){
@@ -278,7 +278,7 @@ class RBT{
             current = parent.right;
         }
 
-        System.out.println(root.element + "|" + root.left.element + "|" + root.right.element + "");
+        // System.out.println(root.element + "|" + root.left.element + "|" + root.right.element + "");
 
         //System.out.println("insert: current = " + current.element);
 
@@ -290,7 +290,7 @@ class RBT{
     }
 
     public void delete(int element){
-        System.out.println("DEBUG: delete " + element);
+        // System.out.println("DEBUG: delete " + element);
         Node rightLeftmost;
         Node node = search_delete(element);
         Node fixup_node;
