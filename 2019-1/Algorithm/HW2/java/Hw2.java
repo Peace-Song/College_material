@@ -28,33 +28,43 @@ public class Hw2{ // insert red black tree instead of arraylist
     }
     
     public static int osSelect(int i){ // returns i-th smallest int in tree if |T|>=i, 0 otherwise
+        if(rbtree.size >= i)
+            return rbtree.select(i);
+
         return 0;
     }
     
     public static int osRank(int x){ // returns the rank of x if x in tree, 0 otherwise
+        if(rbtree.search(x))
+            return rbtree.rank(x);
+
         return 0;
     }
     
     public static boolean check(int[] opt_seq, int[] in_seq, int[] out_seq, int n){
-        return 0;
+        return true;
     }
 }
 
-class RBT{ // NOTE TO MYSELF: NEED TO ADD "SIZE" TO NODE
+class RBT{ 
     private Node root;
     static Node nil; 
 
     static final int BLACK = 0;
     static final int RED = 1;
 
+    int size;
+
     public RBT(){
-        nil = new Node(0, null null, null);
+        nil = new Node(0, null, null, null);
         nil.left = nil;
         nil.right = nil;
         nil.size = 0;
         nil.color = BLACK;
 
         root = nil;
+
+        size = 0;
     }
 
     public RBT(int element){
@@ -66,6 +76,35 @@ class RBT{ // NOTE TO MYSELF: NEED TO ADD "SIZE" TO NODE
 
         root = new Node(element, nil, nil, nil);
         root.color = BLACK;
+
+        size = 1;
+    }
+
+    public int select(int i){
+        return select_helper(root, i);
+    }
+
+    public int select_helper(Node node, int i){
+        int rank = node.left.size + 1;
+        
+        if(i == rank) return node.element;
+        else if(i < rank) return select_helper(node.left, i);
+        else return select_helper(node.right, i - rank);
+    }
+
+    public int rank(int element){
+        Node node = search_node(element);
+        Node current = node;
+        int rank = node.left.size + 1;
+        
+        while(current != root){
+            if(current == current.parent.right)
+                rank = rank + current.parent.left.size + 1;
+
+            current = current.parent;
+        }
+
+        return rank;
     }
 
     public boolean search(int element){
@@ -81,6 +120,24 @@ class RBT{ // NOTE TO MYSELF: NEED TO ADD "SIZE" TO NODE
         }
 
         return true;
+    }
+
+    public Node search_node(int element){
+        Node current = root;
+        Node parent;
+
+        while(current.element != element){
+            parent = current;
+            current = current.element < element ? current.right : current.left;
+
+            if(current == nil){
+                System.out.println("No such element exists. Returning nil.");
+                return current;
+            }
+            
+        }
+
+        return current;
     }
 
     public Node search_delete(int element){
@@ -104,9 +161,9 @@ class RBT{ // NOTE TO MYSELF: NEED TO ADD "SIZE" TO NODE
 
     public void insert(int element){
         Node current = root;    
-        Node parent;
+        Node parent = current.parent;
 
-        if(root = nil){
+        if(root == nil){
             root = new Node(element, nil, nil, nil);
             root.color = BLACK;
 
@@ -122,6 +179,8 @@ class RBT{ // NOTE TO MYSELF: NEED TO ADD "SIZE" TO NODE
         current = new Node(element, nil, nil, parent);
 
         insertFixup(current);
+
+        size++;
 
         return;
     }
@@ -206,6 +265,8 @@ class RBT{ // NOTE TO MYSELF: NEED TO ADD "SIZE" TO NODE
 
         if(node_color == BLACK)
             deleteFixup(fixup_node);
+        
+        size--;
 
         return;
     }
@@ -255,6 +316,7 @@ class RBT{ // NOTE TO MYSELF: NEED TO ADD "SIZE" TO NODE
 
                 return;
             }
+        }
         else{
             if(node == parent.left){
                 rightRotate(parent);

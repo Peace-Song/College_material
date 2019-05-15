@@ -4,7 +4,7 @@ import java.io.*;
 
 public class Main{
     public static void main(String[] args){
-        int[] opt_seq = { 0, 0, 0, 0, 0 };
+        int[] opt_seq = { 0, 0, 0, 0, 0 }; // 0: ins | 1: del | 2: sel | 3: rank
         int[] in_seq = { 1, 2, 3, 3, 1 };
         int[] out_seq = { 1, 2, 3, 0, 1 };
         if(Hw2.check(opt_seq, in_seq, out_seq, 5)){
