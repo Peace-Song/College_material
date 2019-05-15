@@ -3,17 +3,27 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class Hw2{ // insert red black tree instead of arraylist
-    static ArrayList < Integer > A; // int in [1, 9999] and initially tree empty
+    static RBT rbtree; // int in [1, 9999] and initially tree empty
     
     public static void init(){
-        A = new ArrayList<Integer>();
+        rbtree = new RBT();
     }
     
     public static int osInsert(int x){ // returns x if x not in tree, 0 otherwise
+        if(!rbtree.search(x)){
+            rbtree.insert(x);
+            return x;
+        }
+
         return 0;
     }
     
     public static int osDelete(int x){ // returns x if x in tree, 0 otherwise
+        if(rbtree.search(x)){
+            rbtree.delete(x);
+            return x;
+        }
+
         return 0;
     }
     
@@ -30,28 +40,55 @@ public class Hw2{ // insert red black tree instead of arraylist
     }
 }
 
-class RBT{
+class RBT{ // NOTE TO MYSELF: NEED TO ADD "SIZE" TO NODE
     private Node root;
     static Node nil; 
 
     static final int BLACK = 0;
     static final int RED = 1;
 
+    public RBT(){
+        nil = new Node(0, null null, null);
+        nil.left = nil;
+        nil.right = nil;
+        nil.size = 0;
+        nil.color = BLACK;
+
+        root = nil;
+    }
+
     public RBT(int element){
         nil = new Node(0, null, null, null); // nil's parent is set to null
         nil.left = nil;
         nil.right = nil;
+        nil.size = 0;
         nil.color = BLACK;
 
         root = new Node(element, nil, nil, nil);
         root.color = BLACK;
     }
 
-    public Node search(int element){
+    public boolean search(int element){
         Node current = root;
         Node parent;
 
         while(current.element != element){
+            parent = current;
+            current = current.element < element ? current.right : current.left;
+
+            if(current == nil)
+                return false;
+        }
+
+        return true;
+    }
+
+    public Node search_delete(int element){
+        Node current = root;
+        Node parent;
+
+        while(current.element != element){
+            current.size--;
             parent = current;
             current = current.element < element ? current.right : current.left;
 
@@ -77,6 +114,7 @@ class RBT{
         }
 
         while(current != nil){ // if loop out, current is nil
+            current.size++;
             parent = current;
             current = current.element < element ? current.right : current.left;
         }
@@ -90,7 +128,7 @@ class RBT{
 
     public void delete(int element){
         Node rightLeftmost;
-        Node node = search(element);
+        Node node = search_delete(element);
         Node fixup_node;
 
         int node_color = node.color;
@@ -316,6 +354,11 @@ class RBT{
 
             node.right = node.right.left;
             node.parent.left = node;
+
+            node.size = node.left.size + node.right.size + 1;
+            node.parent.size = node.parent.left.size + node.parent.right.size + 1;
+
+            return;
         }
     
         else{
@@ -327,6 +370,11 @@ class RBT{
             right.left = root;
             right.parent = nil;
             root = right;
+
+            root.left.size = root.left.left.size + root.left.right.size + 1;
+            root.size = root.left.size + root.right.size + 1;
+
+            return;
         }
     }
 
@@ -345,6 +393,11 @@ class RBT{
 
             node.left = node.left.right;
             node.parent.right = node;
+
+            node.size = node.left.size + node.right.size + 1;
+            node.parent.size = node.parent.left.size + node.parent.right.size + 1;
+
+            return;
         }
     
         else{
@@ -356,6 +409,11 @@ class RBT{
             left.right = root;
             left.parent = nil;
             root = left;
+
+            root.left.size = root.left.left.size + root.left.right.size + 1;
+            root.size = root.left.size + root.right.size + 1;
+
+            return;
         }
     }
 }
@@ -365,6 +423,7 @@ class Node{
     Node parent;
     Node left, right;
     int element;
+    int size;
     int color;
 
     public Node(int element){
@@ -376,6 +435,7 @@ class Node{
         this.left = left;
         this.right = right;
         this.parent = parent;
+        this.size = 1;
         this.color = 1;
     }
 }
