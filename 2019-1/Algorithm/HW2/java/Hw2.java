@@ -142,13 +142,13 @@ class RBT{
 
     public void print(){
         printInorder(root);
-        //System.out.println("");
+        System.out.println("");
     }
 
     public void printInorder(Node node){
         if(node == nil) return;
         printInorder(node.left);
-        //System.out.print(node.element + " ");
+        System.out.print(node.element + " ");
         printInorder(node.right);
     }
 
@@ -310,7 +310,7 @@ class RBT{
             if(node.parent.left == node) node.parent.left = nil;
             else node.parent.right = nil;
             
-            fixup_node = nil;
+            fixup_node = node.parent;
         }
 
         else if(node.right == nil){ // has only left child
