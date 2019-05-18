@@ -33,9 +33,8 @@ bmp_diag:
 
 	# --> FILL HERE <--
 
-    #point imgptr to leftuppermost pixel    
     movq %rsi, %r8
-    imulq $0x3, %r8
+    imulq $3, %r8
     pushq %rsi
     callq get_padding
     popq %rsi
@@ -44,44 +43,160 @@ bmp_diag:
     imulq %rdx, %r8
     incq %rdx
 
+    movq %rdi, %rax # %rax holds original imgptr
     addq %r8, %rdi
-    
-    callq LU_to_RL
 
-    ret
+    call LU2RL
 
-LU_to_RL:
-    movq $0x0, %r8
+
+    movq %rsi, %r8
+    imulq $3, %r8
+    pushq %rsi
+    callq get_padding
+    popq %rsi
+    addq %rax, %r8
+    decq %rdx
+    imulq %rdx, %r8
+    incq %rdx
+
+    movq %rdi, %rax # %rax holds original imgptr
+    addq %r8, %rdi
+
+    call RU2LL
+
+   ret
+
+RU2LL:
+    movq %rcx, %r8
 
     #temporarily assign current imgptr to %rdx
     pushq %rdx
     movq %rdi, %rdx
 
     #save original imgptr
-    pushq %rdi
+    pushq %rax
 
-    #r8 will incr at the end, considered as pointer not scalar
-.paint_next:
-    pushq %rdx
+    movq $0, %rax # now %rax will work as width indicator
     
-    #temporarily assign actual length of width to %rdx 
+    addq %r8, %rdi
+    addq %r8, %rdi
+    addq %r8, %rdi
+    
+    addq %r8, %rax
+
+.RU2LL_paint_row:
+    movb $0x00, (%rdi)
+    movb $0x00, 1(%rdi)
+    movb $0xff, 2(%rdi)
+
+    addq %rcx, %rdi
+    addq %rcx, %rdi
+    addq %rcx, %rdi
+
+    addq %rcx, %rax
+
+    cmpq %rsi, %rax
+    jl .RU2LL_paint_row
+
+    decq %r8
+    cmpq $0, %r8
+    jge .RU2LL_paint_next
+    movq %rcx, %r8
+    decq %r8
+    jmp .RU2LL_paint_next
+
+.RU2LL_paint_next:
+    pushq %rdx # save current address
+
     movq %rsi, %rdx
-    imulq $0x3, %rdx
+    imulq $3, %rdx
     pushq %rsi
     callq get_padding
     popq %rsi
     addq %rax, %rdx
     movq %rdx, %rax
-  
-    popq %rdx # now %rdx has address of one row above
+    #at this moment, %rax has actual memory length of width
 
+    popq %rdx
+    #at this moment, %rdx restored to current start address.
 
+    subq %rax, %rdx #move to the next address to be started from
     movq %rdx, %rdi
-    subq %rax, %rdx
 
-    popq %rax
-    cmpq %rax, %rdi # compare ptr of this row : original imgptr
-    jl .finalize_LU_to_RL
+    popq %rax # pop original imgptr
+    cmpq %rax, %rdi
+    jl .finalize_RU2LL
+    pushq %rax
+
+    movq $0x0, %rax
+    
+    addq %r8, %rdi
+    addq %r8, %rdi
+    addq %r8, %rdi
+    addq %r8, %rax
+
+    jmp .RU2LL_paint_row
+
+.finalize_RU2LL:
+    popq %rdx
+    movq %rax, %rdi
+
+    ret
+
+
+LU2RL:
+    movq $0, %r8
+
+    #temporarily assign current imgptr to %rdx
+    pushq %rdx
+    movq %rdi, %rdx
+
+    #save original imgptr
+    pushq %rax
+
+    movq $0, %rax
+
+.LU2RL_paint_row:
+    movb $0x00, (%rdi)
+    movb $0x00, 1(%rdi)
+    movb $0xff, 2(%rdi)
+
+    addq %rcx, %rdi
+    addq %rcx, %rdi
+    addq %rcx, %rdi
+    
+    addq %rcx, %rax
+    
+    cmpq %rsi, %rax
+    jl .LU2RL_paint_row
+
+    incq %r8
+    cmpq %rcx, %r8 #compare current initial gap : gap
+    jl .LU2RL_paint_next
+    movq $0x0, %r8
+    jmp .LU2RL_paint_next
+
+.LU2RL_paint_next:
+    pushq %rdx #save current address
+
+    movq %rsi, %rdx
+    imulq $3, %rdx
+    pushq %rsi
+    callq get_padding
+    popq %rsi
+    addq %rax, %rdx
+    movq %rdx, %rax
+    #at this moment, %rax has actual memory length of width
+
+    popq %rdx
+    #at this moment, %rdx restored to current start address.
+
+    subq %rax, %rdx #move to the next address to be started from 
+    movq %rdx, %rdi
+
+    popq %rax #pop original imgptr
+    cmpq %rax, %rdi #compare ptr of this row: original imgptr
+    jl .finalize_LU2RL
     pushq %rax
 
     movq $0x0, %rax
@@ -89,52 +204,33 @@ LU_to_RL:
     addq %r8, %rdi
     addq %r8, %rdi
     addq %r8, %rdi
-    addq %r8, %rax 
-    
-.paint_row:
-    movb $0x00, (%rdi)
-    movb $0x00, 1(%rdi)
-    movb $0xff, 2(%rdi)
+    addq %r8, %rax
 
-    addq (, %rcx, 2), %rdi
-    addq %rcx, %rdi
-    inc %rax
+    jmp .LU2RL_paint_row
 
-    #compare current width : width
-    cmpq %rsi, %rax
-    jl .paint_row
-    
-    #compare current initial gap : gap
-    cmpq %rcx, %r8
-    jl .initial_gap_rising
-    movq $0x0, %r8
-    jmp .paint_next
-
-    
-.initial_gap_rising:
-    incq %r8
-    jmp .paint_row
-
-.finalize_LU_to_RL:
+.finalize_LU2RL:
     popq %rdx
-    ret
+    movq %rax, %rdi
+    
+    # test if %rdi is back to the original imgptr
+    # movq $0xff, (%rdi)
+    # movq $0x00, 1(%rdi)
+    # movq $0x00, 2(%rdi)
 
+    ret
 
 
 get_padding:
 .gp_0:
-    cmpq $0x04, %rsi
-    jl   .gp_1
-    subq $0x04, %rsi
-    jmp  .gp_0
-
+    cmpq $4, %rsi
+    jle .gp_1
+    subq $4, %rsi
+    jmp .gp_0
 .gp_1:
     negq %rsi
-    addq $0x04, %rsi
+    addq $4, %rsi
     movq %rsi, %rax
     ret
-
-
 
 
 
