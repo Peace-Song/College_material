@@ -103,7 +103,7 @@ RU2LL:
     jge .RU2LL_paint_next
     movq %rcx, %r8
     decq %r8
-    jmp .RU2LL_paint_next
+    jmp .RU2LL_paint_next # MAYBE THIS PART IS OF PROBLEM?
 
 .RU2LL_paint_next:
     pushq %rdx # save current address
