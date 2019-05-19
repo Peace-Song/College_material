@@ -36,6 +36,7 @@ bmp_diag:
     movq %rsi, %r8
     imulq $3, %r8
     pushq %rsi
+    imulq $3, %rsi
     callq get_padding
     popq %rsi
     addq %rax, %r8
@@ -52,6 +53,7 @@ bmp_diag:
     movq %rsi, %r8
     imulq $3, %r8
     pushq %rsi
+    imulq $3, %rsi
     callq get_padding
     popq %rsi
     addq %rax, %r8
@@ -103,7 +105,7 @@ RU2LL:
     jge .RU2LL_paint_next
     movq %rcx, %r8
     decq %r8
-    jmp .RU2LL_paint_next # MAYBE THIS PART IS OF PROBLEM?
+    jmp .RU2LL_paint_next
 
 .RU2LL_paint_next:
     pushq %rdx # save current address
@@ -111,6 +113,7 @@ RU2LL:
     movq %rsi, %rdx
     imulq $3, %rdx
     pushq %rsi
+    imulq $3, %rsi
     callq get_padding
     popq %rsi
     addq %rax, %rdx
@@ -182,6 +185,7 @@ LU2RL:
     movq %rsi, %rdx
     imulq $3, %rdx
     pushq %rsi
+    imulq $3, %rsi
     callq get_padding
     popq %rsi
     addq %rax, %rdx
@@ -222,13 +226,13 @@ LU2RL:
 
 get_padding:
 .gp_0:
-    cmpq $4, %rsi
+    cmpq $0x4, %rsi
     jle .gp_1
-    subq $4, %rsi
+    subq $0x4, %rsi
     jmp .gp_0
 .gp_1:
     negq %rsi
-    addq $4, %rsi
+    addq $0x4, %rsi
     movq %rsi, %rax
     ret
 
