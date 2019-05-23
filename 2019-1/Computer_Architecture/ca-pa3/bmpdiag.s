@@ -33,10 +33,9 @@ bmp_diag:
 
 	# --> FILL HERE <--
 
-    movq %rsi, %r8
+    /*movq %rsi, %r8
     imulq $3, %r8
     pushq %rsi
-    imulq $3, %rsi
     callq get_padding
     popq %rsi
     addq %rax, %r8
@@ -45,15 +44,16 @@ bmp_diag:
     incq %rdx
 
     movq %rdi, %rax # %rax holds original imgptr
-    addq %r8, %rdi
+    addq %r8, %rdi*/
+
+    call initiate_draw
 
     call LU2RL
 
 
-    movq %rsi, %r8
+    /*movq %rsi, %r8
     imulq $3, %r8
     pushq %rsi
-    imulq $3, %rsi
     callq get_padding
     popq %rsi
     addq %rax, %r8
@@ -62,11 +62,30 @@ bmp_diag:
     incq %rdx
 
     movq %rdi, %rax # %rax holds original imgptr
-    addq %r8, %rdi
+    addq %r8, %rdi*/
+
+    call initiate_draw
 
     call RU2LL
 
-   ret
+    ret
+
+initiate_draw:
+    movq %rsi, %r8
+    imulq $3, %r8
+    pushq %rsi
+    callq get_padding
+    popq %rsi
+    addq %rax, %r8
+    decq %rdx
+    imulq %rdx, %r8
+    incq %rdx
+
+    movq %rdi, %rax
+    addq %r8, %rdi
+
+    ret
+
 
 RU2LL:
     movq %rcx, %r8
@@ -113,7 +132,6 @@ RU2LL:
     movq %rsi, %rdx
     imulq $3, %rdx
     pushq %rsi
-    imulq $3, %rsi
     callq get_padding
     popq %rsi
     addq %rax, %rdx
@@ -131,7 +149,7 @@ RU2LL:
     jl .finalize_RU2LL
     pushq %rax
 
-    movq $0x0, %rax
+    movq $0, %rax
     
     addq %r8, %rdi
     addq %r8, %rdi
@@ -176,7 +194,7 @@ LU2RL:
     incq %r8
     cmpq %rcx, %r8 #compare current initial gap : gap
     jl .LU2RL_paint_next
-    movq $0x0, %r8
+    movq $0, %r8
     jmp .LU2RL_paint_next
 
 .LU2RL_paint_next:
@@ -185,7 +203,6 @@ LU2RL:
     movq %rsi, %rdx
     imulq $3, %rdx
     pushq %rsi
-    imulq $3, %rsi
     callq get_padding
     popq %rsi
     addq %rax, %rdx
@@ -203,7 +220,7 @@ LU2RL:
     jl .finalize_LU2RL
     pushq %rax
 
-    movq $0x0, %rax
+    movq $0, %rax
 
     addq %r8, %rdi
     addq %r8, %rdi
@@ -225,14 +242,15 @@ LU2RL:
 
 
 get_padding:
+    imulq $3, %rsi
 .gp_0:
-    cmpq $0x4, %rsi
+    cmpq $4, %rsi
     jle .gp_1
-    subq $0x4, %rsi
+    subq $4, %rsi
     jmp .gp_0
 .gp_1:
     negq %rsi
-    addq $0x4, %rsi
+    addq $4, %rsi
     movq %rsi, %rax
     ret
 
