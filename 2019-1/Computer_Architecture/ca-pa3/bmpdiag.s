@@ -80,7 +80,6 @@ initiate_draw:
     decq %rdx
     imulq %rdx, %r8
     incq %rdx
-
     movq %rdi, %rax
     addq %r8, %rdi
 
