@@ -55,11 +55,11 @@ public class Hw3{
             if(ans[i] > max_SCC)
                 max_SCC = ans[i];
        
-        System.out.print("DEBUG: ans[] = ");
+        System.out.println("DEBUG: ans[]");
         for(int i = 0; i < num_v; i++)
-            System.out.print(ans[i] + " ");
-        System.out.println("");
-        System.out.println("DEBUG: max_SCC = " + max_SCC); 
+            System.out.println("ans[" + i + "] = " + ans[i] + " ");
+        System.out.println("\nDEBUG: ans[] end");
+        //System.out.println("DEBUG: max_SCC = " + max_SCC); 
         return max_SCC + 1;
         
         
@@ -112,15 +112,18 @@ public class Hw3{
 
             if(visited[v] == false){
                 ans[v] = count;
+                System.out.println("DEBUG: scc with id = " + count);
                 aDFS_adj_list_find_SCC(adj_transpose, v, count, visited, ans);
+                System.out.println("");
+                count++;
             }
 
-            count++;
+            //count++;
         }
     }
 
     public static void aDFS_adj_list_find_SCC(ArrayList <ArrayList <Integer>> adj_transpose, int v, int count, boolean[] visited, int[] ans){
-        
+        System.out.print(v + " ");
         visited[v] = true;
 
         for(int i = 0; i < adj_transpose.get(v).size(); i++){
@@ -160,7 +163,7 @@ public class Hw3{
         }
 
         finish_time[v] = ++time;
-        System.out.println("DEBUG: finish_time of "+v+" is "+time);
+        //System.out.println("DEBUG: finish_time of "+v+" is "+time);
         return time;
     }
     
@@ -189,33 +192,75 @@ public class Hw3{
 
         DFS_adj_mat_find_SCC(adj_transpose, num_v, finish_time, ans);
 
+        
+        int max_SCC = 0;
+        for(int i = 0; i < num_v; i++)
+            if(ans[i] > max_SCC)
+                max_SCC = ans[i];
+
+        System.out.print("DEBUG: ans[] = ");
+        for(int i = 0; i < num_v; i++)
+            System.out.print(ans[i] + " ");
+        System.out.println("\nDEBUG: ans[] end");
+        //System.out.println("DEBUG: max_SCC = " + max_SCC);
+        return max_SCC + 1;
+
+
+        /*
         ans[0] = 0;
         ans[1] = 0;
         ans[2] = 0;
         ans[3] = 1;
-        return 2;
+        return 2;*/
     }
 
-    public static void DFS_mat_find_SCC(int[][] adj_transpose, int num_v, int[] finish_time, int[] ans){
+    public static void DFS_adj_mat_find_SCC(int[][] adj_transpose, int num_v, int[] finish_time, int[] ans){
         int count = 0;
         int max_vertex = 0;
         boolean[] visited = new boolean[num_v];
         int[] finish_time_index_decreasing = new int[num_v];
-
+        int[] finish_time_index_discovered = new int[num_v];
         for(int v = 0; v < num_v; v++)
             visited[v] = false;
 
         for(int i = 0; i < num_v; i++){
             for(int v = 0; v < num_v; v++)
-                if(finish_time[v] > finish_time[max_vertex])
-                    max_vetex = v;
+                if(finish_time[v] >= finish_time[max_vertex])
+                    max_vertex = v;
             
             finish_time_index_decreasing[i] = max_vertex;
             finish_time[max_vertex] = -1;
         }
 
-        System.out.print("DEBUG: finish_time_index_decreasing[] = ");
-        for(int i = 0; i <
+        //System.out.print("DEBUG: finish_time_index_decreasing[] = ");
+        //for(int i = 0; i < num_v; i++)
+        //    System.out.print(finish_time_index_decreasing[i] + " ");
+        //System.out.println("");
+
+        int v = 0;
+        for(int i = 0; i < num_v; i++){
+            v = finish_time_index_decreasing[i];
+
+            if(visited[v] == false){
+                ans[v] = count;
+                aDFS_adj_mat_find_SCC(adj_transpose, v, count, visited, ans);
+                count++;
+            }
+
+            //count++;
+        }
+    }
+
+    public static void aDFS_adj_mat_find_SCC(int[][] adj_transpose, int v, int count, boolean[] visited, int[] ans){
+        visited[v] = true;
+
+        for(int w = 0; w < adj_transpose[v].length; w++)
+            if(adj_transpose[v][w] == 1)
+                if(visited[w] == false){
+                    ans[v] = count;
+                    aDFS_adj_mat_find_SCC(adj_transpose, w, count, visited, ans);
+                }
+    }
 
 
 
@@ -232,19 +277,19 @@ public class Hw3{
                 time = aDFS_adj_mat_determine_time(adj, v, finish_time, visited, time);
     }
 
-    public static void aDFS_adj_mat_determine_time(int[][] adj, int v, int[] finish_time, boolean[] visited, int time){
+    public static int aDFS_adj_mat_determine_time(int[][] adj, int v, int[] finish_time, boolean[] visited, int time){
 
         time++;
         visited[v] = true;
 
-        for(int w = 0; w < num_v; w++){
+        for(int w = 0; w < adj[v].length; w++){
             if(adj[v][w] == 1)
                 if(visited[w] == false)
                     time = aDFS_adj_mat_determine_time(adj, w, finish_time, visited, time);
         }
                 
         finish_time[v] = ++time;
-        System.out.println("DEBUG: finish_time_of " + v + " is " + time);
+        //System.out.println("DEBUG: finish_time_of " + v + " is " + time);
         return time;
     }
 }
