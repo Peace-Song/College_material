@@ -1,0 +1,24 @@
+Running: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -lib unisims_ver -lib unimacro_ver -lib xilinxcorelib_ver -o /home/peacesong/Documents/Workspace/2019-1/Logic_Design/cpu/tb_isim_beh.exe -prj /home/peacesong/Documents/Workspace/2019-1/Logic_Design/cpu/tb_beh.prj work.tb work.glbl 
+ISim P.20131013 (signature 0xfbc00daa)
+Number of CPUs detected in this system: 3
+Turning on mult-threading, number of parallel sub-compilation jobs: 6 
+Determining compilation order of HDL files
+Analyzing Verilog file "/home/peacesong/Documents/Workspace/2019-1/Logic_Design/cpu/tb.v" into library work
+Analyzing Verilog file "/home/peacesong/Documents/Workspace/2019-1/Logic_Design/cpu/cpu.v" into library work
+Analyzing Verilog file "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v" into library work
+Starting static elaboration
+Completed static elaboration
+Fuse Memory Usage: 95676 KB
+Fuse CPU Usage: 490 ms
+Compiling module memory
+Compiling module cpu
+Compiling module num_to_sevenseg
+Compiling module display
+Compiling module tb
+Compiling module glbl
+Time Resolution for simulation is 1ps.
+Compiled 6 Verilog Units
+Built simulation executable /home/peacesong/Documents/Workspace/2019-1/Logic_Design/cpu/tb_isim_beh.exe
+Fuse Memory Usage: 526640 KB
+Fuse CPU Usage: 530 ms
+GCC CPU Usage: 1090 ms
