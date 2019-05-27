@@ -29,13 +29,13 @@ module cpu	//Do not change top module name or ports.
 );
 
 	//Data memory and testbench wiring. you may rename them if you like.
-	wire dmem_write;
-	wire [7:0] dmem_addr, dmem_write_data, dmem_read_data;
+	wire dmem_write; // read if 0, write if 1
+	wire [7:0] dmem_addr, dmem_write_data, dmem_read_data; // addr: 0~31, data: 1byte
 	
 	//Data memory module in tb.v.
 	memory dmem(	.clk(clk), .areset(areset),
 			.write(dmem_write), .addr(dmem_addr),
-			.write_data(dmem_write_data), .read_data(dmem_read_data));
+			.write_data(dmem_write_data), .read_data(dmem_read_data)); 
 
 	assign tb_data = dmem_read_data;
 	//Testbench wiring end.
