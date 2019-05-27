@@ -28,6 +28,8 @@ public class Hw3{
         
         int[] finish_time = new int[num_v];
 
+        //print_adj_list(adj);   
+        
         DFS_adj_list_determine_time(adj, num_v, finish_time);
        
         for(int i = 0; i < adj.size(); i++)
@@ -38,13 +40,44 @@ public class Hw3{
 
 
 
+        //print_adj_list(adj_transpose);               
+
+        /*System.out.print("DEBUG: finish_time = ");
+        for(int i = 0; i < finish_time.length; i++)
+            System.out.print(finish_time[i]);
+        System.out.println("");*/
+        
         int max_SCC = 0;
         for(int i = 0; i < num_v; i++)
             if(ans[i] > max_SCC)
                 max_SCC = ans[i];
        
+        /*System.out.println("DEBUG: ans[]");
+        for(int i = 0; i < num_v; i++)
+            System.out.println("ans[" + i + "] = " + ans[i] + " ");
+        System.out.println("\nDEBUG: ans[] end");*/
+        //System.out.println("DEBUG: max_SCC = " + max_SCC); 
         return max_SCC + 1;
-   }
+        
+        
+        /*ans[0] = 0;
+        ans[1] = 0;
+        ans[2] = 0;
+        ans[3] = 1;
+        return 2;*/
+    }
+
+
+    public static void print_adj_list(ArrayList <ArrayList <Integer>> adj){
+        System.out.println("DEBUG: printing adjacency list.");
+        for(int i = 0; i < adj.size(); i++){
+            System.out.print(i + "| ");
+            
+            for(int j = 0; j < adj.get(i).size(); j++)
+                System.out.print(adj.get(i).get(j) + " ");
+            System.out.println("");
+        }
+    }
 
     public static void DFS_adj_list_find_SCC(ArrayList <ArrayList <Integer>> adj_transpose, int num_v, int[] finish_time, int[] ans){
         int count = 0;
@@ -65,17 +98,24 @@ public class Hw3{
             finish_time[max_vertex] = -1;
         }
     
+        /*System.out.print("DEBUG: finish_time_index_decreasing[] = ");
+        for(int i = 0; i < num_v; i++)
+            System.out.print(finish_time_index_decreasing[i] + " ");
+        System.out.println("");*/
+        
         int v = 0;
         for(int i = 0; i < num_v; i++){
             v = finish_time_index_decreasing[i];
-            
+        //for(v = 0; v < num_v; v++){
             if(visited[v] == false){
                 ans[v] = count;
-                
+                //System.out.println("DEBUG: scc with id = " + count);
                 aDFS_adj_list_find_SCC(adj_transpose, v, count, visited, ans);
-                
+                //System.out.println("");
                 count++;
             }
+
+            //count++;
         }
 
         for(int i = 0; i < num_v; i++)
@@ -97,13 +137,16 @@ public class Hw3{
     }
 
     public static void aDFS_adj_list_find_SCC(ArrayList <ArrayList <Integer>> adj_transpose, int v, int count, boolean[] visited, int[] ans){
+        //System.out.print(v + " ");
         visited[v] = true;
         ans[v] = count;
         for(int i = 0; i < adj_transpose.get(v).size(); i++){
             int x = adj_transpose.get(v).get(i);
 
-            if(visited[x] == false)
+            if(visited[x] == false){
+                //ans[v] = count;
                 aDFS_adj_list_find_SCC(adj_transpose, x, count, visited, ans);
+            }
         }
 
     }
@@ -134,7 +177,7 @@ public class Hw3{
         }
 
         finish_time[v] = ++time;
-        
+        //System.out.println("DEBUG: finish_time of "+v+" is "+time);
         return time;
     }
     
@@ -169,7 +212,20 @@ public class Hw3{
             if(ans[i] > max_SCC)
                 max_SCC = ans[i];
 
+        /*System.out.print("DEBUG: ans[] = ");
+        for(int i = 0; i < num_v; i++)
+            System.out.print(ans[i] + " ");
+        System.out.println("\nDEBUG: ans[] end");*/
+        //System.out.println("DEBUG: max_SCC = " + max_SCC);
         return max_SCC + 1;
+
+
+        /*
+        ans[0] = 0;
+        ans[1] = 0;
+        ans[2] = 0;
+        ans[3] = 1;
+        return 2;*/
     }
 
     public static void DFS_adj_mat_find_SCC(int[][] adj_transpose, int num_v, int[] finish_time, int[] ans){
@@ -190,6 +246,11 @@ public class Hw3{
             finish_time[max_vertex] = -1;
         }
 
+        //System.out.print("DEBUG: finish_time_index_decreasing[] = ");
+        //for(int i = 0; i < num_v; i++)
+        //    System.out.print(finish_time_index_decreasing[i] + " ");
+        //System.out.println("");
+
         int v = 0;
         for(int i = 0; i < num_v; i++){
             v = finish_time_index_decreasing[i];
@@ -199,6 +260,8 @@ public class Hw3{
                 aDFS_adj_mat_find_SCC(adj_transpose, v, count, visited, ans);
                 count++;
             }
+
+            //count++;
         }
 
         for(int i = 0; i < num_v; i++)
@@ -217,6 +280,7 @@ public class Hw3{
 
             ans_id++;
         }
+
     }
 
     public static void aDFS_adj_mat_find_SCC(int[][] adj_transpose, int v, int count, boolean[] visited, int[] ans){
@@ -226,9 +290,10 @@ public class Hw3{
 
         for(int w = 0; w < adj_transpose[v].length; w++)
             if(adj_transpose[v][w] == 1)
-                if(visited[w] == false)
+                if(visited[w] == false){
+                    //ans[v] = count;
                     aDFS_adj_mat_find_SCC(adj_transpose, w, count, visited, ans);
-                
+                }
     }
 
 
@@ -258,7 +323,7 @@ public class Hw3{
         }
                 
         finish_time[v] = ++time;
-        
+        //System.out.println("DEBUG: finish_time_of " + v + " is " + time);
         return time;
     }
 }
