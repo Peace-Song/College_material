@@ -55,10 +55,10 @@ public class Hw3{
             if(ans[i] > max_SCC)
                 max_SCC = ans[i];
        
-        System.out.println("DEBUG: ans[]");
+        /*System.out.println("DEBUG: ans[]");
         for(int i = 0; i < num_v; i++)
             System.out.println("ans[" + i + "] = " + ans[i] + " ");
-        System.out.println("\nDEBUG: ans[] end");
+        System.out.println("\nDEBUG: ans[] end");*/
         //System.out.println("DEBUG: max_SCC = " + max_SCC); 
         return max_SCC + 1;
         
@@ -101,36 +101,53 @@ public class Hw3{
             finish_time[max_vertex] = -1;
         }
     
-        System.out.print("DEBUG: finish_time_index_decreasing[] = ");
+        /*System.out.print("DEBUG: finish_time_index_decreasing[] = ");
         for(int i = 0; i < num_v; i++)
             System.out.print(finish_time_index_decreasing[i] + " ");
-        System.out.println("");
-
+        System.out.println("");*/
+        
         int v = 0;
         for(int i = 0; i < num_v; i++){
             v = finish_time_index_decreasing[i];
-
+        //for(v = 0; v < num_v; v++){
             if(visited[v] == false){
                 ans[v] = count;
-                System.out.println("DEBUG: scc with id = " + count);
+                //System.out.println("DEBUG: scc with id = " + count);
                 aDFS_adj_list_find_SCC(adj_transpose, v, count, visited, ans);
-                System.out.println("");
+                //System.out.println("");
                 count++;
             }
 
             //count++;
         }
+
+        for(int i = 0; i < num_v; i++)
+            ans[i] = ans[i] + count + 1;
+
+        int ans_id = 0;
+        int temp = 0;
+        for(int i = 0; i < num_v; i++){
+            if(ans[i] < count) continue;
+            temp = ans[i];
+            ans[i] = ans_id;
+
+            for(int j = i; j < num_v; j++)
+                if(ans[j] == temp)
+                    ans[j] = ans_id;
+
+            ans_id++;
+        }
     }
 
     public static void aDFS_adj_list_find_SCC(ArrayList <ArrayList <Integer>> adj_transpose, int v, int count, boolean[] visited, int[] ans){
-        System.out.print(v + " ");
+        //System.out.print(v + " ");
         visited[v] = true;
-
+        ans[v] = count;
         for(int i = 0; i < adj_transpose.get(v).size(); i++){
             int x = adj_transpose.get(v).get(i);
 
             if(visited[x] == false){
-                ans[v] = count;
+                //ans[v] = count;
                 aDFS_adj_list_find_SCC(adj_transpose, x, count, visited, ans);
             }
         }
@@ -198,10 +215,10 @@ public class Hw3{
             if(ans[i] > max_SCC)
                 max_SCC = ans[i];
 
-        System.out.print("DEBUG: ans[] = ");
+        /*System.out.print("DEBUG: ans[] = ");
         for(int i = 0; i < num_v; i++)
             System.out.print(ans[i] + " ");
-        System.out.println("\nDEBUG: ans[] end");
+        System.out.println("\nDEBUG: ans[] end");*/
         //System.out.println("DEBUG: max_SCC = " + max_SCC);
         return max_SCC + 1;
 
@@ -249,15 +266,35 @@ public class Hw3{
 
             //count++;
         }
+
+        for(int i = 0; i < num_v; i++)
+            ans[i] = ans[i] + count + 1;
+
+        int ans_id = 0;
+        int temp = 0;
+        for(int i = 0; i < num_v; i++){
+            if(ans[i] < count) continue;
+            temp = ans[i];
+            ans[i] = ans_id;
+
+            for(int j = i; j < num_v; j++)
+                if(ans[j] == temp)
+                    ans[j] = ans_id;
+
+            ans_id++;
+        }
+
     }
 
     public static void aDFS_adj_mat_find_SCC(int[][] adj_transpose, int v, int count, boolean[] visited, int[] ans){
         visited[v] = true;
+        ans[v] = count;
+        
 
         for(int w = 0; w < adj_transpose[v].length; w++)
             if(adj_transpose[v][w] == 1)
                 if(visited[w] == false){
-                    ans[v] = count;
+                    //ans[v] = count;
                     aDFS_adj_mat_find_SCC(adj_transpose, w, count, visited, ans);
                 }
     }

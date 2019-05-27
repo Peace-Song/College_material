@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 import java.lang.*;
 import java.io.*;
 
@@ -25,7 +25,7 @@ public class Main{
         int[] in_b = new int[1];
 
         try{
-            File file = new File("./in1.txt");
+            File file = new File("./in4.txt");
             FileReader reader = new FileReader(file);
             BufferedReader b_reader = new BufferedReader(reader);
 
@@ -67,8 +67,12 @@ public class Main{
             adj_list.get(in_a[i]).add(in_b[i]);
         }
 
+
+        long start = System.currentTimeMillis();
         int[] ans1 = new int[num_v];
         int scc1 = Hw3.find_scc_with_adj_list(adj_list,num_v,num_e,ans1);
+        long end = System.currentTimeMillis();
+        System.out.println("Execution time with adjacency list is:      " + (end-start) + "ms.");
         for(int i=0;i<scc1;i++){
             for(int j=0;j<num_v;j++){
                 if(ans1[j]==i){
@@ -81,8 +85,12 @@ public class Main{
             //0 1 2
             //3
 
-        /*int[] ans2 = new int[num_v];
+
+        start = System.currentTimeMillis();
+        int[] ans2 = new int[num_v];
         int scc2 = Hw3.find_scc_with_adj_mat(adj_mat,num_v,num_e,ans2);
+        end = System.currentTimeMillis();
+        System.out.println("Execution time with adjacency matrix is:    " + (end-start) + "ms.");
         for(int i=0;i<scc2;i++){
             for(int j=0;j<num_v;j++){
                 if(ans2[j]==i){
@@ -90,7 +98,17 @@ public class Main{
                 }
             }
             System.out.println("");
-        }*/
+        }
+
+        boolean same = true;
+
+        for(int i = 0; i < num_v; i++)
+            if(ans1[i] != ans2[i])
+                same = false;
+
+        if(scc1 != scc2) same = false;
+
+        //System.out.println("DEBUG: list and mat same?" + same);
         //answer should be 
             //0 1 2 
             //3
