@@ -79,13 +79,13 @@
          <ClosedNodesVersion>2</ClosedNodesVersion>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>seven_seg - display (/home/peacesong/Documents/Workspace/2019-1/Logic_Design/cpu/tb.v)</SelectedItem>
+         <SelectedItem>dmem - memory (/home/peacesong/Documents/Workspace/2019-1/Logic_Design/cpu/tb.v)</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000020200000001000000010000006400000186000000020000000000000000000000000200000064ffffffff000000810000000300000002000001860000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem>seven_seg - display (/home/peacesong/Documents/Workspace/2019-1/Logic_Design/cpu/tb.v)</CurrentItem>
+      <CurrentItem>dmem - memory (/home/peacesong/Documents/Workspace/2019-1/Logic_Design/cpu/tb.v)</CurrentItem>
    </ItemView>
    <ItemView engineview="BehavioralSim" sourcetype="" guiview="Process" >
       <ClosedNodes>

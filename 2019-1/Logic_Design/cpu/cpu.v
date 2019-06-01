@@ -44,3 +44,51 @@ module cpu	//Do not change top module name or ports.
 
 endmodule
 
+module PC
+(
+	input clk,
+	input [7:0] nextPC,
+	
+	output [7:0] PC
+);
+
+	reg [7:0] PC;
+	
+	always @(posedge clk)
+		PC = nextPC;
+
+endmodule
+
+module Register_File
+(
+	input clk,
+	input write_enable,
+	input areset,
+	
+	input [1:0] read_reg1,
+	input [1:0] read_reg2,
+	input [1:0] write_reg,
+	input [1:0] write_data,
+	
+	output [1:0] read_data1,
+	output [1:0] read_data2
+	);
+	
+endmodule
+
+module Control_Logic
+(
+	input [1:0] Mode,
+	input [1:0] OpCode,
+	
+	output ALUSrc,
+	output ALUOp,
+	output MemWrite,
+	output RegDst,
+	output MemtoReg,
+	output RegWrite
+);
+
+
+
+endmodule
