@@ -70,9 +70,14 @@ module Register_File
 	input [1:0] write_reg,
 	input [1:0] write_data,
 	
-	output [1:0] read_data1,
-	output [1:0] read_data2
+	output [7:0] read_data1,
+	output [7:0] read_data2
 	);
+	
+	reg [7:0] al; // 00
+	reg [7:0] cl; // 01
+	reg [7:0] dl; // 10
+	reg [7:0] bl; // 11
 	
 endmodule
 
@@ -89,6 +94,46 @@ module Control_Logic
 	output RegWrite
 );
 
+endmodule
 
+module Sign_Ext // used for sign extension of [off] field in load, store, and jump instructions.
+(
+	input [5:0] in_offset,
+	input Jump,
+	
+	output [7:0] out_offset
+);
+
+endmodule
+
+module ALU
+(
+	input [7:0] val_A,
+	input [7:0] val_B,
+	input ALUOp,
+	
+	output [7:0] val_E
+);
+
+endmodule
+
+module PC_incr
+(
+	input [7:0] PC_now,
+	input [7:0] PC_off,
+	
+	output [7:0] val_P
+);
+
+endmodule
+
+module MUX
+(
+	input ctrl,
+	input [7:0] in_A,
+	input [7:0] in_B,
+	
+	output [7:0] out
+);
 
 endmodule
