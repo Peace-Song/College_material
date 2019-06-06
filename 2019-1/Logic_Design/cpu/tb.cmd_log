@@ -1,0 +1,1 @@
+xst -intstyle ise -ifn "/home/peacesong/Documents/Workspace/2019-1/Logic_Design/cpu/tb.xst" -ofn "/home/peacesong/Documents/Workspace/2019-1/Logic_Design/cpu/tb.syr" 
