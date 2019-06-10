@@ -45,8 +45,6 @@ module tb
 	reg [2:0] test_level;			
 	reg [7:0] tester_memory[(3 << 6) - 1:0];
 
-	reg debug_;
-
 	reg test_phase;		
 	reg [7:0] cycle_count;  
 	reg [7:0] accumulator;	
@@ -85,6 +83,7 @@ module tb
 
 			test_level <= btn0 ? 3'b000 : (btn1 ? 3'b001 : 3'b010);	//Template distribution (3 levels)
 			//------------------------------Level 0------------------------------
+			
 			tester_memory[0]	<= 8'b11110000;	//NOP		
 			tester_memory[1]	<= {load, r0, r1, 2'b00};	
 			tester_memory[2]	<= {load, r2, r1, 2'b00};	
@@ -313,7 +312,7 @@ module tb
 	assign orange_light = test_phase ? 0 : 1;
 	assign green_light = (n_errors && test_phase) ? 0 : 1;
 	assign red_light = n_errors ? 1 : 0;
-	assign debug_light = debug_;
+
 	display seven_seg(	.clk(clk), .areset(areset),
 				.test_phase(test_phase),
 				.test_level(test_level),
