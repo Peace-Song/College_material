@@ -1,0 +1,43 @@
+#------------------------------------------------------------------
+# 
+#  4190.308 Computer Architecture (Spring 2019)
+#
+#  Project #4: Optimizing Program for a Pipelined Y86-64 Processor
+#
+#  May 28, 2019
+#
+#  Jin-Soo Kim (jinsoo.kim@snu.ac.kr)
+#  Systems Software & Architecture Laboratory
+#  Dept. of Computer Science and Engineering
+#  Seoul National University
+#
+#------------------------------------------------------------------
+
+bmp_diag:
+	# imgptr is in %rdi
+	# width  is in %rsi
+	# height is in %rdx
+	# gap 	 is in %rcx
+	#-----------------------------------------------------------------
+
+	# FILL HERE
+	# You are allowed to use any register supported by Y86-64 architecture
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	#-----------------------------------------------------------------
+
+	ret
