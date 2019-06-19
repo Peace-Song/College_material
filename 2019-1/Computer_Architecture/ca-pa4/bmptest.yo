@@ -4021,14 +4021,73 @@
                             | #------------------------------------------------------------------
                             | 
 0x400:                      | bmp_diag:
-                            | 	# imgptr is in %rdi
-                            | 	# width  is in %rsi
-                            | 	# height is in %rdx
-                            | 	# gap 	 is in %rcx
+                            | 	# imgptr        is in %rdi  CONSTANT
+                            | 	# width         is in %rsi  CONSTANT
+                            | 	# height        is in %rdx  CONSTANT
+                            | 	# gap 	        is in %rcx  CONSTANT
+                            |     # curr imgptr   is in %rax
+                            |     # initial gap   is in %rbx
+                            |     # padding       is in %r8   CONSTANT
+                            |     # row_length    is in %r9   CONSTANT
+                            |     # curr row ptr  is in %r10
+                            |     # curr width    is in %r11  CONSTANT except initiate draw
+                            |     # 3 * gap       is in %r12  
+                            |     # 0x00          is in %r13  CONSTANT except calculate padding
+                            |     # 0xff          is in %r14  CONSTANT except calculate padding
                             | 	#-----------------------------------------------------------------
                             | 
                             | 	# FILL HERE
                             | 	# You are allowed to use any register supported by Y86-64 architecture
+                            |     # Hazard cost cycles:
+                            |     # RAW:  3 cycles
+                            |     # L/U:  3 cycles
+                            |     # call: 3 cycles
+                            |     # ret:  2 cycles
+                            |     # mispredicted branch: 2 cycles
+                            | 
+                            |     # calculate padding
+0x400: 2068                 |     rrmovq %rsi, %r8            # $r8 == width
+0x402: 30fe0300000000000000 |     irmovq $3, %r14             # temporal imm. assignment
+0x40c: 206c                 |     rrmovq %rsi, %r12           # $r12 == width
+0x40e: 30fd0400000000000000 |     irmovq $4, %r13             # temporal imm. assignment
+0x418: 202b                 |         rrmovq %rdx, %r11       # FWD: $r11 == height
+0x41a: 64ec                 |     mulq %r14, %r12             # $r12 == 3 * width
+0x41c: 64e8                 |     mulq %r14, %r8              # $r8 == 3 * width
+0x41e: 2070                 |         rrmovq %rdi, %rax       # FWD: assign current imgptr
+0x420: 65dc                 |     divq %r13, %r12             # %r12 has quotient of 3 * width divided by 4
+0x422: c0fbffffffffffffffff |         iaddq $-1, %r11         # FWD: $r11 == height - 1
+0x42c: 64ec                 |     mulq %r14, %r12             # $r12 == divisor * quotient
+0x42e: 2089                 |         rrmovq %r8, %r9         # FWD: $r9 == 3 * width
+0x430: 61c8                 |     subq %r12, %r8              # %r8 = $r8 - $r12 == 3 * width mod 4
+                            |     
+                            |     # calculate initial gap
+0x432: 30f30000000000000000 |     irmovq $0, %rbx             # initiate initial gap with 0
+                            |     
+                            |     # calculate row_length
+0x43c: 6089                 |     addq %r8, %r9               # $r9 == 3 * width + padding == row_length 
+0x43e: 30fd0000000000000000 |         irmovq $0x00, %r13      # FWD: 0x00 in %r13
+0x448: 30feff00000000000000 |         irmovq $0xff, %r14      # FWD: 0xff in %r14
+                            | 
+                            |     # initiate draw 
+0x452: 649b                 |     mulq %r9, %r11              # $r11 == row_length * (height - 1)
+0x454: 201c                 |         rrmovq %rcx, %r12       # FWD: $r12 == gap for calc. 3*gap
+0x456: 60b0                 |     addq %r11, %rax             # now %rax contains start ptr of upperleft corner
+0x458: 60cc                 |         addq %r12, %r12         # FWD: $r12 == 2 * gap
+0x45a: 200a                 |     rrmovq %rax, %r10           # now %r10 contains start ptr of upperleft corner
+                            | 
+                            | 
+                            |     # Upperleft to Lowerright
+0x45c: 30fb0000000000000000 |     irmovq $0, %r11             # initiate current width with 0
+0x466: 60cc                 |         addq %r12, %r12         # FWD: $r12 == 3 * gap
+                            | 
+0x468:                      | UL2LR_paint_row:
+0x468: 41d00000000000000000 |     rmmovb %r13, 0(%rax)
+0x472: 41d00100000000000000 |     rmmovb %r13, 1(%rax)
+0x47c: 41e00200000000000000 |     rmmovb %r14, 2(%rax)
+                            | 
+0x486: 601b                 |     addq %rcx, %r11             # %r11 = current width + gap
+0x488: 60c0                 |     addq %r12, %rax             # %rax = current imgptr + 3*gap
+                            |      
                             | 
                             | 
                             | 
@@ -4036,15 +4095,10 @@
                             | 
                             | 
                             | 
-                            | 
-                            | 
-                            | 
-                            | 
-                            | 
-                            | 
-                            | 
+                            |     # initiate draw
+                            |     # Upperright to Lowerleft
                             | 
                             | 
                             | 	#-----------------------------------------------------------------
                             | 
-0x400: 90                   | 	ret
+0x48a: 90                   | 	ret
