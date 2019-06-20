@@ -38,7 +38,7 @@ bmp_diag:
     # ret:  2 cycles
     # mispredicted branch: 2 cycles
 
-    # calculate padding
+    # calculate padding - may need fundamental logic change for optimization
     irmovq $3, %r14             # temporal imm. assignment
     rrmovq %rsi, %r8            # $r8 == width
     irmovq $4, %r13             # temporal imm. assignment
