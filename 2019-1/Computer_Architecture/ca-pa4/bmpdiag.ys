@@ -38,144 +38,152 @@ bmp_diag:
     # ret:  2 cycles
     # mispredicted branch: 2 cycles
 
-    # 1. calculate padding: padding = width mod 4 = width - 4 * (width / 4)
-    irmovq $4, %r13             # %r13 = 3
-        irmovq $3, %r9          # FWD: %r9 = 3
-    rrmovq %rsi, %r12           # %r12 = width
-    rrmovq %rsi, %r8            # %r8 = width
-        
-    divq %r13, %r12             # %r12 = width / 4
-    mulq %r13, %r12             # %r12 = 4 * (width / 4)
-        mulq %r8, %r9           # FWD: %r9 = 3 * width
-    subq %r12, %r8              # %r8 = width - 4 * (width / 4) == width mod 4 == padding
+# 1. calculate padding: padding = width mod 4 = width - 4 * (width / 4)
+    irmovq $4, %r13         # %r13 = 4
+        rrmovq %rdx, %r11       # FWD from 5-a: %r11 = height
+    rrmovq %rsi, %r12       # %r12 = width
+    rrmovq %rsi, %r8        # %r8 = width
+        irmovq $3, %r9          # FWD from 4: %r9 = 3
+
+        iaddq $-1, %r11         # FWD from 5-a: %r11 = height - 1
+        rrmovq %rdi, %rax       # FWD from 2: assign current imgptr with starting imgptr
+    divq %r13, %r12         # %r12 = width / 4
+        irmovq $0, %rbx         # FWD from 3: initiate initial gap with 0
+        mulq %r8, %r9           # FWD from 4: %r9 = 3 * width
+        irmovq $0xff, %r14      # FWD from 5-a: assign 0xff
+    mulq %r13, %r12         # %r12 = 4 * (width / 4)
+        irmovq $0x00, %r13      # FWD from 5-a: assign 0x00
+    subq %r12, %r8          # %r8 = width - 4 * (width / 4) == width mod 4 == padding
    
-    # assign curr imgptr
-    rrmovq %rdi, %rax           # assign current imgptr with $rdi
+# 2. assign curr imgptr
+    # rrmovq %rdi, %rax     # assign current imgptr with $rdi
 
-    # initialize initial gap
-    irmovq $0, %rbx             # initiate initial gap with 0
+# 3. initialize initial gap
+    # irmovq $0, %rbx       # initiate initial gap with 0
     
-    # calculate row_length
-    addq %r8, %r9               # $r9 == 3 * width + padding == row_length 
+# 4. calculate row_length
+    addq %r8, %r9           # $r9 == 3 * width + padding == row_length 
+        irmovq $3, %r12         # FWD from 6-a: %r12 = 3
 
-    # initiate draw 
-    rrmovq %rdx, %r11           # $r11 == height
-    iaddq $-1, %r11             # $r11 == height - 1
-    mulq %r9, %r11              # $r11 == row_length * (height - 1)
+# 5-a. initiate draw 
+    # rrmovq %rdx, %r11     # $r11 == height
+    # iaddq $-1, %r11       # $r11 == height - 1
+    mulq %r9, %r11          # $r11 == row_length * (height - 1)
 
-    irmovq $0x00, %r13
-    irmovq $0xff, %r14
+    # irmovq $0x00, %r13
+    # irmovq $0xff, %r14
 
-    addq %r11, %rax             # now %rax contains start ptr of upperleft corner
-    rrmovq %rax, %r10           # now %r10 contains start ptr of upperleft corner
+    addq %r11, %rax         # now %rax contains start ptr of upperleft corner
+        mulq %rcx, %r12         # FWD from 6-a: %r12 = 3 * gap
+        irmovq $0, %r11         # FWD from 6-a: initiate current width with 0
+    rrmovq %rax, %r10       # now %r10 contains start ptr of upperleft corner
 
+# 6-a. Upperleft to Lowerright
+    # rrmovq %rcx, %r12
+    # addq %rcx, %r12
+    # addq %rcx, %r12       # $r12 == 3 * gap
 
-    # Upperleft to Lowerright
-    rrmovq %rcx, %r12
-    addq %rcx, %r12
-    addq %rcx, %r12             # $r12 == 3 * gap
-
-    irmovq $0, %r11             # initiate current width with 0
+    # irmovq $0, %r11       # initiate current width with 0
 
 UL2LR_paint_row:
-    # actual paint
+# 7-a. actual paint
     rmmovb %r13, 0(%rax)
     rmmovb %r13, 1(%rax)
     rmmovb %r14, 2(%rax)
 
-    # move to the next pixel
-    addq %rcx, %r11             # %r11 = current width + gap
-    addq %r12, %rax             # %rax = current imgptr + 3*gap
+# 8-a. move to the next pixel
+    addq %rcx, %r11         # %r11 = current width + gap
+    addq %r12, %rax         # %rax = current imgptr + 3*gap
      
-    # decide if move to next row
-    pushq %r11                  # save current width
-    subq %rsi, %r11             # compare: current width - width ?
-    popq %r11                   # restore current width
+# 9-a. decide if move to next row
+    pushq %r11              # save current width
+    subq %rsi, %r11         # compare: current width - width ?
+    popq %r11               # restore current width
     jl UL2LR_paint_row
 
     # a row has been painted
-    # decide next row's initial gap
-    iaddq $1, %rbx              # increment the initial gap
-    rrmovq %rbx, %r14           # %r14 temporary assignment: MUST BE RESTORED BEFORE NEXT PAINT ROW
-    subq %rcx, %r14             # compare: initial gap - gap ?
-    cmove %r14, %rbx            # if initial gap == gap, reset initial gap to 0
+# 10-a. decide next row's initial gap
+    iaddq $1, %rbx          # increment the initial gap
+    rrmovq %rbx, %r14       # %r14 temporary assignment: MUST BE RESTORED BEFORE NEXT PAINT ROW
+    subq %rcx, %r14         # compare: initial gap - gap ?
+    cmove %r14, %rbx        # if initial gap == gap, reset initial gap to 0
 
-    # set imgptr
-    subq %r9, %r10              # set current row ptr to the beneath one
-    rrmovq %r10, %rax           # set current imgptr to the beginning of the new row
+# 11-a. set imgptr
+    subq %r9, %r10          # set current row ptr to the beneath one
+    rrmovq %r10, %rax       # set current imgptr to the beginning of the new row
 
-    # prepare pointers
-    irmovq $0, %r11             # reset curr width to 0. may be deleted for the sake of optimization.
+# 12-a. prepare pointers
+    irmovq $0, %r11         # reset curr width to 0. may be deleted for the sake of optimization.
     addq %rbx, %rax         
     addq %rbx, %rax
     addq %rbx, %rax
     addq %rbx, %r11
 
-    # decide if jump or not - might move this logic to up front to reduce cycles
-    rrmovq %r10, %r14           # backup current row ptr
-    subq %rdi, %r10             # compare: current row ptr - the very beginning imgptr ?
-    rrmovq %r14, %r10           # restore current row ptr
-    irmovq $0xff, %r14          # restore %r14
+# 13-a. decide if jump or not - might move this logic to up front to reduce cycles
+    rrmovq %r10, %r14       # backup current row ptr
+    subq %rdi, %r10         # compare: current row ptr - the very beginning imgptr ?
+    rrmovq %r14, %r10       # restore current row ptr
+    irmovq $0xff, %r14      # restore %r14
     jge UL2LR_paint_row
 
-    # entire UL2LR job has been done.
+# entire UL2LR job has been done.
 
     
-    # initiate draw
-    rrmovq %rdi, %rax           # restore %rax to the original imgptr
+# 5-b. initiate draw
+    rrmovq %rdi, %rax       # restore %rax to the original imgptr
 
-    rrmovq %rdx, %r11           # $r11 == height
-    iaddq $-1, %r11             # $r11 == height - 1
-    mulq %r9, %r11              # $r11 == row_length * (height - 1)
+    rrmovq %rdx, %r11       # $r11 == height
+    iaddq $-1, %r11         # $r11 == height - 1
+    mulq %r9, %r11          # $r11 == row_length * (height - 1)
 
-    addq %r11, %rax             # now %rax contains start ptr of upperleft corner
-    rrmovq %rax, %r10           # now %r10 contains start ptr of upperleft corner
+    addq %r11, %rax         # now %rax contains start ptr of upperleft corner
+    rrmovq %rax, %r10       # now %r10 contains start ptr of upperleft corner
 
 
-    # Upperright to Lowerleft
-    rrmovq %rcx, %rbx           # set initial gap to gap
+# 6-b. Upperright to Lowerleft
+    rrmovq %rcx, %rbx       # set initial gap to gap
     rrmovq %rcx, %r12
     addq %rcx, %r12
-    addq %rcx, %r12             # $r12 == 3 * gap
+    addq %rcx, %r12         # $r12 == 3 * gap
 
-    rrmovq %rcx, %r11           # initiate current width with gap
-    addq %r12, %rax             # initiate current imgptr with gap
+    rrmovq %rcx, %r11       # initiate current width with gap
+    addq %r12, %rax         # initiate current imgptr with gap
 
 UR2LL_paint_row:
-    #actual paint
+# 7-b. actual paint
     rmmovb %r13, 0(%rax)
     rmmovb %r13, 1(%rax)
     rmmovb %r14, 2(%rax)
 
-    # move to the next pixel
+# 8-b. move to the next pixel
     addq %rcx, %r11             
     addq %r12, %rax
 
-    # decide if move to next row
+# 9-b. decide if move to next row
     pushq %r11
     subq %rsi, %r11
     popq %r11
     jl UR2LL_paint_row
 
     # a row has been painted
-    # decide next row's initial gap
-    rrmovq %rbx, %r14           # clone to %r14
-    iaddq $-1, %r14             # test with %r14
-    cmovl %rcx, %rbx            # if $r14 == ($rbx-1) < 0, reset %rbx to gap
-    iaddq $-1, %rbx             # $rbx - 1 so that in either cases we have to subtract
+# 10-b. decide next row's initial gap
+    rrmovq %rbx, %r14       # clone to %r14
+    iaddq $-1, %r14         # test with %r14
+    cmovl %rcx, %rbx        # if $r14 == ($rbx-1) < 0, reset %rbx to gap
+    iaddq $-1, %rbx         # $rbx - 1 so that in either cases we have to subtract
 
-    # set imgptr
+# 11-b. set imgptr
     subq %r9, %r10
     rrmovq %r10, %rax
 
-    # prepare pointers
-    irmovq $0, %r11             # may be optimized
+# 12-b. prepare pointers
+    irmovq $0, %r11         # may be optimized
     addq %rbx, %rax
     addq %rbx, %rax
     addq %rbx, %rax
     addq %rbx, %r11
 
-    # decide if jump or not - may be optimized
+# 13-b. decide if jump or not - may be optimized
     rrmovq %r10, %r14
     subq %rdi, %r10
     rrmovq %r14, %r10
