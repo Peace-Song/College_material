@@ -38,24 +38,16 @@ bmp_diag:
     # ret:  2 cycles
     # mispredicted branch: 2 cycles
 
-    # calculate padding - may need fundamental logic change for optimization
-    irmovq $3, %r14             # temporal imm. assignment
-    rrmovq %rsi, %r8            # $r8 == width
-    irmovq $4, %r13             # temporal imm. assignment
-    rrmovq %rsi, %r12           # $r12 == width
-
-    mulq %r14, %r8              # $r8 == 3 * width
-    mulq %r14, %r12             # $r12 == 3 * width
-        rrmovq %r8, %r9         # FWD: $r9 == 3 * width
-    rrmovq %r13, %r14
-    divq %r13, %r12             # $r12 quotient
-    mulq %r13, %r12             # $r12 trimmed
-    subq %r12, %r8              
-    subq %r8, %r13         
-    rrmovq %r13, %r8
-    divq %r14, %r13
-    mulq %r14, %r13
-    subq %r13, %r8
+    # 1. calculate padding: padding = width mod 4 = width - 4 * (width / 4)
+    irmovq $4, %r13             # %r13 = 3
+        irmovq $3, %r9          # FWD: %r9 = 3
+    rrmovq %rsi, %r12           # %r12 = width
+    rrmovq %rsi, %r8            # %r8 = width
+        
+    divq %r13, %r12             # %r12 = width / 4
+    mulq %r13, %r12             # %r12 = 4 * (width / 4)
+        mulq %r8, %r9           # FWD: %r9 = 3 * width
+    subq %r12, %r8              # %r8 = width - 4 * (width / 4) == width mod 4 == padding
    
     # assign curr imgptr
     rrmovq %rdi, %rax           # assign current imgptr with $rdi
