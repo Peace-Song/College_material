@@ -4092,6 +4092,8 @@
                             | 
                             |     # irmovq $0, %r11       # initiate current width with 0
                             | 
+0x46a:                      | UL2LR:
+                            | 
 0x46a:                      | UL2LR_paint_row:
                             | # 7-a. actual paint
 0x46a: 41d00000000000000000 |     rmmovb %r13, 0(%rax)
@@ -4103,35 +4105,38 @@
 0x48a: 60c0                 |     addq %r12, %rax         # %rax = current imgptr + 3*gap
                             |      
                             | # 9-a. decide if move to next row
-0x48c: a0bf                 |     pushq %r11              # save current width
+0x48c: a0bf                 |     pushq %r11
+                            |     #rrmovq %r11, %r14       # save current width to %r14: MUST BE RESTORED LATER
 0x48e: 616b                 |     subq %rsi, %r11         # compare: current width - width ?
-0x490: b0bf                 |     popq %r11               # restore current width
-0x492: 726a04000000000000   |     jl UL2LR_paint_row
+                            |     #rrmovq %r14, %r11       # restore current width
+0x490: b0bf                 |     popq %r11
+0x492: 30feff00000000000000 |     irmovq $0xff, %r14
+0x49c: 726a04000000000000   |     jl UL2LR_paint_row
                             | 
                             |     # a row has been painted
                             | # 10-a. decide next row's initial gap
-0x49b: c0f30100000000000000 |     iaddq $1, %rbx          # increment the initial gap
-0x4a5: 203e                 |     rrmovq %rbx, %r14       # %r14 temporary assignment: MUST BE RESTORED BEFORE NEXT PAINT ROW
-0x4a7: 611e                 |     subq %rcx, %r14         # compare: initial gap - gap ?
-0x4a9: 23e3                 |     cmove %r14, %rbx        # if initial gap == gap, reset initial gap to 0
+0x4a5: c0f30100000000000000 |     iaddq $1, %rbx          # increment the initial gap
+0x4af: 619a                 |         subq %r9, %r10          # FWD from 11-a: set curr. row ptr to the beneath one
+0x4b1: 203e                 |     rrmovq %rbx, %r14       # %r14 temporary assignment for poking
+0x4b3: 611e                 |     subq %rcx, %r14         # compare: initial gap - gap ?
+0x4b5: 23e3                 |     cmove %r14, %rbx        # if initial gap == gap, reset initial gap to 0
                             | 
                             | # 11-a. set imgptr
-0x4ab: 619a                 |     subq %r9, %r10          # set current row ptr to the beneath one
-0x4ad: 20a0                 |     rrmovq %r10, %rax       # set current imgptr to the beginning of the new row
+                            |     # subq %r9, %r10        # set current row ptr to the beneath one
+0x4b7: 20a0                 |     rrmovq %r10, %rax       # set current imgptr to the beginning of the new row
+0x4b9: 20ae                 |         rrmovq %r10, %r14       # FWD from 13-a: backup current row ptr
                             | 
                             | # 12-a. prepare pointers
-0x4af: 30fb0000000000000000 |     irmovq $0, %r11         # reset curr width to 0. may be deleted for the sake of optimization.
-0x4b9: 6030                 |     addq %rbx, %rax         
 0x4bb: 6030                 |     addq %rbx, %rax
-0x4bd: 6030                 |     addq %rbx, %rax
-0x4bf: 603b                 |     addq %rbx, %r11
+0x4bd: 203b                 |     rrmovq %rbx, %r11       # set current width to initial gap
+0x4bf: 6030                 |     addq %rbx, %rax
+0x4c1: 6030                 |     addq %rbx, %rax         # set current imgptr
                             | 
                             | # 13-a. decide if jump or not - might move this logic to up front to reduce cycles
-0x4c1: 20ae                 |     rrmovq %r10, %r14       # backup current row ptr
 0x4c3: 617a                 |     subq %rdi, %r10         # compare: current row ptr - the very beginning imgptr ?
 0x4c5: 20ea                 |     rrmovq %r14, %r10       # restore current row ptr
 0x4c7: 30feff00000000000000 |     irmovq $0xff, %r14      # restore %r14
-0x4d1: 756a04000000000000   |     jge UL2LR_paint_row
+0x4d1: 756a04000000000000   |     jge UL2LR
                             | 
                             | # entire UL2LR job has been done.
                             | 
@@ -4156,6 +4161,8 @@
 0x4f6: 201b                 |     rrmovq %rcx, %r11       # initiate current width with gap
 0x4f8: 60c0                 |     addq %r12, %rax         # initiate current imgptr with gap
                             | 
+0x4fa:                      | UR2LL:
+                            | 
 0x4fa:                      | UR2LL_paint_row:
                             | # 7-b. actual paint
 0x4fa: 41d00000000000000000 |     rmmovb %r13, 0(%rax)
@@ -4163,39 +4170,43 @@
 0x50e: 41e00200000000000000 |     rmmovb %r14, 2(%rax)
                             | 
                             | # 8-b. move to the next pixel
-0x518: 601b                 |     addq %rcx, %r11             
-0x51a: 60c0                 |     addq %r12, %rax
+0x518: 601b                 |     addq %rcx, %r11         # %r11 = current width + gap             
+0x51a: 60c0                 |     addq %r12, %rax         # %rax = current ingmptr + 3*gap
                             | 
                             | # 9-b. decide if move to next row
 0x51c: a0bf                 |     pushq %r11
-0x51e: 616b                 |     subq %rsi, %r11
+                            |     #rrmovq %r11, %r14       # save current width to %r14: MUST BE RESTORED LATER
+0x51e: 616b                 |     subq %rsi, %r11         # compare: current width - width ?
 0x520: b0bf                 |     popq %r11
-0x522: 72fa04000000000000   |     jl UR2LL_paint_row
+                            |     #rrmovq %r14, %r11       # restore current width
+0x522: 30feff00000000000000 |     irmovq $0xff, %r14
+                            | 
+0x52c: 72fa04000000000000   |     jl UR2LL_paint_row
                             | 
                             |     # a row has been painted
                             | # 10-b. decide next row's initial gap
-0x52b: 203e                 |     rrmovq %rbx, %r14       # clone to %r14
-0x52d: c0feffffffffffffffff |     iaddq $-1, %r14         # test with %r14
-0x537: 2213                 |     cmovl %rcx, %rbx        # if $r14 == ($rbx-1) < 0, reset %rbx to gap
-0x539: c0f3ffffffffffffffff |     iaddq $-1, %rbx         # $rbx - 1 so that in either cases we have to subtract
+0x535: 203e                 |     rrmovq %rbx, %r14       # clone to %r14
+0x537: 619a                 |         subq %r9, %r10          # FWD from 11-b: wet curr. row ptr to the beneath one
+0x539: c0feffffffffffffffff |     iaddq $-1, %r14         # test with %r14
+0x543: 2213                 |     cmovl %rcx, %rbx        # if $r14 == ($rbx-1) < 0, reset %rbx to gap
+0x545: c0f3ffffffffffffffff |     iaddq $-1, %rbx         # $rbx - 1 so that in either cases we have to subtract
                             | 
                             | # 11-b. set imgptr
-0x543: 619a                 |     subq %r9, %r10
-0x545: 20a0                 |     rrmovq %r10, %rax
+                            |     # subq %r9, %r10        # set current row ptr to the beneath one
+0x54f: 20a0                 |     rrmovq %r10, %rax       # set current imgptr to the beginning of the new row
+0x551: 20ae                 |         rrmovq %r10, %r14       # FWD from 13-b: backup current row ptr
                             | 
                             | # 12-b. prepare pointers
-0x547: 30fb0000000000000000 |     irmovq $0, %r11         # may be optimized
-0x551: 6030                 |     addq %rbx, %rax
 0x553: 6030                 |     addq %rbx, %rax
-0x555: 6030                 |     addq %rbx, %rax
-0x557: 603b                 |     addq %rbx, %r11
+0x555: 203b                 |     rrmovq %rbx, %r11       # set current width to initial gap
+0x557: 6030                 |     addq %rbx, %rax
+0x559: 6030                 |     addq %rbx, %rax
                             | 
                             | # 13-b. decide if jump or not - may be optimized
-0x559: 20ae                 |     rrmovq %r10, %r14
-0x55b: 617a                 |     subq %rdi, %r10
-0x55d: 20ea                 |     rrmovq %r14, %r10
+0x55b: 617a                 |     subq %rdi, %r10         # compare: current row ptr - the very beginning imgptr ? 
+0x55d: 20ea                 |     rrmovq %r14, %r10       # restore current row ptr
 0x55f: 30feff00000000000000 |     irmovq $0xff, %r14
-0x569: 75fa04000000000000   |     jge UR2LL_paint_row
+0x569: 75fa04000000000000   |     jge UR2LL
                             | 
                             |     # entire UR2LL job has been done.
                             | 
