@@ -72,16 +72,16 @@ bmp_diag:
 
 initiate_draw:
     movq %rsi, %r8
-    imulq $3, %r8
-    pushq %rsi
-    callq get_padding
-    popq %rsi
-    addq %rax, %r8
-    decq %rdx
-    imulq %rdx, %r8
-    incq %rdx
-    movq %rdi, %rax
-    addq %r8, %rdi
+    imulq $3, %r8       # %r8 has 3*width
+    pushq %rsi          # push $rsi = width as we will use %rsi
+    callq get_padding   # %rax has padding value
+    popq %rsi           # %rsi now restored to contain width
+    addq %rax, %r8      # $r8 = 3*width + padding = length of a row
+    decq %rdx           # height = height - 1 to put pointer to the upperleft corner
+    imulq %rdx, %r8     # $r8 = row * (height - 1)
+    incq %rdx           # height information restored
+    movq %rdi, %rax     # $rax = $rdi = imgptr
+    addq %r8, %rdi      # %rdi now points to the upperleft corner
 
     ret
 
@@ -165,72 +165,72 @@ RU2LL:
 
 
 LU2RL:
-    movq $0, %r8
+    movq $0, %r8            # $r8 = 0
 
     #temporarily assign current imgptr to %rdx
-    pushq %rdx
-    movq %rdi, %rdx
-
+    pushq %rdx              # push height information
+    movq %rdi, %rdx         # $rdx = upperleft corner
+   
     #save original imgptr
-    pushq %rax
+    pushq %rax              # push upperleft corner coordinate
 
-    movq $0, %rax
+    movq $0, %rax           # $rax = 0
 
 .LU2RL_paint_row:
     movb $0x00, (%rdi)
     movb $0x00, 1(%rdi)
-    movb $0xff, 2(%rdi)
+    movb $0xff, 2(%rdi)     # paint
 
     addq %rcx, %rdi
     addq %rcx, %rdi
-    addq %rcx, %rdi
+    addq %rcx, %rdi         # add 3*gap to $rdi, imgptr on work
     
-    addq %rcx, %rax
+    addq %rcx, %rax         # $rax will track current width information
     
     cmpq %rsi, %rax
-    jl .LU2RL_paint_row
+    jl .LU2RL_paint_row     # keep painting if not reached row end
 
-    incq %r8
+    incq %r8                # reached row end, must do next row. increment $r8, current gap
     cmpq %rcx, %r8 #compare current initial gap : gap
-    jl .LU2RL_paint_next
-    movq $0, %r8
+    jl .LU2RL_paint_next    
+    movq $0, %r8            # if $r8 == gap, %r8 = 0
     jmp .LU2RL_paint_next
 
 .LU2RL_paint_next:
-    pushq %rdx #save current address
+    pushq %rdx              # save current row start pointer
 
-    movq %rsi, %rdx
-    imulq $3, %rdx
-    pushq %rsi
-    callq get_padding
-    popq %rsi
-    addq %rax, %rdx
-    movq %rdx, %rax
+    movq %rsi, %rdx         # $rsi == width == $rdx
+    imulq $3, %rdx          # $rdx == 3 * width
+    pushq %rsi              # save %rsi
+    callq get_padding       # %rax contains padding
+    popq %rsi               # %rsi restored to contain width
+    addq %rax, %rdx         # $rdx == 3 * width + padding = length of a row
+    movq %rdx, %rax         # $rax == length of a row
     #at this moment, %rax has actual memory length of width
 
-    popq %rdx
+    popq %rdx               # $rdx == current row start pointer
     #at this moment, %rdx restored to current start address.
 
-    subq %rax, %rdx #move to the next address to be started from 
-    movq %rdx, %rdi
+    subq %rax, %rdx         # current row = row underneath the current row 
+    movq %rdx, %rdi         # to use %rdi as pointer
 
-    popq %rax #pop original imgptr
+    popq %rax               # beginning of the bmp
     cmpq %rax, %rdi #compare ptr of this row: original imgptr
     jl .finalize_LU2RL
-    pushq %rax
+    pushq %rax              # not completed; push it back to the stack
 
-    movq $0, %rax
+    movq $0, %rax           
 
     addq %r8, %rdi
     addq %r8, %rdi
-    addq %r8, %rdi
-    addq %r8, %rax
+    addq %r8, %rdi          # calculate current gap to %rdi
+    addq %r8, %rax          # $rax == current width information
 
     jmp .LU2RL_paint_row
 
 .finalize_LU2RL:
-    popq %rdx
-    movq %rax, %rdi
+    popq %rdx               # %rdx has height
+    movq %rax, %rdi         # %rdi has original imgptr, beginning of the bmp
     
     # test if %rdi is back to the original imgptr
     # movq $0xff, (%rdi)
