@@ -1,0 +1,20 @@
+
+# PlanAhead Generated physical constraints 
+
+NET "RST" LOC = P47;
+NET "seg_1[0]" LOC = P85;
+NET "seg_1[1]" LOC = P84;
+NET "seg_1[2]" LOC = P83;
+NET "seg_1[3]" LOC = P82;
+NET "seg_1[4]" LOC = P79;
+NET "seg_1[5]" LOC = P78;
+NET "seg_1[6]" LOC = P77;
+NET "seg_10[0]" LOC = P76;
+NET "seg_10[1]" LOC = P75;
+NET "seg_10[2]" LOC = P72;
+NET "seg_10[3]" LOC = P71;
+NET "seg_10[4]" LOC = P70;
+NET "seg_10[5]" LOC = P69;
+NET "seg_10[6]" LOC = P68;
+NET "CLK" LOC = P57;
+NET "TGL" LOC = P54;
