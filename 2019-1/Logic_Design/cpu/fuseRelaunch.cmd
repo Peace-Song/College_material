@@ -1,1 +1,0 @@
--intstyle "ise" -incremental -lib "unisims_ver" -lib "unimacro_ver" -lib "xilinxcorelib_ver" -o "/home/peacesong/Documents/Workspace/2019-1/Logic_Design/cpu/tb_isim_beh.exe" -prj "/home/peacesong/Documents/Workspace/2019-1/Logic_Design/cpu/tb_beh.prj" "work.tb" "work.glbl" 

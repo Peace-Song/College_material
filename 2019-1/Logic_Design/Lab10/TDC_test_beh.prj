@@ -1,6 +1,0 @@
-verilog work "freqdiv.v"
-verilog work "bcd_7decoder.v"
-verilog work "b7counter.v"
-verilog work "TDC.v"
-verilog work "TDC_test.v"
-verilog work "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v"

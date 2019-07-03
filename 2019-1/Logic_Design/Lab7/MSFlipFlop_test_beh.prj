@@ -1,5 +1,0 @@
-verilog work "RSLatch.v"
-verilog work "GatedRSLatch.v"
-verilog work "MSFlipFlop.v"
-verilog work "MSFlipFlop_test.v"
-verilog work "/opt/Xilinx/14.7/ISE_DS/ISE//verilog/src/glbl.v"
