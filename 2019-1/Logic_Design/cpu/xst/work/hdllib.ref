@@ -1,0 +1,13 @@
+MO display NULL tb.v vlg1E/display.bin 1559846115
+MO NextPC NULL cpu.v vlg7A/_next_p_c.bin 1559846115
+MO Register_File NULL cpu.v vlg3C/_register___file.bin 1559846115
+MO MUX_8bit NULL cpu.v vlg18/_m_u_x__8bit.bin 1559846115
+MO cpu NULL cpu.v vlg50/cpu.bin 1559846115
+MO Control_Logic NULL cpu.v vlg32/_control___logic.bin 1559846115
+MO PC_Control NULL cpu.v vlg67/_p_c___control.bin 1559846115
+MO MUX_2bit NULL cpu.v vlg2A/_m_u_x__2bit.bin 1559846115
+MO tb NULL tb.v vlg26/tb.bin 1559846115
+MO memory NULL tb.v vlg69/memory.bin 1559846115
+MO num_to_sevenseg NULL tb.v vlg6D/num__to__sevenseg.bin 1559846115
+MO Sign_Ext NULL cpu.v vlg15/_sign___ext.bin 1559846115
+MO ALU NULL cpu.v vlg2A/_a_l_u.bin 1559846115

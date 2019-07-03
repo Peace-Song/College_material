@@ -1,0 +1,2 @@
+verilog work "tb.v"
+verilog work "cpu.v"
