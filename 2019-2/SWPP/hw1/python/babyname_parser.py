@@ -39,7 +39,7 @@ class BabynameFileNotFoundException(Exception):
     A custom exception for the cases that the babyname file does not exist.
     """
     def __init__(self, msg):
-        print("No such babyname file or directory: {" + msg + "}")
+        print("No such babyname file or directory: " + msg)
 
     #pass
 
