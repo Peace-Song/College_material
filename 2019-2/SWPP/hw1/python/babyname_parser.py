@@ -39,10 +39,10 @@ class BabynameFileNotFoundException(Exception):
     A custom exception for the cases that the babyname file does not exist.
     """
     def __init__(self, msg):
-        print("No such babyname file or directory: " + msg)
+        self.msg = msg
 
-    #pass
-
+    def __str__(self):
+        return ("No such babyname file or directory: " + self.msg)
 
 def check_filename_existence(func):
     """
@@ -53,7 +53,7 @@ def check_filename_existence(func):
     Raises:
         BabynameFileNotFoundException: if there is no such file named as the first argument of the function to decorate.
     """
-    # DID: Implement this decorator.
+    # DONE: Implement this decorator.
     def inner(*args, **kwargs):
         #print("DEBUG: args == ", args)
 
@@ -78,8 +78,10 @@ class BabynameParser:
         Args:
             filename: The filename to parse.
         """
+    
+        text = open(filename, 'r').read()  # DONE: Open and read the given file.
+        # TODO: Close the file
 
-        text = "File is not read yet"  # TODO: Open and read the given file.
         # Could process the file line-by-line, but regex on the whole text at once is even easier.
 
         # The year extracting code is provided. Implement the tuple extracting code by using this.
@@ -92,7 +94,12 @@ class BabynameParser:
 
         # Extract all the data tuples with a findall()
         # each tuple is: (rank, male-name, female-name)
-        self.rank_to_names_tuples = []  # TODO: Extract the list of rank to names tuples.
+        # DONE: Extract the list of rank to names tuples.
+        self.rank_to_names_tuples = re.findall(r'<tr align="right"><td>(?P<rank>\d+)</td><td>(?P<male_name>\w+)</td><td>(?P<female_name>\w+)</td>', text)
+
+        if not self.rank_to_names_tuples:
+            sys.stderr.write("Couldn't find the rank-name pair!\n")
+            sys.exit(1)
 
     def parse(self, parsing_lambda):
         """
@@ -105,4 +112,7 @@ class BabynameParser:
         Returns:
             The list of parsed babynames.
         """
-        # TODO: Implement this method.
+        # DONE: Implement this method.
+
+        return list(map(parsing_lambda, self.rank_to_names_tuples))    
+
