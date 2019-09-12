@@ -87,12 +87,14 @@ class Form {
       console.log(birth_month_ok ? "birth month valid" : "birth month invalid");
 
       var birth_day = document.forms["form"]["birth-day"].value;
+      birth_day = birth_day == "" ? undefined : String(Number(birth_day));
       console.log("birth_day == %s", birth_day);
       var birth_day_pattern = /^\d{1,2}$/;
       var birth_day_ok = birth_day_pattern.test(birth_day);
       console.log(birth_day_ok ? "birth day in pattern" : "birth day NOT in pattern");
 
       var birth_year = document.forms["form"]["birth-year"].value;
+      birth_year = birth_year == "" ? undefined : String(Number(birth_year));
       console.log("birth_year == %s", birth_year);
       var birth_year_ok = 1800 <= Number(birth_year) && Number(birth_year) <= 2018 ? true : false;
       console.log(birth_year_ok ? "birth year in range" : "birth year NOT in range");
@@ -125,71 +127,100 @@ class Form {
           document.getElementById("email-label").innerHTML = "X"
           document.getElementById("email-label").title = "characters@characters.domain (characters other than @ or whitespace followed by an @ sign, followed by more characters (not '@', '.', or whitespace: co.kr is not allowed in this case), and then a \".\". After the \".\", you can only write 2 to 3 letters from a to z).";
       }
-      else document.getElementById("email-label").innerHTML = "";
- 
+      else{
+          document.getElementById("email-label").innerHTML = "";
+          document.getElementById("email-label").title = "";
+      }
+
       if(!password_ok){              
           alertMessage += "Password\n";
           document.getElementById("password-label").innerHTML = "X";
           document.getElementById("password-label").title = "Must contain at least one number and one uppercase and one lowercase letter, and at least 8 or more characters.";
       }
-      else document.getElementById("password-label").innerHTML = "";
+      else{
+          document.getElementById("password-label").innerHTML = "";
+          document.getElementById("password-label").title = "";
+      }
 
       if(!password_confirmation_ok){ 
           alertMessage += "Password Confirmation\n";
           document.getElementById("password-confirmation-label").innerHTML = "X";
           document.getElementById("password-confirmation-label").title = "Must match password.";
       }
-      else document.getElementById("password-confirmation-label").innerHTML = "";
+      else{
+          document.getElementById("password-confirmation-label").innerHTML = "";
+          document.getElementById("password-confirmation-label").title = "";
+      }
 
       if(!phone_number_ok){          
           alertMessage += "Phone number\n";
           document.getElementById("phone-number-label").innerHTML = "X";
           document.getElementById("phone-number-label").title = "nnn-nnnn-nnnn: three numbers, then \"-\", followed by four numbers and a \"-\", then four numbers.";
       }
-      else document.getElementById("phone-number-label").innerHTML = "";
+      else{
+          document.getElementById("phone-number-label").innerHTML = "";
+          document.getElementById("phone-number-label").title = "";
+      }
 
       if(!fname_ok){                 
           alertMessage += "First Name\n";
           document.getElementById("fname-label").innerHTML = "X";
           document.getElementById("fname-label").title = "Start with a capital letter, followed by one or more lowercase letters. Should only contain alphabets (A-Z, a-z)";
       }
-      else document.getElementById("fname-label").innerHTML = "";
+      else{
+          document.getElementById("fname-label").innerHTML = "";
+          document.getElementById("fname-label").title = "";
+      }
 
       if(!lname_ok){                 
           alertMessage += "Last Name\n";
           document.getElementById("lname-label").innerHTML = "X";
           document.getElementById("lname-label").title = "Start with a capital letter, followed by one or more lowercase letters. Should only contain alphabets (A-Z, a-z)";
       }
-      else document.getElementById("lname-label").innerHTML = "";
+      else{
+          document.getElementById("lname-label").innerHTML = "";
+          document.getElementById("lname-label").title = "";
+      }
 
       if(!age_ok){                   
           alertMessage += "Age\n";
           document.getElementById("age-label").innerHTML = "X";
           document.getElementById("age-label").title = "Must be a number between 0 and 200 (inclusive).";
       }
-      else document.getElementById("age-label").innerHTML = "";
+      else{
+          document.getElementById("age-label").innerHTML = "";
+          document.getElementById("age-label").title = "";
+      }
 
       if(!birth_month_ok){           
           alertMessage += "Month\n";
           document.getElementById("birth-month-label").innerHTML = "X";
           document.getElementById("birth-month-label").title = "Must be one of \"January\", \"February\", ..., \"December\"";
       }
-      else document.getElementById("birth-month-label").innerHTML = "";
+      else{
+          document.getElementById("birth-month-label").innerHTML = "";
+          document.getElementById("birth-month-label").title = "";
+      }
 
       if(!birth_day_ok){             
           alertMessage += "Day\n";
           document.getElementById("birth-day-label").innerHTML = "X";
           document.getElementById("birth-day-label").title = "Must be a number of one or two digits.";
       }
-      else document.getElementById("birth-day-label").innerHTML = "";
+      else{
+          document.getElementById("birth-day-label").innerHTML = "";
+          document.getElementById("birth-day-label").title = "";
+      }
 
       if(!birth_year_ok){            
           alertMessage += "Year";
           document.getElementById("birth-year-label").innerHTML = "X";
           document.getElementById("birth-year-label").title = "Must be a number between 1800 and 2018 (inclusive).";
       }
-      else document.getElementById("birth-year-label").innerHTML = "";
-
+      else{
+          document.getElementById("birth-year-label").innerHTML = "";
+          document.getElementById("birth-year-label").title = "";
+      }
 
       alert(alertMessage);
 
