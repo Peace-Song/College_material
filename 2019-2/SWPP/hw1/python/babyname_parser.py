@@ -80,7 +80,6 @@ class BabynameParser:
         """
     
         text = open(filename, 'r').read()  # DONE: Open and read the given file.
-        # TODO: Close the file
 
         # Could process the file line-by-line, but regex on the whole text at once is even easier.
 

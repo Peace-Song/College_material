@@ -48,7 +48,7 @@ def main():
     common_names = []
     # TODO: Fill the common_names with (common popular babyname: male-rank, female-rank) strings.
     # DONE: Sort the list in ascending alphabetical order.
-    #common_names_list = list(set(parsed_malenames).intersection(parsed_femalenames))
+    # common_names_list = list(set(parsed_malenames).intersection(parsed_femalenames))
     common_names_list = list(set(malename[1] for malename in parsed_malenames).intersection(femalename[1] for femalename in parsed_femalenames))
 
     for common_name in common_names_list:

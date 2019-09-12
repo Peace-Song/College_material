@@ -125,7 +125,7 @@ class Form {
       if(!email_ok){
           alertMessage += "Email\n";
           document.getElementById("email-label").innerHTML = "X"
-          document.getElementById("email-label").title = "characters@characters.domain (characters other than @ or whitespace followed by an @ sign, followed by more characters (not '@', '.', or whitespace: co.kr is not allowed in this case), and then a \".\". After the \".\", you can only write 2 to 3 letters from a to z).";
+          document.getElementById("email-label").title = "characters other than @ or whitespace followed by an @ sign, followed by more characters (not '@', '.', or whitespace: co.kr is not allowed in this case), and then a \".\". After the \".\", you can only write 2 to 3 letters from a to z.";
       }
       else{
           document.getElementById("email-label").innerHTML = "";
