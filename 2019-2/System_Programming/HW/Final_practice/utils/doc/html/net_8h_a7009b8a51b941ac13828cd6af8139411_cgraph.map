@@ -1,0 +1,6 @@
+<map id="put_line" name="put_line">
+<area shape="rect" id="node1" title="write one or several &#39;
+&#39;&#45;terminated lines from buf to sock. If not &#39;
+&#39;&#45;terminated,..." alt="" coords="5,5,72,32"/>
+<area shape="rect" id="node2" href="$net_8c.html#acc2eda30b967452fe157dceff3e8963a" title="write len bytes from buf to sock. Blocks until len bytes have been written, and survives interrupts c..." alt="" coords="120,5,192,32"/>
+</map>

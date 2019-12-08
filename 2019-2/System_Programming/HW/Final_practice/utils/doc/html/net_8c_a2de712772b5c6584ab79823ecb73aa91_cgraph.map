@@ -1,0 +1,5 @@
+<map id="get_line" name="get_line">
+<area shape="rect" id="node1" title="read a &#39;
+&#39;&#45;terminated line from sock into buf. Buf is reallocated if necessary. Blocks until one lin..." alt="" coords="5,5,72,32"/>
+<area shape="rect" id="node2" href="$net_8c.html#acc3e864b0be134026b9456ba568181b8" title=" " alt="" coords="120,5,192,32"/>
+</map>
