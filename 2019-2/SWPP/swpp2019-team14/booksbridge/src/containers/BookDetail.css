@@ -1,0 +1,28 @@
+.infoStyle {
+  padding-top: 40px;
+  height: auto;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.DeleteReviewConfirm{
+  height: auto !important; 
+}
+
+.BookDetailButtons {
+  display: flex;
+  justify-content: center;
+}
+
+.tab {
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Spinner {
+  margin: 50px 0px 0px 0px;
+}

@@ -1,0 +1,102 @@
+#curation-modal {
+  max-height: 96%;
+  display: flex !important;
+}
+
+.search-book-tab {
+  overflow: hidden;
+  height: 100%;
+  box-shadow: 3px 5px 25px 0 rgba(0, 0, 0, 0.5),
+    1px 3px 25px 2px rgba(0, 0, 0, 0.3) !important;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+  padding-top: 2%;
+}
+.selected-book-tab {
+  width: 48%;
+  left: 50%;
+  box-shadow: 3px 5px 25px 0 rgba(0, 0, 0, 0.5),
+    1px 3px 25px 2px rgba(0, 0, 0, 0.3) !important;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+  padding-top: 2%;
+}
+
+.left-page {
+  position: relative;
+  width: 52%;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.curation-modal-tabs {
+  padding: 0;
+}
+.curation-modal-tab-contents {
+  padding: 0;
+  height: 100%;
+}
+.curation-modal-tab-first {
+  height: 100%;
+}
+.close-select-book-button {
+  margin-top: 0% !important;
+  margin-bottom: 3% !important;
+  top: 92%;
+  position: fixed !important;
+  right: 5%;
+}
+.selected-book-modal-content {
+  max-height: 90% !important;
+}
+.curation-modal-scroll {
+  overflow-y: scroll;
+  height: 100%;
+}
+@media only screen and (max-width: 600px) {
+  #curation-modal {
+    flex-direction: column;
+  }
+  .left-page {
+    width: 100%;
+    flex: auto;
+    flex-basis: 55%;
+    height: 55%;
+    margin-left: 0px !important;
+    overflow: hidden;
+    margin-right: 0px !important;
+  }
+  .selected-book-tab {
+    padding-bottom: 10px !important;
+    overflow: scroll;
+    flex-basis: 45%;
+    width: 100%;
+    height: 45%;
+    box-shadow: 0px 5px 25px 0 rgba(0, 0, 0, 0.5),
+      0px 0px 0px 2px rgba(0, 0, 0, 0.3) !important;
+  }
+  .search-book-tab {
+    overflow: scroll;
+    box-shadow: 0px 5px 25px 0 rgba(0, 0, 0, 0.5),
+      0px 0px 0px 2px rgba(0, 0, 0, 0.3) !important;
+    padding-left: 0%;
+    padding-right: 0%;
+    padding-top: 2%;
+  }
+  .curation-modal-tabs {
+    margin: 0 !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  .curation-modal-tab-contents {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    padding-bottom: 0px !important;
+  }
+  .search-book-tab .choose-book-modal-content {
+    padding-bottom: 84px !important;
+  }
+  .selected-book-modal-content {
+    height: 100%;
+  }
+}

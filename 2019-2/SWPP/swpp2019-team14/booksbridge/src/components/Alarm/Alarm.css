@@ -1,0 +1,23 @@
+.new-alarm {
+  cursor: pointer;
+  padding: 3px;
+  width: fit-content !important;
+}
+.old-alarm {
+  cursor: pointer;
+  padding: 3px;
+  width: fit-content !important;
+}
+.new-alarm a {
+  color: black;
+}
+.old-alarm a {
+  color: rgb(202, 202, 202);
+}
+.AlarmProfilePic {
+  margin-right: 10px;
+  border-radius: 500rem;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}

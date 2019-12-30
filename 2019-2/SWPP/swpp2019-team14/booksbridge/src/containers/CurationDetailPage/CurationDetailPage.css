@@ -1,0 +1,65 @@
+.curation-detail-page {
+  font-family: 'NanumSquare', sans-serif;
+  padding-left: 25%;
+  padding-right: 25%;
+  margin: 10px;
+  white-space: pre-wrap;
+  text-align: left;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.curation-detail-header {
+  text-align: justify;
+  margin: 10px;
+  display: flex;
+  justify-content: end;
+}
+
+.CurationAuthorProfile {
+  font-size: 14px;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+.CurationDateInfo {
+  text-align: right;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.curation-detail-title {
+  word-wrap:break-word;
+  width: 100%;
+  font-family: 'NanumSquare', sans-serif;
+  font-weight: 700;
+  font-size: 35px;
+}
+
+.curation-detail-title-buttons {
+  text-align: right;
+  padding-bottom: 10%;
+}
+
+.curation-detail-content {
+  word-wrap:break-word;
+  font-family: 'NanumSquare', sans-serif;
+  padding-top: 3%;
+}
+.book-and-content {
+  word-wrap:break-word;
+  padding-top: 5%;
+}
+.CurationLikeButton {
+  padding-top: 10%;
+  padding-bottom: 3%;
+  text-align: right;
+}
+
+@media only screen and (max-width: 600px) {
+  .curation-detail-page {
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+}

@@ -1,0 +1,8 @@
+.Confirmation {
+  height: 126px !important;
+}
+
+.Confirmation .content {
+  font-family: 'NanumSquare', sans-serif;
+  font-weight: bold;
+}

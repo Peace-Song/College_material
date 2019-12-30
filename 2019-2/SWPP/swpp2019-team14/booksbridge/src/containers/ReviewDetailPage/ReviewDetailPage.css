@@ -1,0 +1,80 @@
+.ReviewContainer {
+  font-family: 'NanumSquare', sans-serif;
+  padding-left: 25%;
+  padding-right: 25%;
+  margin: 10px;
+  white-space: pre-wrap;
+  word-wrap:break-word;
+  text-align: left;
+  line-height: 1.5;
+  font-size: 16px;
+}
+
+#ReviewDetailBookInfo {
+  color: black;
+}
+
+.ReviewDetail {
+  padding-top: 1%;
+}
+
+.AuthorProfile {
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 25%;
+}
+
+.AuthorDateInfo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ReviewDateInfo {
+  font-family: 'NanumSquare', sans-serif;
+  text-align: right;
+  padding-right: 25%;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.ReviewTitleStyle {
+  padding-left: 25%;
+  padding-right: 25%;
+  text-align: justify;
+  margin: 10px;
+}
+
+.ReviewDetailTitle {
+  word-wrap:break-word;
+  font-family: 'NanumSquare', sans-serif;
+  font-weight: 700;
+  font-size: 35px;
+}
+
+.ReviewDetailEditDeleteButton{
+  text-align: right;
+  padding-bottom: 10%;
+}
+.LikeButton {
+  padding-top: 10%;
+  padding-bottom: 3%;
+  text-align: right;
+}
+
+@media only screen and (max-width: 600px) {
+  .AuthorProfile {
+    padding-left: 3%;
+  }
+  .ReviewDateInfo {
+    padding-right: 3%;
+  }
+  .ReviewTitleStyle {
+    padding-left: 0%;
+    padding-right: 0%;
+  }
+  .ReviewContainer {
+    padding-left: 0%;
+    padding-right: 0%;
+  }
+}

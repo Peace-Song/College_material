@@ -1,0 +1,42 @@
+.UserPage {
+  align-content: center;
+}
+
+.UserInfo {
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.LikeBookThumbnail{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.ui.secondary.pointing.menu {
+  border-bottom: 0px !important;
+}
+
+.ui.secondary.pointing.menu > .active.item {
+  border-bottom: 0px;
+}
+
+.ArmisticeLine {
+  height: 40px;
+}
+
+.Tab {
+  display: flex;
+  justify-content: center;
+}
+
+.UserReviewList {
+  width: 60%;
+  margin: 10px;
+  white-space: pre-wrap;
+}
+@media only screen and (max-width: 600px) {
+  .UserReviewList {
+    width: 100%;
+  }
+}

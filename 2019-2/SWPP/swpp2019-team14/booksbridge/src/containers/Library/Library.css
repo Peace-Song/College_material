@@ -1,0 +1,24 @@
+.Content {
+  display: flex;
+  justify-content: center;
+}
+.LibraryContainer {
+  width: 600px;
+  min-height: 400px;
+  margin-top: 40px;
+}
+.LibraryContainerHeader {
+  width: 100%;
+  height: 60px;
+  padding: 12px;
+  padding-right: 45px;
+}
+.LibraryContainerHeaderWrapper {
+  float: right;
+}
+
+@media only screen and (max-width: 600px) {
+  .LibraryContainer {
+    width: 100%;
+  }
+}

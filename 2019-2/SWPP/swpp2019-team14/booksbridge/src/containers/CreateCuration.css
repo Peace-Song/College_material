@@ -1,0 +1,20 @@
+.curation-modal {
+}
+#curation-content {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.curation-book-content {
+  width: 100% !important;
+}
+#curation-title {
+  width: 100%;
+}
+.bookdetail-container {
+  margin-top: 2% !important;
+  text-align: left;
+}
+
+.curation-field {
+  margin-bottom: 30px;
+}
