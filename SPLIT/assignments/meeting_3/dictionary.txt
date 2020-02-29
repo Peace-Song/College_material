@@ -1,6 +1,7 @@
 AAA:Anti-Aircraft Artillery
 Apple:An greedy electronics company that sells overpriced products
 C:The most beautiful, simple, and foreground language of contemporary programming language
+Jinminje:Jjindda
 apple:A fruit with hard flesh and red or green skin
 banana:A fruit with soft flesh and yellow skin
 vim:vi improved
