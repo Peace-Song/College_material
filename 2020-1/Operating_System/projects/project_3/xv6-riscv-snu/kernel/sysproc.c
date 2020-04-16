@@ -7,8 +7,7 @@
 #include "spinlock.h"
 #include "proc.h"
 
-extern struct proc *fg_proc; // PA3
-extern int fg_pgid;
+extern int fg_pgid; // PA3
 
 uint64
 sys_exit(void)
