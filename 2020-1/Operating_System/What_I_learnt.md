@@ -24,5 +24,6 @@ Operating System
 ## 운영체제의 역사
 우리에게 친숙한 Unix의 역사는 1965년의 Multics로부터 시작된다. Multics는 MULTiplexed Information and Computing Service의 약자로, 그 시절에 굴러가기에는 너무 덩치가 컸지만 hierarchical file system, VM, user-level shell, dynamic linking, PL/I라는 high-level language로 구현되는 등 지금도 사용하는 여러 기술들이 처음으로 소개된 운영체제이다.
 
-Unix는 C를 개발한 **Dennis Ritchie**와 **Ken Thompson**에 의해 개발되었다. Unix는 UNiplexed Information and Computing Service의 약자로, i-node의 도입, process control, pipe를 이용한 IPC, I/O redirection, signal 등의 기능이 추가되었다. 
-<img src="https://pbs.twimg.com/media/D5WQdP6XkAIuoCe?format=jpg&name=4096x4096" width="450px" height="300px" title="Dennis Ritchie and Ken Thompson" alt="Their Majesties" align="center"></img>
+Unix는 C를 개발한 **Dennis Ritchie**와 **Ken Thompson**에 의해 개발되었다. Unix는 UNiplexed Information and Computing Service의 약자로, i-node의 도입, process control, pipe를 이용한 IPC, I/O redirection, signal 등의 기능이 추가되었다. Multics보다 가볍고 쉽게 짜였다고 한다. 운영체제의 역사에서의 Unix의 중요성을 모르는 사람이 이 글을 보고 있을 리가 없겠지?
+<p align="center"><img src="https://pbs.twimg.com/media/D5WQdP6XkAIuoCe?format=jpg&name=4096x4096" width="450px" height="300px" title="Dennis Ritchie and Ken Thompson" alt="Their Majesties"></img></br>존나 멋있다 나도 이런 사람들이 되고싶따</p>
+
