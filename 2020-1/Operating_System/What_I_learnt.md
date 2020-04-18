@@ -51,13 +51,16 @@ I/O 디바이스와 CPU는 동시에 돌아갈 수 있다. 따라서 I/O 디바�
 
 System call은 trap에 해당하며 intentional exception이다. x86에서는 INT instruction으로, RISC-V에서는 ecall instruction으로 호출한다. a7 레지스터에 system call number를 저장하여 어떤 종류의 system call인지 알 수 있다. 
 
-<center>c.f. Exceptions in x86</center>
+----
 
+c.f. Exceptions in x86    
 | <center>Trap</center> | <center>Faults</center> | <center>Abort</center> |
 | ---- | ---- | ---- |
 | intentional | unintentional, but possibly recoverable | unintentional and unrecoverable |
 | system calls, breakpoints, special instructions, ... | page faults(recoverable), protection faults(unrecoverable), ... | parity error, machine check, ... |
 | returns control to the next instruction | re-execute current instruction or abort | abort | 
+
+----
 
 ## Issue 4. Control
 커널 코드는 돌아가고 있는 프로세스가 커널에게 CPU를 넘겨주던가(e.g. yield()), system call을 호출하거나, 아니면 하드웨어에서 interrupt가 나야 실행될 수 있다. 바꿔 말하면 프로세스가 CPU를 독점하면서(e.g. 무한 루프) system call을 호출하지 않고 하드웨어에서 interrupt가 나지 않는다면 커널 코드는 영원히 실행될 수 없고, 따라서 context change 등의 유용한 작업을 할 수 없게 된다.
@@ -70,7 +73,7 @@ System call은 trap에 해당하며 intentional exception이다. x86에서는 IN
 유저 애플리케이션은 하드웨어에 직접 접근할 수 없기 때문에 반드시 커널을 거쳐야 한다. 하지만 메모리만큼은 직접 접근할 수 있다. 메모리마저도 system call을 거쳐 접근한다면 너무 느려지기 때문이다. 하지만 이 경우에도 커널은 유저 애플리케이션을 신뢰할 수 없기 때문에, 각 유저 애플리케이션은 서로로부터 보호되어야 하며, 커널 자체도 유저 애플리케이션으로부터 보호되어야 한다. Virtual Memory는 메모리를 가상화하여 각 프로세스마다 비어있는 가상 메모리 공간을 할당하여 메모리를 보호할 수 있다. **MMU**는 하드웨어 차원에서 메모리 가상화를 지원해준다. 
 
 ## Issue 6. Synchronization
-프로세스끼리는 서로의 메모리를 볼 수 없지만, 스레드는 가능하다. 따라서 스레드끼리 공유하는 메모리에 모종의 조치를 취하지 않으면 예상치 못한 동작을 할 수 있다. 이를 보호하기 위해서 특별한 **atomic** instructions가 지원된다.
+프로세스끼리는 서로의 메모리를 볼 수 없지만, 스레드는 가능하다. 따라서 스레드끼리 공유하는 메모리에 모종의 조치를 취하지 않으면 예상치 못한 동작을 할 수 있다. 이를 보호하기 위해서 특별한 **atomic instructions**가 지원된다.
 
 # 3. Process
 > Process is **an instance of a program in execution**.
@@ -82,3 +85,144 @@ System call은 trap에 해당하며 intentional exception이다. x86에서는 IN
 
 <p align="center"><img src="./res/prog-proc.jpeg" height="200px" title="Process와 Program의 관계" alt="Process-Program"></img></br>프로세스는 실행 중인 프로그램의 인스턴스이다.</p>
 
+## Unix와 Windows의 프로세스 차이
+
+| UNIX | Windows|
+| ---- | ---- |
+| Process Group 존재 | X |
+| fork()와 exec()이 따로 존재 | CreateProcess() == fork() + exec() |
+
+Unix에서 fork()와 exec()을 분리한 이유는 I/O redirection, pipe 등을 fork 후, exec 전에 실행하기 위해서이다. xv6/user/sh.c 참조할 것.
+
+## Process Termination
+* Normal exit: voluntary
+* Error exit: voluntary
+* Fatal error: involuntary
+  * Segmentation fault, Protection fault, Exceeded allocated resources, ...
+* Killed by another process: involuntary
+  * Killed by receiving a signal
+
+한 프로세스가 위와 같은 이유로 죽으면 메모리에서 즉시 사라지는 것이 아니라 **Zombie process**가 된다. 이는 좀비가 된 프로세스가 자신의 사망 원인을 가지고 있도록 하여, 이 정보를 읽은 후에야 성불할 수 있게 하기 위함이다. 나무아미타불 관세음보살...
+
+## Context Switch
+### PCB (Process Control Block)
+하나의 PCB는 하나의 프로세스를 나타낸다. PCB에는 다음과 같은 정보들이 있다.
+* CPU registers
+* PID, PPID, process group, priority, process state, signals
+* CPU scheduling information
+* Memory management information
+* Accounting information
+* File management information
+* I/O status
+* Credentials
+* ...
+
+PCB에서는 Linux에서 **task_struct** 구조체로 구현되어 있으며, xv6에서 **proc** 구조체로 구현되어 있다.
+
+### Context Switch
+CPU가 실행할 프로세스를 다른 프로세스로 바꾸는 것을 context switch라고 한다. 모든 컴퓨터의 작업이 그렇지만 당연히 overhead가 존재하며, 이는 register와 메모리 매핑을 저장 및 복구하거나 cache를 flush하고 reload하는 등의 작업에서 기인한다. 당연히 cache locality 따위는 기대할 수 없으며, 초반에는 cold miss가 빈발할 것이다. 따라서 너무 잦은 context switch는 독이 된다. 보통 초당 100-1000번 이루어진다고 한다.
+
+xv6에서 context switch는 다음과 같은 과정을 통해 이루어진다. 각 단계는 atomic하게 실행된다.
+
+----
+
+1. Timer interrupt (**Process A** in **user mode**)
+   
+2. Set *sepc* <- *pc*, *scause*     
+   Disable interrupt    
+   Change to kernel mode            
+   Jump to trap handler at *stvec*   
+   
+3. Save *user registers* to *trapframe(A)* (**Process A** in **kernel mode**)    
+   Change to kernel page table   
+   Make A's state *RUNNABLE*   
+   Save A's *context* to *PCB(A)*   
+   Run *scheduler*   
+   Make B's state *RUNNING* (**Process B** in **kernel mode**)   
+   Restore B's *context* from *PCB(B)*
+
+4. Change to user page table    
+   Restore *user registers* from *trapframe(B)*    
+   return from trap (sret)    
+
+5. Move back to user mode (**Process B** in **user mode**)    
+   Enable interrupt    
+   Set *pc* <- *sepc*    
+
+----
+
+~~~ c
+// Saved registers for kernel context switches.
+struct context {
+  uint64 ra;
+  uint64 sp;
+
+  // callee-saved
+  uint64 s0;
+  uint64 s1;
+  uint64 s2;
+  uint64 s3;
+  uint64 s4;
+  uint64 s5;
+  uint64 s6;
+  uint64 s7;
+  uint64 s8;
+  uint64 s9;
+  uint64 s10;
+  uint64 s11;
+};
+
+struct trapframe {
+  /*   0 */ uint64 kernel_satp;   // kernel page table
+  /*   8 */ uint64 kernel_sp;     // top of process's kernel stack
+  /*  16 */ uint64 kernel_trap;   // usertrap()
+  /*  24 */ uint64 epc;           // saved user program counter
+  /*  32 */ uint64 kernel_hartid; // saved kernel tp
+  /*  40 */ uint64 ra;
+  /*  48 */ uint64 sp;
+  /*  56 */ uint64 gp;
+  /*  64 */ uint64 tp;
+  /*  72 */ uint64 t0;
+  /*  80 */ uint64 t1;
+  /*  88 */ uint64 t2;
+  /*  96 */ uint64 s0;
+  /* 104 */ uint64 s1;
+  /* 112 */ uint64 a0;
+  /* 120 */ uint64 a1;
+  /* 128 */ uint64 a2;
+  /* 136 */ uint64 a3;
+  /* 144 */ uint64 a4;
+  /* 152 */ uint64 a5;
+  /* 160 */ uint64 a6;
+  /* 168 */ uint64 a7;
+  /* 176 */ uint64 s2;
+  /* 184 */ uint64 s3;
+  /* 192 */ uint64 s4;
+  /* 200 */ uint64 s5;
+  /* 208 */ uint64 s6;
+  /* 216 */ uint64 s7;
+  /* 224 */ uint64 s8;
+  /* 232 */ uint64 s9;
+  /* 240 */ uint64 s10;
+  /* 248 */ uint64 s11;
+  /* 256 */ uint64 t3;
+  /* 264 */ uint64 t4;
+  /* 272 */ uint64 t5;
+  /* 280 */ uint64 t6;
+};
+~~~
+
+> Q. context에 있는 모든 정보는 trapframe에도 있는데 굳이 둘을 나누는 이유는? context에 있는 레지스터는 callee saved라는 것과 관계가 있나? 필기에는 trapframe은 user process의 state, context는 그 process가 커널 모드로 들어갔을 때 커널의 state라고 되어 있는데, 이 말은 커널 모드에서는 callee-saved register만 사용한다는 의미인가? 본인 x86충이라 RISC는 잘 모르겟움 ㅠ
+
+### Policy와 Mechanism
+* Policy
+  * **WHAT** should be done?
+  * resource allocation이나 scheduling에 대해서 이루어진다.
+  * e.g. 다음에는 어떤 프로세스를 돌려야 하는가?
+
+* Mechanism
+  * **HOW** to do something?
+  * Policy를 실제로 구현하는 도구이다.
+  * e.g. 어떻게 여러 프로세스가 동시에 돌아가게 할 수 있는가?
+
+Policy는 여러 상황에 따라 변할 수 있다. 하지만 mechanism은 policy와는 별개로 구현되어 어떠한 policy를 사용하더라도 문제가 없도록 유연하게 구현되어야 한다. 이러한 policy와 mechanism의 구분은 더 modular한 OS를 설계하는 데 도움을 준다.
