@@ -51,7 +51,7 @@ I/O 디바이스와 CPU는 동시에 돌아갈 수 있다. 따라서 I/O 디바�
 
 System call은 trap에 해당하며 intentional exception이다. x86에서는 INT instruction으로, RISC-V에서는 ecall instruction으로 호출한다. a7 레지스터에 system call number를 저장하여 어떤 종류의 system call인지 알 수 있다. 
 
-| <center>Trap</center> | <center>Faults</center> | <center>Abort</center> |
+| Trap | Faults | Abort |
 | ---- | ---- | ---- | ---- |
 | Intentional | Unintentional, but possibly recoverable | Unintentional and unrecoverable |
 | system calls, breakpoints, special instructions, ... | page faults(recoverable), protection faults(unrecoverable), ... | parity error, machine check, ... |
