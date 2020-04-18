@@ -55,7 +55,7 @@ System call은 trap에 해당하며 intentional exception이다. x86에서는 IN
 
 | <center>Trap</center> | <center>Faults</center> | <center>Abort</center> |
 | ---- | ---- | ---- |
-| Intentional | Unintentional, but possibly recoverable | Unintentional and unrecoverable |
+| intentional | unintentional, but possibly recoverable | unintentional and unrecoverable |
 | system calls, breakpoints, special instructions, ... | page faults(recoverable), protection faults(unrecoverable), ... | parity error, machine check, ... |
 | returns control to the next instruction | re-execute current instruction or abort | abort | 
 
@@ -74,4 +74,11 @@ System call은 trap에 해당하며 intentional exception이다. x86에서는 IN
 
 # 3. Process
 > Process is **an instance of a program in execution**.
+
+프로세스끼리는 서로 분리되어, 각 프로세스는 protection의 가장 기본적인 단위가 된다. 하나의 프로세스는 다음과 같은 정보들을 포함한다:
+* CPU context (registers)
+* OS resources(address space, open files, etc.)
+* Other information(PID, state, owner, etc.)
+
+<p align="center"><img src="./res/prog-proc.jpeg" height="200px" title="Process와 Program의 관계" alt="Process-Program"></img></br>프로세스는 실행 중인 프로그램의 인스턴스이다.</p>
 
