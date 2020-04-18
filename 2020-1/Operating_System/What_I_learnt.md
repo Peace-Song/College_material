@@ -56,7 +56,8 @@ System call은 trap에 해당하며 intentional exception이다. x86에서는 IN
 | Intentional | Unintentional, but possibly recoverable | Unintentional and unrecoverable |
 | system calls, breakpoints, special instructions, ... | page faults(recoverable), protection faults(unrecoverable), ... | parity error, machine check, ... |
 | returns control to the next instruction | re-execute current instruction or abort | abort | 
-    c.f. Exceptions in x86
+
+c.f. Exceptions in x86
 
 ## Issue 4. Control
 커널 코드는 돌아가고 있는 프로세스가 커널에게 CPU를 넘겨주던가(e.g. yield()), system call을 호출하거나, 아니면 하드웨어에서 interrupt가 나야 실행될 수 있다. 바꿔 말하면 프로세스가 CPU를 독점하면서(e.g. 무한 루프) system call을 호출하지 않고 하드웨어에서 interrupt가 나지 않는다면 커널 코드는 영원히 실행될 수 없고, 따라서 context change 등의 유용한 작업을 할 수 없게 된다.
