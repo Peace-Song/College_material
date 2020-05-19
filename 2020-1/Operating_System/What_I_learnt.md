@@ -226,3 +226,4 @@ struct trapframe {
   * e.g. 어떻게 여러 프로세스가 동시에 돌아가게 할 수 있는가?
 
 Policy는 여러 상황에 따라 변할 수 있다. 하지만 mechanism은 policy와는 별개로 구현되어 어떠한 policy를 사용하더라도 문제가 없도록 유연하게 구현되어야 한다. 이러한 policy와 mechanism의 구분은 더 modular한 OS를 설계하는 데 도움을 준다.
+
