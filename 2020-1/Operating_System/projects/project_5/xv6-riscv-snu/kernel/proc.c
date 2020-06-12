@@ -228,14 +228,16 @@ userinit(void)
 int
 growproc(int n)
 {
-  uint sz;
+  uint sz, sz_backup;
   struct proc *p = myproc();
 
   sz = p->sz;
+  sz_backup = sz;
   if(n > 0){
     if((sz = uvmalloc(p->pagetable, sz, sz + n)) == 0) {
       return -1;
     }
+    changeflags(p->pagetable, sz_backup, sz_backup + n, PTE_U | PTE_W | PTE_R);
   } else if(n < 0){
     sz = uvmdealloc(p->pagetable, sz, sz + n);
   }
@@ -251,7 +253,7 @@ fork(void)
   int i, pid;
   struct proc *np;
   struct proc *p = myproc();
-
+  
   // Allocate process.
   if((np = allocproc()) == 0){
     return -1;
@@ -264,7 +266,7 @@ fork(void)
     return -1;
   }
   np->sz = p->sz;
-
+  
   np->parent = p;
 
   // copy saved user registers.
@@ -286,7 +288,6 @@ fork(void)
   np->state = RUNNABLE;
 
   release(&np->lock);
-
   return pid;
 }
 

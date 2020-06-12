@@ -353,3 +353,6 @@ sfence_vma()
 
 typedef uint64 pte_t;
 typedef uint64 *pagetable_t; // 512 PTEs
+
+// PA5
+#define PTE_UXWR_RESET(pte)  (pte & ~(PTE_U | PTE_X | PTE_W | PTE_R))

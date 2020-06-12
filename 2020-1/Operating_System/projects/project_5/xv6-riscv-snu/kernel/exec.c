@@ -14,7 +14,7 @@ exec(char *path, char **argv)
 {
   char *s, *last;
   int i, off;
-  uint64 argc, sz, sp, ustack[MAXARG+1], stackbase;
+  uint64 argc, sz, sz_backup, sp, ustack[MAXARG+1], stackbase;
   struct elfhdr elf;
   struct inode *ip;
   struct proghdr ph;
@@ -40,6 +40,7 @@ exec(char *path, char **argv)
 
   // Load program into memory.
   sz = 0;
+  sz_backup = 0;
   for(i=0, off=elf.phoff; i<elf.phnum; i++, off+=sizeof(ph)){
     if(readi(ip, 0, (uint64)&ph, off, sizeof(ph)) != sizeof(ph))
       goto bad;
@@ -55,8 +56,26 @@ exec(char *path, char **argv)
     if(ph.vaddr % PGSIZE != 0)
       goto bad;
 #endif
+    if((ph.flags & ELF_PROG_FLAG_READ) &&
+       !(ph.flags & ELF_PROG_FLAG_WRITE) &&
+       (ph.flags & ELF_PROG_FLAG_EXEC)
+      ){
+        if(changeflags(pagetable, sz_backup, ph.vaddr + ph.memsz, PTE_R | PTE_X | PTE_U) < 0)
+          goto bad;
+      }
+      else if((ph.flags & ELF_PROG_FLAG_READ) &&
+              (ph.flags & ELF_PROG_FLAG_WRITE) &&
+              !(ph.flags & ELF_PROG_FLAG_EXEC)
+              ){
+        if(changeflags(pagetable, sz_backup, ph.vaddr + ph.memsz, PTE_R | PTE_W | PTE_U) < 0)
+          goto bad;
+      }
+      else;
+
     if(loadseg(pagetable, ph.vaddr, ip, ph.off, ph.filesz) < 0)
       goto bad;
+    
+    sz_backup = sz;
   }
   iunlockput(ip);
   end_op();
@@ -68,7 +87,10 @@ exec(char *path, char **argv)
   // Allocate two pages at the next page boundary.
   // Use the second as the user stack.
   sz = PGROUNDUP(sz);
+  sz_backup = sz;
   if((sz = uvmalloc(pagetable, sz, sz + 2*PGSIZE)) == 0)
+    goto bad;
+  if(changeflags(pagetable, sz_backup, sz_backup + 2*PGSIZE, PTE_R | PTE_W | PTE_U) < 0)
     goto bad;
   uvmclear(pagetable, sz-2*PGSIZE);
   sp = sz;

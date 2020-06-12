@@ -64,6 +64,9 @@ void            kfree(void *);
 void            kinit();
 #ifdef SNU
 extern uint64   freemem;
+int             get_refcnt(void *);
+void            incr_refcnt(void *);
+void            decr_refcnt(void *);
 #endif
 
 // log.c
@@ -175,6 +178,10 @@ int             copyinstr(pagetable_t, char *, uint64, uint64);
 #ifdef SNU
 void            freewalk(pagetable_t);
 uint64          v2p(pagetable_t, uint64);
+int             changeflags(pagetable_t, uint64, uint64, int);
+int             cowhandler(pagetable_t, uint64);
+
+
 #endif
 
 // plic.c

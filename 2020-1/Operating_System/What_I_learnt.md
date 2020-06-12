@@ -227,3 +227,34 @@ struct trapframe {
 
 Policy는 여러 상황에 따라 변할 수 있다. 하지만 mechanism은 policy와는 별개로 구현되어 어떠한 policy를 사용하더라도 문제가 없도록 유연하게 구현되어야 한다. 이러한 policy와 mechanism의 구분은 더 modular한 OS를 설계하는 데 도움을 준다.
 
+
+# 4. CPU Scheduling
+**Non-preemptive scheduling**은 OS가 유저 프로그램을 신뢰할 수 있을 때 사용하는 것이 좋다. 유저 프로그램은 자신이 할 일을 마친 후 CPU를 내려놓기 때문에, OS가 간섭할 여지가 없기 때문이다. 만약 어떠한 악성 프로그램이 CPU를 내려놓지 않는다면, 이를 제재할 방법은 없다.
+
+**Preemptive scheduling**은 OS가 유저 프로그램을 신뢰하지 않는 경우에 사용된다. 어떠한 정책으로든, 스케쥴러가 실행 중인 프로세스를 중단하고 CPU 권한을 회수하여 context switch가 발생하게 된다.
+
+## Workload Assumptions
+
+----
+
+1. Each job runs for the same amount of time.
+2. All jobs arrive at the same time.
+3. Once started, each job runs to completion.
+4. All jobs only use the CPU (no I/O)
+5. The run time of each job is known.
+
+----
+
+## Metrics
+
+----
+
+1. Turnaround time
+  * Job을 제출한 이후부터 Job이 끝날 때 까지의 시간
+  * T<sub>turnaround</sub> = T<sub>completion</sub> - T<sub>arrival</sub>
+
+----
+
+## FIFO
+### First in, First out
+
