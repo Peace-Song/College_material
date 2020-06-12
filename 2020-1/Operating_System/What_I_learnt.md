@@ -253,8 +253,44 @@ Policy는 여러 상황에 따라 변할 수 있다. 하지만 mechanism은 poli
   * Job을 제출한 이후부터 Job이 끝날 때 까지의 시간
   * T<sub>turnaround</sub> = T<sub>completion</sub> - T<sub>arrival</sub>
 
+2. Response time
+  * Job을 제출한 이후부터 Job이 실제로 실행될 때 까지의 시간
+  * T<sub>response</sub> = T<sub>firstrun</sub> - T<sub>arrival</sub>
+
+
 ----
 
 ## FIFO
-### First in, First out
+> First-In, First-Out
+
+Jobs가 들어온 순서대로 처리된다. 모든 jobs는 공평하게 들어온 순서대로 실행되므로 starvation이 일어나지 않고, non-preemptive하다. 하지만 **Convoy effect**가 발생하게 된다. 즉, 실행 시간이 짧은 job이 그렇지 않은 job보다 늦게 도착할 경우 해당 job이 실행될 때 까지 기다려야 하므로 평균 turnaround time이 증가하게 된다.
+
+## SJF
+> Shortest Job First
+
+**"Assumption 1. Each job runs for the same amount of time"**을 제외하자. 그렇다면 jobs의 실행 시간은 다를 수 있고, convoy effect를 최소화하기 위해 실행 시간이 가장 짧은 job부터 순차적으로 실행하게 된다. 이 경우 turnaround time을 최적화할 수 있다는 것이 '알려져 있다'. 이 스케쥴링도 non-preemptive하다. 하지만 이 스케쥴링은 여전히 모든 job이 동시에 도착하는 것을 전제로 하므로, job의 도착 시간이 제각기인 경우 최적해임을 보장할 수 없으며 이 경우 starvation이 여전히 일어날 수 있다.
+
+## STCF
+> Shortest Time-to-Completion First
+
+**"Assumption 2. All jobs arrive at the same time"**과 **"Once started, each job runs to completion"**이 제외되었다. 그렇다면 이제 스케쥴러는 preemption을 수행할 수 있다. 따라서 스케쥴러의 실행 시점에서 실행 완료에 가장 가까운 프로세스를 선택하여 실행하게 된다. 이 경우에도 starvation은 여전히 일어날 수 있다.
+
+## RR
+> Round Robin
+
+Run queue는 이제 Circular queue로 구현된다. 모든 job은 timeslice를 분배받게 되며, 자신의 timeslice 동안 프로세스는 CPU를 마음껏 사용하거나 I/O를 기다리기 위해 yield할 수 있다. timeslice를 다 쓰면 run queue 상의 이웃 job에게 CPU를 넘겨주게 된다. preemptive한 스케쥴링이며, 어쨌든 기다리다 보면 timeslice를 받기 때문에 starvation이 일어나지 않고, 공평하게 시간을 분배하므로 response time이 향상된다. 다만 SJF보다 turnaround time은 느려지게 된다. FIFO의 preemptive한 버전이라고 할 수 있겠다. 아무리 봐도 공산주의 냄새가 난다. 만국의 프로세스여 단결하라!
+
+## Priority Scheduling
+
+각 job에는 priority가 있으며, priority value가 낮을 수록 높은 우선순위를 가진다고 간주된다. job마다 priority가 주어져 바꿀 수 없으면 static priority scheduling이고, 바꿀 수 있다면 dynamic priority scheduling이다. 그리하여 가장 높은 priority를 가진 job을 선택하고, 같은 priority를 가진 job끼리는 RR이나 FIFO를 사용한다. preemptive할 수도, non-preemptive할 수도 있지만 보통은 preemptive한 스케쥴링을 사용한다. 여전히 starvation problem에서 벗어날 수는 없는데, 계속해서 높은 priority를 가진 job이 밀려온다면 낮은 priority의 job은 실행되지 않기 때문이다.
+
+**"Assumption 4. All jobs only use the CPU (no I/O)"** 전제를 제외하자. 그렇다면 job은 I/O를 받을 수 있게 되고, 그 동안 job은 CPU를 사용하지 않을 것이다. 그렇다면 CPU를 사용하는 동안의 job과 I/O를 기다리는 동안의 job은 같은 job이어도 다르게 본다면, I/O를 기다리는 동안 다른 job을 스케쥴링하여 실행할 수 있을 것이다. 그렇다면 turnaround time과 response time 두 경우 모두 개선될 수 있을 것이다. 
+
+## 
+
+
+
+
+
+
 
