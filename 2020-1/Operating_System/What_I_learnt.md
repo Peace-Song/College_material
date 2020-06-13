@@ -316,3 +316,5 @@ Run queue는 이제 Circular queue로 구현된다. 모든 job은 timeslice를 �
 VR(T) = ( Weight<sub>0</sub> / Weight(T) ) * PR(T)
 
 CFS는 모든 task를 virtual runtime을 기준으로 red-black tree를 사용하여 sort함으로써, 항상 O(log N) 시간에 가장 작은 virtual runtime을 가진 task를 찾음으로써 이를 스케쥴링 할 수 있다. 이 때 virtual runtime이 적다는 것은 실제 써야 할 CPU 시간보다 더 적게 CPU를 사용했다는 의미이다. 
+
+
