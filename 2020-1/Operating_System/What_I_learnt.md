@@ -270,6 +270,8 @@ Jobs가 들어온 순서대로 처리된다. 모든 jobs는 공평하게 들어�
 
 **"Assumption 1. Each job runs for the same amount of time"**을 제외하자. 그렇다면 jobs의 실행 시간은 다를 수 있고, convoy effect를 최소화하기 위해 실행 시간이 가장 짧은 job부터 순차적으로 실행하게 된다. 이 경우 turnaround time을 최적화할 수 있다는 것이 '알려져 있다'. 이 스케쥴링도 non-preemptive하다. 하지만 이 스케쥴링은 여전히 모든 job이 동시에 도착하는 것을 전제로 하므로, job의 도착 시간이 제각기인 경우 최적해임을 보장할 수 없으며 이 경우 starvation이 여전히 일어날 수 있다.
 
+<p align="center"><img src="./res/FIFO_SJF.jpeg" width="500px" title="FIFO와 SJF 비교" alt="FIFO-SJF"></img></br>FIFO와 SJF</p>
+
 ## STCF
 > Shortest Time-to-Completion First
 
