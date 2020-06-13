@@ -277,10 +277,14 @@ Jobs가 들어온 순서대로 처리된다. 모든 jobs는 공평하게 들어�
 
 **"Assumption 2. All jobs arrive at the same time"**과 **"Once started, each job runs to completion"**이 제외되었다. 그렇다면 이제 스케쥴러는 preemption을 수행할 수 있다. 따라서 스케쥴러의 실행 시점에서 실행 완료에 가장 가까운 프로세스를 선택하여 실행하게 된다. 이 경우에도 starvation은 여전히 일어날 수 있다.
 
+<p align="center"><img src="./res/SJF_STCF.png" width="500px" title="SJF와 SCTF 비교" alt="SJF-STCF"></img></br>SJF와 SCTF</p>
+
 ## RR
 > Round Robin
 
-Run queue는 이제 Circular queue로 구현된다. 모든 job은 timeslice를 분배받게 되며, 자신의 timeslice 동안 프로세스는 CPU를 마음껏 사용하거나 I/O를 기다리기 위해 yield할 수 있다. timeslice를 다 쓰면 run queue 상의 이웃 job에게 CPU를 넘겨주게 된다. preemptive한 스케쥴링이며, 어쨌든 기다리다 보면 timeslice를 받기 때문에 starvation이 일어나지 않고, 공평하게 시간을 분배하므로 response time이 향상된다. 다만 SJF보다 turnaround time은 느려지게 된다. FIFO의 preemptive한 버전이라고 할 수 있겠다. 아무리 봐도 공산주의 냄새가 난다. 만국의 프로세스여 단결하라!
+Run queue는 이제 Circular queue로 구현된다. 모든 job은 timeslice를 분배받게 되며, 자신의 timeslice 동안 프로세스는 CPU를 마음껏 사용하거나 I/O를 기다리기 위해 yield할 수 있다. timeslice를 다 쓰면 run queue 상의 이웃 job에게 CPU를 넘겨주게 된다. preemptive한 스케쥴링이며, 어쨌든 기다리다 보면 timeslice를 받기 때문에 starvation이 일어나지 않고, 공평하게 시간을 분배하므로 response time이 향상된다. 다만 SJF보다 turnaround time은 느려지게 된다. FIFO의 preemptive한 버전이라고 할 수 있겠다. 
+
+<p align="center"><img src="./res/SJF_RR.png" width="500px" title="SJF와 RR 비교" alt="SJF-RR"></img></br>SJF와 RR</p>
 
 ## Priority Scheduling
 
@@ -288,11 +292,27 @@ Run queue는 이제 Circular queue로 구현된다. 모든 job은 timeslice를 �
 
 **"Assumption 4. All jobs only use the CPU (no I/O)"** 전제를 제외하자. 그렇다면 job은 I/O를 받을 수 있게 되고, 그 동안 job은 CPU를 사용하지 않을 것이다. 그렇다면 CPU를 사용하는 동안의 job과 I/O를 기다리는 동안의 job은 같은 job이어도 다르게 본다면, I/O를 기다리는 동안 다른 job을 스케쥴링하여 실행할 수 있을 것이다. 그렇다면 turnaround time과 response time 두 경우 모두 개선될 수 있을 것이다. 
 
-## 
+## MLFQ
+> Multi-Level Feedback Queue
+
+----
+1. If Priority(A) > Priority(B), A is chosen.
+2. If Priority(A) == Priority(B), A and B runs in RR.
+3. When a job is submitted, it is given the highest priority.
+4. If a job uses up its given time slice, regardless of its number of yields, the priority is reduced. (**Precise accounting**)
+5. After some time period, all jobs are moved to the topmost queue. (**Priority boost**)
+
+<p align="center"><img src="./res/priorityboost.png" width="500px" title="priority boost" alt="priority boost"></img></p>
+<p align="center"><img src="./res/preciseaccounting.png" width="500px" title="preciseaccounting" alt="preciseaccounting"></img></p>
 
 
+## CFS
+> Completely Fair Scheduler
 
+리눅스는 140개의 priority를 가지고 있으며, 일반적인 유저 프로세스는 100부터 139까지의 priority를 할당받는다. 이 때 priority 120은 nice 0에 해당하여, priority = 120 + nice로 나타내진다. CFS는 각 task의 nice value마다 weight를 할당하여 CPU의 시간을 할당해준다. nice value 1 차이당 10%의 CPU 시간을 주도록 매핑하여 매핑값을 미리 계산해둔다.
 
+이 때 CPU 사용량을 해당 task가 nice value 0이었을 때를 기준으로 normalize하여 virtual runtime을 계산한다. 이는 다음과 같다.
 
+VR(T) = <math><mfrac><mi>Weight<sub>0</sub></mi><mi>Weight(T)</mi></mfrac></math> * PR(T)
 
-
+CFS는 모든 task를 virtual runtime을 기준으로 red-black tree를 사용하여 sort함으로써, 항상 O(log N) 시간에 가장 작은 virtual runtime을 가진 task를 찾음으로써 이를 스케쥴링 할 수 있다. 이 때 virtual runtime이 적다는 것은 실제 써야 할 CPU 시간보다 더 적게 CPU를 사용했다는 의미이다. 
