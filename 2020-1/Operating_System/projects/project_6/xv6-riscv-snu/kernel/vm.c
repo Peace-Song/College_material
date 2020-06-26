@@ -446,3 +446,9 @@ copyinstr(pagetable_t pagetable, char *dst, uint64 srcva, uint64 max)
     return -1;
   }
 }
+
+// PA6
+pagetable_t
+get_kernel_pagetable(void){
+  return kernel_pagetable;
+}

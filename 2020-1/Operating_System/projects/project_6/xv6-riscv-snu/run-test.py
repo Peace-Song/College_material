@@ -30,7 +30,7 @@ def test_i(i):
   qemu_killed = False
 
   try:
-    time.sleep(1)
+    time.sleep(3)
     qemu.stdin.write("kthtest %d\n" % i)
     qemu.stdin.flush()
     time.sleep(5)

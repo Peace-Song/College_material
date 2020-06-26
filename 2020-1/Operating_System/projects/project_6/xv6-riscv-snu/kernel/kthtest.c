@@ -433,8 +433,9 @@ kthtest(int n)
     return -2;
 
   acquire(&test_lk);
-  while (!testdone)
+  while (!testdone){
     sleep(&testdone, &test_lk);
+  }
   release(&test_lk);
   kthread_set_prio(userprio);
   return 0;

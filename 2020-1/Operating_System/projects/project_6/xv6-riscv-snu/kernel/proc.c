@@ -17,7 +17,7 @@ struct spinlock pid_lock;
 
 extern void forkret(void);
 static void wakeup1(struct proc *chan);
-
+static int get_min_prio(void);
 extern char trampoline[]; // trampoline.S
 
 void
@@ -40,6 +40,7 @@ procinit(void)
       p->kstack = va;
   }
   kvminithart();
+  init_ledger();  // PA6
 }
 
 // Must be called with interrupts disabled,
@@ -104,6 +105,7 @@ allocproc(void)
 
 found:
   p->pid = allocpid();
+  p->tid = p->pid;  // PA6
 
   // Allocate a trapframe page.
   if((p->tf = (struct trapframe *)kalloc()) == 0){
@@ -123,6 +125,53 @@ found:
   return p;
 }
 
+struct proc*
+allocthread(void){
+  struct proc *th;
+  struct proc *p = myproc();
+
+  for(th = proc; th < &proc[NPROC]; th++){
+    acquire(&th->lock);
+    if(th->state == UNUSED){
+      goto th_found;
+    } else {
+      release(&th->lock);
+    }
+  }
+  return 0;
+
+th_found:
+  th->pid = p->pid;
+  th->tid = allocpid();
+  
+  th->pagetable = get_kernel_pagetable();
+
+  memset(&th->context, 0, sizeof th->context);
+  th->context.ra = 0;
+  th->context.sp = th->kstack + PGSIZE;
+
+  return th;
+}
+
+// PA6
+struct proc*
+findthread(int tid){
+  struct proc *th;
+
+  for (th = proc; th < &proc[NPROC]; th++){
+    acquire(&th->lock);
+    if(th->tid == tid){
+      release(&th->lock);
+      return th;
+    }
+    else{
+      release(&th->lock);
+    }
+  }
+  
+  return 0;
+}
+
 // free a proc structure and the data hanging from it,
 // including user pages.
 // p->lock must be held.
@@ -137,6 +186,7 @@ freeproc(struct proc *p)
   p->pagetable = 0;
   p->sz = 0;
   p->pid = 0;
+  p->tid = 0;
   p->parent = 0;
   p->name[0] = 0;
   p->chan = 0;
@@ -213,6 +263,9 @@ userinit(void)
   safestrcpy(p->name, "initcode", sizeof(p->name));
   p->cwd = namei("/");
 
+  p->prio = USER_DEF_PRIO;  // PA6
+  p->base_prio = USER_DEF_PRIO;
+
   p->state = RUNNABLE;
 
   release(&p->lock);
@@ -277,6 +330,8 @@ fork(void)
   safestrcpy(np->name, p->name, sizeof(p->name));
 
   pid = np->pid;
+  np->prio = p->prio; // PA6
+  np->base_prio = p->base_prio;
 
   np->state = RUNNABLE;
 
@@ -431,6 +486,7 @@ wait(uint64 addr)
   }
 }
 
+// PA6
 // Per-CPU process scheduler.
 // Each CPU calls scheduler() after setting itself up.
 // Scheduler never returns.  It loops, doing:
@@ -443,30 +499,49 @@ scheduler(void)
 {
   struct proc *p;
   struct cpu *c = mycpu();
-  
+  int min_prio;
+
   c->proc = 0;
   for(;;){
     // Avoid deadlock by ensuring that devices can interrupt.
     intr_on();
-
+    
     for(p = proc; p < &proc[NPROC]; p++) {
+      min_prio = get_min_prio();
+
       acquire(&p->lock);
-      if(p->state == RUNNABLE) {
-        // Switch to chosen process.  It is the process's job
-        // to release its lock and then reacquire it
-        // before jumping back to us.
+
+      if(p->state == RUNNABLE && p->prio == min_prio){
         p->state = RUNNING;
         c->proc = p;
+        
         swtch(&c->scheduler, &p->context);
 
-        // Process is done running for now.
-        // It should have changed its p->state before coming back.
         c->proc = 0;
       }
+
       release(&p->lock);
     }
   }
 }
+
+static int
+get_min_prio(void)
+{
+  int min_prio = USER_MAX_PRIO;
+  struct proc *p;
+
+  for(p = proc; p < &proc[NPROC]; p++){
+    acquire(&p->lock);
+    if(p->state == RUNNABLE && p->prio < min_prio){
+      min_prio = p->prio;
+    }
+    release(&p->lock);
+  }
+
+  return min_prio;
+}
+
 
 // Switch to scheduler.  Must hold only p->lock
 // and have changed proc->state. Saves and restores
@@ -526,6 +601,25 @@ forkret(void)
 
   usertrapret();
 }
+
+void threadret(void)
+{
+  struct proc *th = myproc();
+
+  if(!holding(&th->lock))
+    acquire(&th->lock);
+
+  void (*fn)(void *) = (void (*))th->context.s10;
+  uint64 arg = th->context.s11;
+
+  release(&th->lock);
+
+  fn((void *) arg);
+
+  kthread_yield();
+  //kthread_exit();
+}
+
 
 // Atomically release lock and sleep on chan.
 // Reacquires lock when awakened.
