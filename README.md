@@ -9,6 +9,11 @@ This repository is for maintaining cloud consistency between my devices to provi
 * 2019-2
     - [Principles and Practices of Software Development](https://github.com/Peace-Song/College_materials/tree/master/2019-2/SWPP)
     - [System Programming](https://github.com/Peace-Song/College_materials/tree/master/2019-2/System_Programming)
-* 2020-2
+* 2020-1
     - [Operating System](https://github.com/Peace-Song/College_materials/tree/master/2020-1/Operating_System)
     - [Database](https://github.com/Peace-Song/College_materials/tree/master/2020-1/Database)
+* 2020-2
+    - [Computer Programming](https://github.com/Peace-Song/College_materials/tree/master/2020-2/Computer_Programming)
+    - [Programming Principles](https://github.com/Peace-Song/College_materials/tree/master/2020-2/Programming_Principles)
+    - [Computer Networks](https://github.com/Peace-Song/College_materials/tree/master/2020-2/Computer_Networks)
+    - [Compilers](https://github.com/Peace-Song/College_materials/tree/master/2020-2/Compilers)
