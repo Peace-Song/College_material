@@ -14,6 +14,6 @@ This repository is for maintaining cloud consistency between my devices to provi
     - [Database](https://github.com/Peace-Song/College_materials/tree/master/2020-1/Database)
 * 2020-2
     - [Computer Programming](https://github.com/Peace-Song/College_materials/tree/master/2020-2/Computer_Programming)
-    - [Programming Principles](https://github.com/Peace-Song/College_materials/tree/master/2020-2/Programming_Principles)
+    - [Principles of Programming](https://github.com/Peace-Song/College_materials/tree/master/2020-2/Principles_of_Programming)
     - [Computer Networks](https://github.com/Peace-Song/College_materials/tree/master/2020-2/Computer_Networks)
     - [Compilers](https://github.com/Peace-Song/College_materials/tree/master/2020-2/Compilers)
