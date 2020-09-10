@@ -17,28 +17,33 @@ public class StudentIDValidator {
     }
 
     private static void validateStudentID (String studentID) {
-        if (isProperLength(studentID) && hasProperDivision(studentID) && hasProperDigits(studentID))
-            System.out.println(studentID + " is a valid student ID.");
+        if (!isProperLength(studentID)) {
+            System.out.println("The input length should be 10.");
+            return;
+        }
 
+        if (!hasProperDivision(studentID)) {
+            System.out.println("Fifth character should be '-'.");
+            return;
+        }
+
+        if (!hasProperDigits(studentID)) {
+            System.out.println("Contains an invalid digit.");
+            return;
+        }
+
+        System.out.println(studentID + " is a valid student ID.");
         return;
     }
 
     private static boolean isProperLength (String studentID) {
-        if (studentID.length() != 10) {
-            System.out.println("The input length should be 10.");
-
-            return false;
-        }
+        if (studentID.length() != 10) return false;
         
         return true;
     }
 
     private static boolean hasProperDivision (String studentID) {
-        if (studentID.charAt(4) != '-') {
-            System.out.println("Fifth character should be '-'.");
-
-            return false;
-        }
+        if (studentID.charAt(4) != '-') return false;
         
         return true;
     }
@@ -47,11 +52,8 @@ public class StudentIDValidator {
         for (int idx = 0; idx < studentID.length(); idx++) {
             if (idx == 4) continue;
 
-            if (!('0' <= studentID.charAt(idx) && studentID.charAt(idx) <= '9')) {
-                System.out.println("Contains an invalid digit.");
-
+            if (!('0' <= studentID.charAt(idx) && studentID.charAt(idx) <= '9')) 
                 return false;
-            }
         }
 
         return true;
