@@ -1,7 +1,11 @@
+# directories
+*/**/__pycache__
+
+# files
 */**/*.sym
 */**/*.o
 */**/*.d
 */**/*.asm
 */**/*.out
 */**/*.class
-*/**/__pycache__
+*/**/.DS_Store
