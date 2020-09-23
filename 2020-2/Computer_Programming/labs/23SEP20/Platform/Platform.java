@@ -9,12 +9,14 @@ public class Platform {
     private int numRounds;
     private Dice dice;
     private RockPaperScissors rps;
+    private boolean isDirty;
 
     Platform() {
         this.numRounds = 1;
         this.scanner = new Scanner(System.in);
         this.dice = new Dice();
         this.rps = new RockPaperScissors();
+        this.isDirty = false;
     }
 
     public float run() {
@@ -42,8 +44,9 @@ public class Platform {
     }
 
     public void setRounds(int num) {
-        if (this.numRounds != 1) return;
+        if (this.isDirty) return;
 
+        this.isDirty = true;
         this.numRounds = num;
     }
 }
