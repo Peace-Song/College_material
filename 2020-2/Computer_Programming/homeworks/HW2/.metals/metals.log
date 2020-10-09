@@ -1,0 +1,10 @@
+2020.10.09 16:24:14 INFO  started: Metals version 0.9.4 in workspace '/Users/peacesong/Workspace/College_Materials/2020-2/Computer_Programming/homeworks/HW2' for client vscode.
+2020.10.09 16:24:15 INFO  time: initialize in 1.05s
+2020.10.09 16:24:15 WARN  no build tool detected in workspace '/Users/peacesong/Workspace/College_Materials/2020-2/Computer_Programming/homeworks/HW2'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2020.10.09 16:24:17 INFO  no build target: using presentation compiler with only scala-library
+2020.10.09 16:24:17 WARN  no build target for: /Users/peacesong/Workspace/pp202002-private/assignments/hw1/src/Main.scala
+10월 09, 2020 4:24:18 오후 org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+경고: Unmatched cancel notification for request id 2
+2020.10.09 16:24:56 WARN  no build tool detected in workspace '/Users/peacesong/Workspace/College_Materials/2020-2/Computer_Programming/homeworks/HW2'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
+2020.10.09 16:25:03 WARN  no build target for: /Users/peacesong/Workspace/pp202002-private/assignments/hw1/src/Main.scala
+2020.10.09 16:40:06 INFO  shutting down Metals
