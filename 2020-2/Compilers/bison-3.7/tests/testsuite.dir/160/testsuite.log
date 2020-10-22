@@ -1,0 +1,8 @@
+#                             -*- compilation -*-
+160. sets.at:27: testing Nullable ...
+/sets.at:42: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret --trace=sets input.y
+stderr:
+/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
+Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/sets.at:42: exit code was 1, expected 0
+160. sets.at:27: 160. Nullable (sets.at:27): FAILED (sets.at:42)

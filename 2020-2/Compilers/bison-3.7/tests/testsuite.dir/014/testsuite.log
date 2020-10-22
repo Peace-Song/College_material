@@ -1,0 +1,25 @@
+#                             -*- compilation -*-
+14. input.at:515: testing Type Clashes ...
+/input.at:544: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS; VALGRIND_OPTS="$VALGRIND_OPTS --leak-check=summary --show-reachable=no"; export VALGRIND_OPTS;  bison --color=no -fno-caret -fcaret input.y
+--- -	2020-10-21 22:27:27.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/14/stderr	2020-10-21 22:27:27.000000000 +0900
+@@ -1,16 +1,3 @@
+-input.y:5.12-13: error: $$ for the midrule at $2 of 'exp' has no declared type
+-    5 | exp: foo { $$; } foo { $2; } foo
+-      |            ^~
+-input.y:5.24-25: error: $2 of 'exp' has no declared type
+-    5 | exp: foo { $$; } foo { $2; } foo
+-      |                        ^~
+-input.y:5.6-32: warning: type clash on default action: <bar> != <> [-Wother]
+-    5 | exp: foo { $$; } foo { $2; } foo
+-      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+-input.y:6.6-8: warning: type clash on default action: <bar> != <> [-Wother]
+-    6 |    | foo
+-      |      ^~~
+-input.y:7.6-11: warning: empty rule for typed nonterminal, and no action [-Wother]
+-    7 |    | %empty
+-      |      ^~~~~~
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+14. input.at:515: 14. Type Clashes (input.at:515): FAILED (input.at:544)

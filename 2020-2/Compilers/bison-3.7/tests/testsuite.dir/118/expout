@@ -1,0 +1,3 @@
+%defines "foo.output"
+%%
+foo: {};

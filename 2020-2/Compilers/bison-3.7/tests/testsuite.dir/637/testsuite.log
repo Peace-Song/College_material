@@ -1,0 +1,8 @@
+#                             -*- compilation -*-
+637. cxx-type.at:424: testing GLR: Merge conflicting parses, impure, locations ...
+/cxx-type.at:426: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -o types.c types.y
+stderr:
+/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
+Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/cxx-type.at:426: exit code was 1, expected 0
+637. cxx-type.at:424: 637. GLR: Merge conflicting parses, impure, locations (cxx-type.at:424): FAILED (cxx-type.at:426)

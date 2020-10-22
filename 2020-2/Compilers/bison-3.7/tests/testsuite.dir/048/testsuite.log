@@ -1,0 +1,16 @@
+#                             -*- compilation -*-
+48. input.at:2129: testing "%define" enum variables ...
+/input.at:2148: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS; VALGRIND_OPTS="$VALGRIND_OPTS --leak-check=summary --show-reachable=no"; export VALGRIND_OPTS;  bison --color=no -fno-caret -fcaret input.y
+--- -	2020-10-21 22:27:29.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/48/stderr	2020-10-21 22:27:29.000000000 +0900
+@@ -1,7 +1,3 @@
+-input.y:1.1-34: error: invalid value for %define variable 'lr.default-reduction': 'bogus'
+-    1 | %define lr.default-reduction bogus
+-      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-input.y:1.1-34: note: accepted value: 'most'
+-input.y:1.1-34: note: accepted value: 'consistent'
+-input.y:1.1-34: note: accepted value: 'accepting'
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+48. input.at:2129: 48. "%define" enum variables (input.at:2129): FAILED (input.at:2148)

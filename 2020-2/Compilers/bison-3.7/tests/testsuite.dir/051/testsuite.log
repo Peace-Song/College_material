@@ -1,0 +1,11 @@
+#                             -*- compilation -*-
+51. input.at:2265: testing Unused api.pure ...
+/input.at:2285: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS; VALGRIND_OPTS="$VALGRIND_OPTS --leak-check=summary --show-reachable=no"; export VALGRIND_OPTS;  bison --color=no -fno-caret input.y
+--- -	2020-10-21 22:27:29.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/51/stderr	2020-10-21 22:27:29.000000000 +0900
+@@ -1,2 +1,3 @@
+-input.y:1.1-16: error: %define variable 'api.pure' is not used
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+51. input.at:2265: 51. Unused api.pure (input.at:2265): FAILED (input.at:2285)

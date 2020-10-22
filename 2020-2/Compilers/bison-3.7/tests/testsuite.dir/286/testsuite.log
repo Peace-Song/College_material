@@ -1,0 +1,10 @@
+#                             -*- compilation -*-
+286. headers.at:60: testing Invalid CPP guards: %glr-parser --defines=9foo.h ...
+/headers.at:60: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret --defines=9foo.h --output=9foo.c 9foo.y
+--- /dev/null	2020-10-21 22:27:40.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/286/stderr	2020-10-21 22:27:44.000000000 +0900
+@@ -0,0 +1,2 @@
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/headers.at:60: exit code was 1, expected 0
+286. headers.at:60: 286. Invalid CPP guards: %glr-parser --defines=9foo.h (headers.at:60): FAILED (headers.at:60)

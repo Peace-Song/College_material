@@ -1,0 +1,28 @@
+#                             -*- compilation -*-
+18. input.at:795: testing Symbol class redefinition ...
+/input.at:826: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS; VALGRIND_OPTS="$VALGRIND_OPTS --leak-check=summary --show-reachable=no"; export VALGRIND_OPTS;  bison --color=no -fno-caret -fcaret input.y
+--- -	2020-10-21 22:27:27.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/18/stderr	2020-10-21 22:27:27.000000000 +0900
+@@ -1,19 +1,3 @@
+-input.y:2.8-10: error: symbol FOO redeclared as a nonterminal
+-    2 | %nterm FOO BAR
+-      |        ^~~
+-input.y:1.8-10: note: previous definition
+-    1 | %token FOO
+-      |        ^~~
+-input.y:3.8-10: error: symbol BAR redeclared as a token
+-    3 | %token BAR
+-      |        ^~~
+-input.y:2.12-14: note: previous definition
+-    2 | %nterm FOO BAR
+-      |            ^~~
+-input.y:4.8-12: error: symbol error redeclared as a nonterminal
+-    4 | %nterm error // The token error cannot be redefined as an nterm.
+-      |        ^~~~~
+-input.y:6.1-3: error: rule given for FOO, which is a token
+-    6 | FOO: BAR
+-      | ^~~
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+18. input.at:795: 18. Symbol class redefinition (input.at:795): FAILED (input.at:826)

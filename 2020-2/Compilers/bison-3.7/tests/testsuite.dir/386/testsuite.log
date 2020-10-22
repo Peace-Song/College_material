@@ -1,0 +1,11 @@
+#                             -*- compilation -*-
+386. types.at:366: testing lalr1.cc api.value.type={variant} %defines ...
+======== Testing with C++ standard flags: ''
+/types.at:366: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret  -o test.cc test.y
+--- /dev/null	2020-10-21 22:27:51.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/386/stderr	2020-10-21 22:27:52.000000000 +0900
+@@ -0,0 +1,2 @@
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/types.at:366: exit code was 1, expected 0
+386. types.at:366: 386. lalr1.cc api.value.type={variant} %defines (types.at:366): FAILED (types.at:366)

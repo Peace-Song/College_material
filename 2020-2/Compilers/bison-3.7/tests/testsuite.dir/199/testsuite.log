@@ -1,0 +1,23 @@
+#                             -*- compilation -*-
+199. conflicts.at:218: testing Useless precedence warning ...
+/conflicts.at:261: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -Wprecedence -fcaret -o input.c input.y
+--- -	2020-10-21 22:27:38.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/199/stderr	2020-10-21 22:27:38.000000000 +0900
+@@ -1,13 +1,3 @@
+-input.y:7.1-9: warning: useless precedence and associativity for U [-Wprecedence]
+-    7 | %nonassoc U
+-      | ^~~~~~~~~
+-input.y:6.1-6: warning: useless precedence and associativity for V [-Wprecedence]
+-    6 | %right V
+-      | ^~~~~~
+-input.y:5.1-5: warning: useless precedence and associativity for W [-Wprecedence]
+-    5 | %left W
+-      | ^~~~~
+-input.y:2.1-11: warning: useless precedence for Z [-Wprecedence]
+-    2 | %precedence Z
+-      | ^~~~~~~~~~~
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+/conflicts.at:261: exit code was 1, expected 0
+199. conflicts.at:218: 199. Useless precedence warning (conflicts.at:218): FAILED (conflicts.at:261)

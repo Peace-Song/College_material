@@ -1,0 +1,17 @@
+#                             -*- compilation -*-
+11. input.at:364: testing Dangling aliases ...
+/input.at:380: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -fcaret -Wdangling input.y
+--- -	2020-10-21 22:27:27.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/11/stderr	2020-10-21 22:27:27.000000000 +0900
+@@ -1,7 +1,3 @@
+-input.y:2.13-17: warning: string literal "bar" not attached to a symbol [-Wdangling-alias]
+-    2 | %type <val> "bar"
+-      |             ^~~~~
+-input.y:4.19-23: warning: string literal "baz" not attached to a symbol [-Wdangling-alias]
+-    4 | expr: "foo" "bar" "baz"
+-      |                   ^~~~~
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+/input.at:380: exit code was 1, expected 0
+11. input.at:364: 11. Dangling aliases (input.at:364): FAILED (input.at:380)

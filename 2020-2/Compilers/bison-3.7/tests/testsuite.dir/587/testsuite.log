@@ -1,0 +1,10 @@
+#                             -*- compilation -*-
+587. regression.at:1558: testing Lex and parse params: lalr1.cc ...
+/regression.at:1558: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret  -o input.cc input.y
+--- /dev/null	2020-10-21 22:28:09.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/587/stderr	2020-10-21 22:28:14.000000000 +0900
+@@ -0,0 +1,2 @@
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/regression.at:1558: exit code was 1, expected 0
+587. regression.at:1558: 587. Lex and parse params: lalr1.cc (regression.at:1558): FAILED (regression.at:1558)

@@ -1,0 +1,10 @@
+#                             -*- compilation -*-
+623. java.at:202: testing Java parser class modifiers ...
+/java.at:204: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -Wno-deprecated YYParser.y
+--- /dev/null	2020-10-21 22:28:09.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/623/stderr	2020-10-21 22:28:17.000000000 +0900
+@@ -0,0 +1,2 @@
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/java.at:204: exit code was 1, expected 0
+623. java.at:202: 623. Java parser class modifiers (java.at:202): FAILED (java.at:204)

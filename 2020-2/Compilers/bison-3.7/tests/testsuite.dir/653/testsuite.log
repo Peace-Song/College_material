@@ -1,0 +1,10 @@
+#                             -*- compilation -*-
+653. glr-regression.at:1078: testing Incorrect lookahead during deterministic GLR ...
+/glr-regression.at:1180: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -o glr-regr13.c -rall glr-regr13.y
+--- /dev/null	2020-10-21 22:28:09.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/653/stderr	2020-10-21 22:28:21.000000000 +0900
+@@ -0,0 +1,2 @@
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/glr-regression.at:1180: exit code was 1, expected 0
+653. glr-regression.at:1078: 653. Incorrect lookahead during deterministic GLR (glr-regression.at:1078): FAILED (glr-regression.at:1180)

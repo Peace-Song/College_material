@@ -1,0 +1,12 @@
+#                             -*- compilation -*-
+26. input.at:1155: testing Duplicate string ...
+/input.at:1174: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -v -o input.c input.y
+--- -	2020-10-21 22:27:28.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/26/stderr	2020-10-21 22:27:28.000000000 +0900
+@@ -1,2 +1,3 @@
+-input.y:6.11-14: warning: symbol "<=" used more than once as a literal string [-Wother]
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+/input.at:1174: exit code was 1, expected 0
+26. input.at:1155: 26. Duplicate string (input.at:1155): FAILED (input.at:1174)

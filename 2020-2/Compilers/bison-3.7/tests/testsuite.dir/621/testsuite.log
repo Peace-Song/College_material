@@ -1,0 +1,14 @@
+#                             -*- compilation -*-
+621. java.at:25: testing Java invalid directives ...
+/java.at:40: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS; VALGRIND_OPTS="$VALGRIND_OPTS --leak-check=summary --show-reachable=no"; export VALGRIND_OPTS;  bison --color=no -fno-caret -fcaret YYParser.y
+--- -	2020-10-21 22:28:17.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/621/stderr	2020-10-21 22:28:17.000000000 +0900
+@@ -1,5 +1,3 @@
+-YYParser.y: error: %defines does not make sense in Java
+-YYParser.y:4.13-30: error: %destructor does not make sense in Java
+-    4 | %destructor { /* Nothing. */ } exp
+-      |             ^~~~~~~~~~~~~~~~~~
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+621. java.at:25: 621. Java invalid directives (java.at:25): FAILED (java.at:40)

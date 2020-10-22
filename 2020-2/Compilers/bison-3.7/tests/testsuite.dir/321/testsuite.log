@@ -1,0 +1,10 @@
+#                             -*- compilation -*-
+321. actions.at:487: testing Exotic Dollars ...
+/actions.at:531: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -d -v -o input.c input.y
+--- /dev/null	2020-10-21 22:27:40.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/321/stderr	2020-10-21 22:27:47.000000000 +0900
+@@ -0,0 +1,2 @@
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/actions.at:531: exit code was 1, expected 0
+321. actions.at:487: 321. Exotic Dollars (actions.at:487): FAILED (actions.at:531)

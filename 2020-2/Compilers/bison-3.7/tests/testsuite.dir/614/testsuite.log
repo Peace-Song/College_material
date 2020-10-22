@@ -1,0 +1,8 @@
+#                             -*- compilation -*-
+614. c++.at:1358: testing Exception safety with error recovery  ...
+/c++.at:1358: $CXX $CXXFLAGS $CPPFLAGS  $LDFLAGS -o exceptions exceptions.cc $LIBS
+stderr:
+/Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/614/test-source: line 55: -o: command not found
+stdout:
+/c++.at:1358: exit code was 127, expected 0
+614. c++.at:1358: 614. Exception safety with error recovery  (c++.at:1358): FAILED (c++.at:1358)

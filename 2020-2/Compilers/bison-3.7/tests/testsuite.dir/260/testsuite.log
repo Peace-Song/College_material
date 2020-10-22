@@ -1,0 +1,8 @@
+#                             -*- compilation -*-
+260. counterexample.at:550: testing R/R cex with prec ...
+/counterexample.at:602: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -Wcounterexamples input.y
+stderr:
+/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
+Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/counterexample.at:602: exit code was 1, expected 0
+260. counterexample.at:550: 260. R/R cex with prec (counterexample.at:550): FAILED (counterexample.at:602)

@@ -1,0 +1,22 @@
+#                             -*- compilation -*-
+171. reduce.at:312: testing Reduced Automaton ...
+/reduce.at:353: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -fcaret not-reduced.y
+--- -	2020-10-21 22:27:36.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/171/stderr	2020-10-21 22:27:36.000000000 +0900
+@@ -1,12 +1,3 @@
+-not-reduced.y: warning: 2 nonterminals useless in grammar [-Wother]
+-not-reduced.y: warning: 3 rules useless in grammar [-Wother]
+-not-reduced.y:14.1-13: warning: nonterminal useless in grammar: not_reachable [-Wother]
+-   14 | not_reachable: useful  { /* A not reachable action. */ }
+-      | ^~~~~~~~~~~~~
+-not-reduced.y:17.1-14: warning: nonterminal useless in grammar: non_productive [-Wother]
+-   17 | non_productive: non_productive useless_token
+-      | ^~~~~~~~~~~~~~
+-not-reduced.y:11.6-57: warning: rule useless in grammar [-Wother]
+-   11 |    | non_productive    { /* A non productive action. */ }
+-      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+/reduce.at:353: exit code was 1, expected 0
+171. reduce.at:312: 171. Reduced Automaton (reduce.at:312): FAILED (reduce.at:353)

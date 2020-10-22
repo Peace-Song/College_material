@@ -1,0 +1,8 @@
+#                             -*- compilation -*-
+253. counterexample.at:207: testing Non-unifying Ambiguous S/R ...
+/counterexample.at:246: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -Wcounterexamples input.y
+stderr:
+/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
+Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/counterexample.at:246: exit code was 1, expected 0
+253. counterexample.at:207: 253. Non-unifying Ambiguous S/R (counterexample.at:207): FAILED (counterexample.at:246)

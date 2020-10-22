@@ -1,0 +1,14 @@
+#                             -*- compilation -*-
+44. input.at:1974: testing %define, --define, --force-define ...
+/input.at:1994: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -Dvar-dd=cmd-d1 -Dvar-dd=cmd-d2 \
+                 -Fvar-ff=cmd-f1 -Fvar-ff=cmd-f2 \
+                 -Dvar-dfg=cmd-d -Fvar-dfg=cmd-f \
+                 -Fvar-fd=cmd-f -Dvar-fd=cmd-d   \
+                 --skeleton ./skel.c input.y
+--- /dev/null	2020-10-21 22:27:26.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/44/stderr	2020-10-21 22:27:29.000000000 +0900
+@@ -0,0 +1,2 @@
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/input.at:1994: exit code was 1, expected 0
+44. input.at:1974: 44. %define, --define, --force-define (input.at:1974): FAILED (input.at:1994)

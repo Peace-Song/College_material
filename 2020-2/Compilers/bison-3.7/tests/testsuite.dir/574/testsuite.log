@@ -1,0 +1,10 @@
+#                             -*- compilation -*-
+574. regression.at:929: testing Expecting two tokens %glr-parser ...
+/regression.at:929: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret  -o expect2.c expect2.y
+--- /dev/null	2020-10-21 22:28:09.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/574/stderr	2020-10-21 22:28:12.000000000 +0900
+@@ -0,0 +1,2 @@
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/regression.at:929: exit code was 1, expected 0
+574. regression.at:929: 574. Expecting two tokens %glr-parser (regression.at:929): FAILED (regression.at:929)

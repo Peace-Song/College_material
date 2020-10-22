@@ -1,0 +1,20 @@
+#                             -*- compilation -*-
+25. input.at:1123: testing Unused values with per-type %destructor ...
+/input.at:1145: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -fcaret input.y
+--- -	2020-10-21 22:27:28.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/25/stderr	2020-10-21 22:27:28.000000000 +0900
+@@ -1,10 +1,3 @@
+-input.y:6.8-22: warning: unset value: $$ [-Wother]
+-    6 | start: end end { $1; } ;
+-      |        ^~~~~~~~~~~~~~~
+-input.y:6.12-14: warning: unused value: $2 [-Wother]
+-    6 | start: end end { $1; } ;
+-      |            ^~~
+-input.y:7.6-8: warning: unset value: $$ [-Wother]
+-    7 | end: { }  ;
+-      |      ^~~
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+/input.at:1145: exit code was 1, expected 0
+25. input.at:1123: 25. Unused values with per-type %destructor (input.at:1123): FAILED (input.at:1145)

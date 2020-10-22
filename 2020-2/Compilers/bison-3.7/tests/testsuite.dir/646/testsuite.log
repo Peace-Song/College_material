@@ -1,0 +1,13 @@
+#                             -*- compilation -*-
+646. glr-regression.at:524: testing User destructor after an error during a split parse ...
+/glr-regression.at:559: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -o glr-regr6.c -rall glr-regr6.y
+--- -	2020-10-21 22:28:20.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/646/stderr	2020-10-21 22:28:20.000000000 +0900
+@@ -1,3 +1,3 @@
+-glr-regr6.y: warning: 1 reduce/reduce conflict [-Wconflicts-rr]
+-glr-regr6.y: note: rerun with option '-Wcounterexamples' to generate conflict counterexamples
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+/glr-regression.at:559: exit code was 1, expected 0
+646. glr-regression.at:524: 646. User destructor after an error during a split parse (glr-regression.at:524): FAILED (glr-regression.at:559)

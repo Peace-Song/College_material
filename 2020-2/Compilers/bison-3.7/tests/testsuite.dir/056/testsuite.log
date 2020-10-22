@@ -1,0 +1,12 @@
+#                             -*- compilation -*-
+56. input.at:2508: testing -Werror combinations ...
+/input.at:2518: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -Wall input.y
+--- -	2020-10-21 22:27:29.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/56/stderr	2020-10-21 22:27:29.000000000 +0900
+@@ -1,2 +1,3 @@
+-input.y:2.15: warning: stray '$' [-Wother]
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+/input.at:2518: exit code was 1, expected 0
+56. input.at:2508: 56. -Werror combinations (input.at:2508): FAILED (input.at:2518)

@@ -1,0 +1,8 @@
+#                             -*- compilation -*-
+33. input.at:1553: testing Require 100.0 ...
+/input.at:1553: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS; VALGRIND_OPTS="$VALGRIND_OPTS --leak-check=summary --show-reachable=no"; export VALGRIND_OPTS;  bison --color=no -fno-caret -o input.c input.y
+stderr:
+/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
+Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/input.at:1553: exit code was 1, expected 63
+33. input.at:1553: 33. Require 100.0 (input.at:1553): FAILED (input.at:1553)

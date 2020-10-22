@@ -1,0 +1,13 @@
+#                             -*- compilation -*-
+221. conflicts.at:764: testing Unresolved SR Conflicts ...
+/conflicts.at:777: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -o input.c --report=all input.y
+--- -	2020-10-21 22:27:40.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/221/stderr	2020-10-21 22:27:40.000000000 +0900
+@@ -1,3 +1,3 @@
+-input.y: warning: 1 shift/reduce conflict [-Wconflicts-sr]
+-input.y: note: rerun with option '-Wcounterexamples' to generate conflict counterexamples
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+/conflicts.at:777: exit code was 1, expected 0
+221. conflicts.at:764: 221. Unresolved SR Conflicts (conflicts.at:764): FAILED (conflicts.at:777)

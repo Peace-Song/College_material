@@ -1,0 +1,5 @@
+#! /bin/sh
+test "${ZSH_VERSION+set}" = set && alias -g '${1+"$@"}'='"$@"'
+cd '/Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests'
+exec ${CONFIG_SHELL-/bin/sh} "/Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/./testsuite" -v -d  AUTOTEST_PATH='java.at' 322 ${1+"$@"}
+exit 1

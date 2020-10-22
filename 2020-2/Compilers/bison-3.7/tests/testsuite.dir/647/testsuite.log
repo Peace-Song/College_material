@@ -1,0 +1,13 @@
+#                             -*- compilation -*-
+647. glr-regression.at:576: testing Duplicated user destructor for lookahead ...
+/glr-regression.at:650: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -o glr-regr7.c -rall glr-regr7.y
+--- -	2020-10-21 22:28:20.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/647/stderr	2020-10-21 22:28:20.000000000 +0900
+@@ -1,3 +1,3 @@
+-glr-regr7.y: warning: 2 reduce/reduce conflicts [-Wconflicts-rr]
+-glr-regr7.y: note: rerun with option '-Wcounterexamples' to generate conflict counterexamples
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+/glr-regression.at:650: exit code was 1, expected 0
+647. glr-regression.at:576: 647. Duplicated user destructor for lookahead (glr-regression.at:576): FAILED (glr-regression.at:650)

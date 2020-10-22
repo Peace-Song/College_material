@@ -1,0 +1,9 @@
+#                             -*- compilation -*-
+111. output.at:194: testing Output files: lalr1.cc %defines %verbose %locations -o subdir/foo.cc ...
+/Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/111/test-source: line 22: at_dir: command not found
+/output.at:194: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -o subdir/foo.cc subdir/foo.yy
+stderr:
+/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
+Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/output.at:194: exit code was 1, expected 0
+111. output.at:194: 111. Output files: lalr1.cc %defines %verbose %locations -o subdir/foo.cc (output.at:194): FAILED (output.at:194)

@@ -1,0 +1,42 @@
+#                             -*- compilation -*-
+549. existing.at:797: testing GNU AWK 3.1.0 Grammar: LALR(1) ...
+/existing.at:797: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -Wall --report=all,no-cex --defines -o input.c input.y
+--- -	2020-10-21 22:28:09.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/549/stderr	2020-10-21 22:28:09.000000000 +0900
+@@ -1,32 +1,3 @@
+-input.y:66.10: warning: empty rule without %empty [-Wempty-rule]
+-input.y:170.10: warning: empty rule without %empty [-Wempty-rule]
+-input.y:175.10: warning: empty rule without %empty [-Wempty-rule]
+-input.y:180.10: warning: empty rule without %empty [-Wempty-rule]
+-input.y:188.10: warning: empty rule without %empty [-Wempty-rule]
+-input.y:202.10: warning: empty rule without %empty [-Wempty-rule]
+-input.y:207.10: warning: empty rule without %empty [-Wempty-rule]
+-input.y:221.10: warning: empty rule without %empty [-Wempty-rule]
+-input.y:300.10: warning: empty rule without %empty [-Wempty-rule]
+-input.y:323.10: warning: empty rule without %empty [-Wempty-rule]
+-input.y: warning: 65 shift/reduce conflicts [-Wconflicts-sr]
+-input.y: note: rerun with option '-Wcounterexamples' to generate conflict counterexamples
+-input.y:39.1-5: warning: useless associativity for FUNC_CALL, use %precedence [-Wprecedence]
+-input.y:44.1-5: warning: useless associativity for YNUMBER, use %precedence [-Wprecedence]
+-input.y:44.1-5: warning: useless associativity for YSTRING, use %precedence [-Wprecedence]
+-input.y:42.1-9: warning: useless precedence and associativity for APPEND_OP [-Wprecedence]
+-input.y:33.1-6: warning: useless associativity for ASSIGNOP, use %precedence [-Wprecedence]
+-input.y:43.1-5: warning: useless associativity for CONCAT_OP, use %precedence [-Wprecedence]
+-input.y:37.1-5: warning: useless precedence and associativity for LEX_GETLINE [-Wprecedence]
+-input.y:38.1-9: warning: useless associativity for LEX_IN, use %precedence [-Wprecedence]
+-input.y:49.1-5: warning: useless associativity for INCREMENT, use %precedence [-Wprecedence]
+-input.y:49.1-5: warning: useless associativity for DECREMENT, use %precedence [-Wprecedence]
+-input.y:39.1-5: warning: useless associativity for LEX_BUILTIN, use %precedence [-Wprecedence]
+-input.y:39.1-5: warning: useless associativity for LEX_LENGTH, use %precedence [-Wprecedence]
+-input.y:40.1-9: warning: useless precedence and associativity for ',' [-Wprecedence]
+-input.y:47.1-6: warning: useless associativity for '!', use %precedence [-Wprecedence]
+-input.y:47.1-6: warning: useless associativity for UNARY, use %precedence [-Wprecedence]
+-input.y:50.1-5: warning: useless associativity for '$', use %precedence [-Wprecedence]
+-input.y:51.1-5: warning: useless associativity for '(', use %precedence [-Wprecedence]
+-input.y:51.1-5: warning: useless precedence and associativity for ')' [-Wprecedence]
+-input.y: warning: fix-its can be applied.  Rerun with option '--update'. [-Wother]
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+/existing.at:797: exit code was 1, expected 0
+549. existing.at:797: 549. GNU AWK 3.1.0 Grammar: LALR(1) (existing.at:797): FAILED (existing.at:797)

@@ -1,0 +1,14 @@
+#                             -*- compilation -*-
+41. input.at:1808: testing Reject unused %code qualifiers ...
+/input.at:1823: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS; VALGRIND_OPTS="$VALGRIND_OPTS --leak-check=summary --show-reachable=no"; export VALGRIND_OPTS;  bison --color=no -fno-caret input-c.y
+--- -	2020-10-21 22:27:29.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/41/stderr	2020-10-21 22:27:29.000000000 +0900
+@@ -1,5 +1,3 @@
+-input-c.y:1.7: error: %code qualifier 'q' is not used
+-input-c.y:2.7-9: error: %code qualifier 'bad' is not used
+-input-c.y:3.7-9: error: %code qualifier 'bad' is not used
+-input-c.y:4.7-12: error: %code qualifier 'format' is not used
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+41. input.at:1808: 41. Reject unused %code qualifiers (input.at:1808): FAILED (input.at:1823)

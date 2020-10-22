@@ -1,0 +1,42 @@
+#                             -*- compilation -*-
+78. named-refs.at:648: testing Unresolved references ...
+/named-refs.at:709: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS; VALGRIND_OPTS="$VALGRIND_OPTS --leak-check=summary --show-reachable=no"; export VALGRIND_OPTS;  bison --color=no -fno-caret -o test.c test.y
+--- -	2020-10-21 22:27:31.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/78/stderr	2020-10-21 22:27:31.000000000 +0900
+@@ -1,33 +1,3 @@
+-test.y:12.22-31: error: invalid reference: '$sym.field'
+-test.y:12.3-35: note: symbol not found in production: sym
+-test.y:13.22-35: error: invalid reference: '$<aa>sym.field'
+-test.y:13.3-39: note: symbol not found in production: sym
+-test.y:14.22-33: error: invalid reference: '$[sym.field]'
+-test.y:14.3-37: note: symbol not found in production: sym.field
+-test.y:15.22-37: error: invalid reference: '$<aa>[sym.field]'
+-test.y:15.3-41: note: symbol not found in production: sym.field
+-test.y:16.22-25: error: invalid reference: '$sym'
+-test.y:16.3-29: note: symbol not found in production: sym
+-test.y:17.22-29: error: invalid reference: '$<aa>sym'
+-test.y:17.3-33: note: symbol not found in production: sym
+-test.y:18.22-27: error: invalid reference: '$[sym]'
+-test.y:18.3-65: note: symbol not found in production before $3: sym
+-test.y:18.52-61: error: invalid reference: '$<aa>[sym]'
+-test.y:18.3-65: note: symbol not found in production: sym
+-test.y:22.22-31: error: invalid reference: '$sym-field'
+-test.y:22.3-35: note: symbol not found in production: sym
+-test.y:23.22-35: error: invalid reference: '$<aa>sym-field'
+-test.y:23.3-39: note: symbol not found in production: sym
+-test.y:24.22-33: error: invalid reference: '$[sym-field]'
+-test.y:24.3-37: note: symbol not found in production: sym-field
+-test.y:25.22-37: error: invalid reference: '$<aa>[sym-field]'
+-test.y:25.3-41: note: symbol not found in production: sym-field
+-test.y:26.22-25: error: invalid reference: '$sym'
+-test.y:26.3-29: note: symbol not found in production: sym
+-test.y:27.22-29: error: invalid reference: '$<aa>sym'
+-test.y:27.3-33: note: symbol not found in production: sym
+-test.y:28.22-27: error: invalid reference: '$[sym]'
+-test.y:28.3-65: note: symbol not found in production before $3: sym
+-test.y:28.52-61: error: invalid reference: '$<aa>[sym]'
+-test.y:28.3-65: note: symbol not found in production: sym
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+78. named-refs.at:648: 78. Unresolved references (named-refs.at:648): FAILED (named-refs.at:709)

@@ -1,0 +1,13 @@
+#                             -*- compilation -*-
+654. glr-regression.at:1203: testing Incorrect lookahead during nondeterministic GLR ...
+/glr-regression.at:1396: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -o glr-regr14.c -rall glr-regr14.y
+--- -	2020-10-21 22:28:21.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/654/stderr	2020-10-21 22:28:21.000000000 +0900
+@@ -1,3 +1,3 @@
+-glr-regr14.y: warning: 5 reduce/reduce conflicts [-Wconflicts-rr]
+-glr-regr14.y: note: rerun with option '-Wcounterexamples' to generate conflict counterexamples
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+/glr-regression.at:1396: exit code was 1, expected 0
+654. glr-regression.at:1203: 654. Incorrect lookahead during nondeterministic GLR (glr-regression.at:1203): FAILED (glr-regression.at:1396)

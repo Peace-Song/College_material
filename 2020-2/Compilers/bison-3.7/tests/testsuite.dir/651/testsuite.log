@@ -1,0 +1,13 @@
+#                             -*- compilation -*-
+651. glr-regression.at:893: testing Undesirable destructors if user action cuts parse ...
+/glr-regression.at:941: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -o glr-regr11.c -rall glr-regr11.y
+--- -	2020-10-21 22:28:21.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/651/stderr	2020-10-21 22:28:21.000000000 +0900
+@@ -1,3 +1,3 @@
+-glr-regr11.y: warning: 1 reduce/reduce conflict [-Wconflicts-rr]
+-glr-regr11.y: note: rerun with option '-Wcounterexamples' to generate conflict counterexamples
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+/glr-regression.at:941: exit code was 1, expected 0
+651. glr-regression.at:893: 651. Undesirable destructors if user action cuts parse (glr-regression.at:893): FAILED (glr-regression.at:941)

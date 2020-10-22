@@ -1,0 +1,8 @@
+#                             -*- compilation -*-
+247. conflicts.at:1935: testing %nonassoc error actions for multiple reductions in a state ...
+/conflicts.at:1959: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret --report=all -o input.c input.y
+stderr:
+/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
+Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/conflicts.at:1959: exit code was 1, expected 0
+247. conflicts.at:1935: 247. %nonassoc error actions for multiple reductions in a state (conflicts.at:1935): FAILED (conflicts.at:1959)

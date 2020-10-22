@@ -1,0 +1,13 @@
+#                             -*- compilation -*-
+650. glr-regression.at:837: testing Corrupted semantic options if user action cuts parse ...
+/glr-regression.at:881: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -o glr-regr10.c -rall glr-regr10.y
+--- -	2020-10-21 22:28:21.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/650/stderr	2020-10-21 22:28:21.000000000 +0900
+@@ -1,3 +1,3 @@
+-glr-regr10.y: warning: 1 reduce/reduce conflict [-Wconflicts-rr]
+-glr-regr10.y: note: rerun with option '-Wcounterexamples' to generate conflict counterexamples
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+/glr-regression.at:881: exit code was 1, expected 0
+650. glr-regression.at:837: 650. Corrupted semantic options if user action cuts parse (glr-regression.at:837): FAILED (glr-regression.at:881)

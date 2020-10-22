@@ -1,0 +1,8 @@
+#                             -*- compilation -*-
+305. actions.at:270: testing Add missing %empty ...
+/actions.at:285: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret --update -Wall input.y
+stderr:
+/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
+Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/actions.at:285: exit code was 1, expected 0
+305. actions.at:270: 305. Add missing %empty (actions.at:270): FAILED (actions.at:285)

@@ -1,0 +1,19 @@
+#                             -*- compilation -*-
+153. diagnostics.at:653: testing Indentation with message suppression ...
+/diagnostics.at:674: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -fcaret -Wno-other input.y
+--- -	2020-10-21 22:27:35.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/153/stderr	2020-10-21 22:27:35.000000000 +0900
+@@ -1,9 +1,3 @@
+-input.y:2.1-12: warning: deprecated directive: '%pure-parser', use '%define api.pure' [-Wdeprecated]
+-    2 | %pure-parser
+-      | ^~~~~~~~~~~~
+-      | %define api.pure
+-input.y:3.1-14: warning: deprecated directive: '%error-verbose', use '%define parse.error verbose' [-Wdeprecated]
+-    3 | %error-verbose
+-      | ^~~~~~~~~~~~~~
+-      | %define parse.error verbose
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+/diagnostics.at:674: exit code was 1, expected 0
+153. diagnostics.at:653: 153. Indentation with message suppression (diagnostics.at:653): FAILED (diagnostics.at:674)

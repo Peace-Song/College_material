@@ -1,0 +1,2 @@
+%%
+start: %prec PREC ;

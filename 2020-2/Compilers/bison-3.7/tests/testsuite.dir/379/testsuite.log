@@ -1,0 +1,10 @@
+#                             -*- compilation -*-
+379. types.at:366: testing glr.c api.value.union.name=foo; %union { float fval; int ival; }; ...
+/types.at:366: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret  -o test.c test.y
+--- /dev/null	2020-10-21 22:27:51.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/379/stderr	2020-10-21 22:27:52.000000000 +0900
+@@ -0,0 +1,2 @@
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/types.at:366: exit code was 1, expected 0
+379. types.at:366: 379. glr.c api.value.union.name=foo; %union { float fval; int ival; }; (types.at:366): FAILED (types.at:366)

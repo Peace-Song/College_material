@@ -1,0 +1,10 @@
+#                             -*- compilation -*-
+437. scanner.at:340: testing Token numbers: lalr1.cc api.token.raw api.value.type=variant api.token.constructor ...
+/scanner.at:340: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret  -o input.cc input.y
+--- /dev/null	2020-10-21 22:27:51.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/437/stderr	2020-10-21 22:27:57.000000000 +0900
+@@ -0,0 +1,2 @@
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/scanner.at:340: exit code was 1, expected 0
+437. scanner.at:340: 437. Token numbers: lalr1.cc api.token.raw api.value.type=variant api.token.constructor (scanner.at:340): FAILED (scanner.at:340)

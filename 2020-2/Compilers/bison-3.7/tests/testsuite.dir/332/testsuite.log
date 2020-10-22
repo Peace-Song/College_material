@@ -1,0 +1,13 @@
+#                             -*- compilation -*-
+332. actions.at:1303: testing Default %printer and %destructor for user-defined end token ...
+/actions.at:1412: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -o input0.c input0.y
+--- -	2020-10-21 22:27:48.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/332/stderr	2020-10-21 22:27:48.000000000 +0900
+@@ -1,3 +1,3 @@
+-input0.y:30.3-5: warning: useless %destructor for type <*> [-Wother]
+-input0.y:30.3-5: warning: useless %printer for type <*> [-Wother]
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+/actions.at:1412: exit code was 1, expected 0
+332. actions.at:1303: 332. Default %printer and %destructor for user-defined end token (actions.at:1303): FAILED (actions.at:1412)

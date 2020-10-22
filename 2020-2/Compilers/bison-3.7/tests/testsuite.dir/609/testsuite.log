@@ -1,0 +1,10 @@
+#                             -*- compilation -*-
+609. c++.at:854: testing Absolute namespace references ...
+/c++.at:855: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -o input.cc input.yy
+--- /dev/null	2020-10-21 22:28:09.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/609/stderr	2020-10-21 22:28:16.000000000 +0900
+@@ -0,0 +1,2 @@
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/c++.at:855: exit code was 1, expected 0
+609. c++.at:854: 609. Absolute namespace references (c++.at:854): FAILED (c++.at:855)

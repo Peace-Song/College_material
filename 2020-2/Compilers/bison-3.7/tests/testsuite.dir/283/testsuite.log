@@ -1,0 +1,10 @@
+#                             -*- compilation -*-
+283. headers.at:57: testing Invalid CPP guards:  --defines=input/input.h ...
+/headers.at:57: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret --defines=input/input.h --output=input/input.c input/input.y
+--- /dev/null	2020-10-21 22:27:40.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/283/stderr	2020-10-21 22:27:44.000000000 +0900
+@@ -0,0 +1,2 @@
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/headers.at:57: exit code was 1, expected 0
+283. headers.at:57: 283. Invalid CPP guards:  --defines=input/input.h (headers.at:57): FAILED (headers.at:57)

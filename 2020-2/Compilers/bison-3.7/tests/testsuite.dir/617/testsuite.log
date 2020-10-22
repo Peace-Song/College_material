@@ -1,0 +1,8 @@
+#                             -*- compilation -*-
+617. c++.at:1361: testing Exception safety without error recovery api.value.type=variant ...
+/c++.at:1361: $CXX $CXXFLAGS $CPPFLAGS  $LDFLAGS -o exceptions exceptions.cc $LIBS
+stderr:
+/Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/617/test-source: line 55: -o: command not found
+stdout:
+/c++.at:1361: exit code was 127, expected 0
+617. c++.at:1361: 617. Exception safety without error recovery api.value.type=variant (c++.at:1361): FAILED (c++.at:1361)

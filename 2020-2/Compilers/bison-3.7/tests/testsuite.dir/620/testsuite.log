@@ -1,0 +1,9 @@
+#                             -*- compilation -*-
+620. c++.at:1515: testing Default action ...
+======== Testing with C++ standard flags: ''
+/c++.at:1558: $CXX $CXXFLAGS $CPPFLAGS  $LDFLAGS -o check check.cc $LIBS
+stderr:
+/Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/620/test-source: line 111: -o: command not found
+stdout:
+/c++.at:1558: exit code was 127, expected 0
+620. c++.at:1515: 620. Default action (c++.at:1515): FAILED (c++.at:1558)

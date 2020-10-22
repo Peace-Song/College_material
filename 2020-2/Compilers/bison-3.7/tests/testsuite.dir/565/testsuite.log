@@ -1,0 +1,20 @@
+#                             -*- compilation -*-
+565. regression.at:437: testing Token definitions: parse.error=detailed ...
+/regression.at:437: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -fcaret -o input.c input.y
+--- -	2020-10-21 22:28:11.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/565/stderr	2020-10-21 22:28:11.000000000 +0900
+@@ -1,10 +1,3 @@
+-input.y:26.8-14: warning: symbol SPECIAL redeclared [-Wother]
+-   26 | %token SPECIAL "\\\'\?\"\a\b\f\n\r\t\v\001\201\x001\x000081??!"
+-      |        ^~~~~~~
+-input.y:25.8-14: note: previous declaration
+-   25 | %token SPECIAL "\\\'\?\"\a\b\f\n\r\t\v\001\201\x001\x000081??!"
+-      |        ^~~~~~~
+-input.y:26.16-63: warning: symbol "\\\'\?\"\a\b\f\n\r\t\v\001\201\x001\x000081??!" used more than once as a literal string [-Wother]
+-   26 | %token SPECIAL "\\\'\?\"\a\b\f\n\r\t\v\001\201\x001\x000081??!"
+-      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+/regression.at:437: exit code was 1, expected 0
+565. regression.at:437: 565. Token definitions: parse.error=detailed (regression.at:437): FAILED (regression.at:437)

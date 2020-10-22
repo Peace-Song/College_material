@@ -1,0 +1,13 @@
+#                             -*- compilation -*-
+333. actions.at:1425: testing Default %printer and %destructor are not for error or $undefined ...
+/actions.at:1473: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -o input.c input.y
+--- -	2020-10-21 22:27:48.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/333/stderr	2020-10-21 22:27:48.000000000 +0900
+@@ -1,3 +1,3 @@
+-input.y:23.6-8: warning: useless %destructor for type <*> [-Wother]
+-input.y:23.6-8: warning: useless %printer for type <*> [-Wother]
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+/actions.at:1473: exit code was 1, expected 0
+333. actions.at:1425: 333. Default %printer and %destructor are not for error or $undefined (actions.at:1425): FAILED (actions.at:1473)

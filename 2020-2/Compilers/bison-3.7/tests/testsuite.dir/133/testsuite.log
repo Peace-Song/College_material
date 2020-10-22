@@ -1,0 +1,8 @@
+#                             -*- compilation -*-
+133. output.at:551: testing Graph with R/R ...
+/output.at:551: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -rall --graph input.y
+stderr:
+/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
+Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/output.at:551: exit code was 1, expected 0
+133. output.at:551: 133. Graph with R/R (output.at:551): FAILED (output.at:551)

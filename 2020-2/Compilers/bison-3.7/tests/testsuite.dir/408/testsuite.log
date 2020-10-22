@@ -1,0 +1,9 @@
+#                             -*- compilation -*-
+408. types.at:366: testing lalr1.cc %code requires { #include <memory> } api.value.type=variant api.token.constructor %defines ...
+======== Testing with C++ standard flags: ''
+/types.at:366: $CXX $CXXFLAGS $CPPFLAGS  $LDFLAGS -o check check.cc $LIBS
+stderr:
+/Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/408/test-source: line 118: -o: command not found
+stdout:
+/types.at:366: exit code was 127, expected 0
+408. types.at:366: 408. lalr1.cc %code requires { #include <memory> } api.value.type=variant api.token.constructor %defines (types.at:366): FAILED (types.at:366)

@@ -1,0 +1,9 @@
+#                             -*- compilation -*-
+80. output.at:67: testing Output files:  -dv ...
+/Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/80/test-source: line 22: at_dir: command not found
+/output.at:67: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -dv foo.y
+stderr:
+/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
+Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/output.at:67: exit code was 1, expected 0
+80. output.at:67: 80. Output files:  -dv (output.at:67): FAILED (output.at:67)

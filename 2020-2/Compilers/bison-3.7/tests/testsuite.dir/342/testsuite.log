@@ -1,0 +1,10 @@
+#                             -*- compilation -*-
+342. actions.at:1855: testing Qualified $$ in actions: glr.cc ...
+/actions.at:1855: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret  -o input.cc input.y
+--- /dev/null	2020-10-21 22:27:40.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/342/stderr	2020-10-21 22:27:49.000000000 +0900
+@@ -0,0 +1,2 @@
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/actions.at:1855: exit code was 1, expected 0
+342. actions.at:1855: 342. Qualified $$ in actions: glr.cc (actions.at:1855): FAILED (actions.at:1855)

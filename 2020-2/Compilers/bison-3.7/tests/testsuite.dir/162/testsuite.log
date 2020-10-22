@@ -1,0 +1,8 @@
+#                             -*- compilation -*-
+162. sets.at:153: testing Firsts ...
+/sets.at:171: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret --trace=sets input.y
+stderr:
+/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
+Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/sets.at:171: exit code was 1, expected 0
+162. sets.at:153: 162. Firsts (sets.at:153): FAILED (sets.at:171)

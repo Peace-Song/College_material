@@ -1,0 +1,35 @@
+#                             -*- compilation -*-
+8. input.at:201: testing Yacc's %type ...
+/input.at:241: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -fcaret -Wyacc input.y
+--- -	2020-10-21 22:27:27.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/8/stderr	2020-10-21 22:27:27.000000000 +0900
+@@ -1,25 +1,3 @@
+-input.y:2.1-6: warning: POSIX Yacc does not support %nterm [-Wyacc]
+-    2 | %nterm nterm1
+-      | ^~~~~~
+-input.y:3.14-19: warning: POSIX yacc reserves %type to nonterminals [-Wyacc]
+-    3 | %type <ival> TOKEN1 TOKEN2 "TOKEN3" nterm1 nterm2 nterm3 '+'
+-      |              ^~~~~~
+-input.y:3.28-35: warning: POSIX Yacc does not support string literals [-Wyacc]
+-    3 | %type <ival> TOKEN1 TOKEN2 "TOKEN3" nterm1 nterm2 nterm3 '+'
+-      |                            ^~~~~~~~
+-input.y:3.28-35: warning: POSIX yacc reserves %type to nonterminals [-Wyacc]
+-    3 | %type <ival> TOKEN1 TOKEN2 "TOKEN3" nterm1 nterm2 nterm3 '+'
+-      |                            ^~~~~~~~
+-input.y:3.58-60: warning: POSIX yacc reserves %type to nonterminals [-Wyacc]
+-    3 | %type <ival> TOKEN1 TOKEN2 "TOKEN3" nterm1 nterm2 nterm3 '+'
+-      |                                                          ^~~
+-input.y:5.1-6: warning: POSIX Yacc does not support %nterm [-Wyacc]
+-    5 | %nterm nterm2
+-      | ^~~~~~
+-input.y:3.21-26: warning: POSIX yacc reserves %type to nonterminals [-Wyacc]
+-    3 | %type <ival> TOKEN1 TOKEN2 "TOKEN3" nterm1 nterm2 nterm3 '+'
+-      |                     ^~~~~~
+-input.y:10.9-16: warning: POSIX Yacc does not support string literals [-Wyacc]
+-   10 | nterm3: "TOKEN3"
+-      |         ^~~~~~~~
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+/input.at:241: exit code was 1, expected 0
+8. input.at:201: 8. Yacc's %type (input.at:201): FAILED (input.at:241)

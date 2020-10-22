@@ -1,0 +1,14 @@
+#                             -*- compilation -*-
+249. conflicts.at:2052: testing -W versus %expect and %expect-rr ...
+/conflicts.at:2079: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret sr-rr.y
+--- -	2020-10-21 22:27:42.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/249/stderr	2020-10-21 22:27:42.000000000 +0900
+@@ -1,4 +1,3 @@
+-sr-rr.y: warning: 1 shift/reduce conflict [-Wconflicts-sr]
+-sr-rr.y: warning: 1 reduce/reduce conflict [-Wconflicts-rr]
+-sr-rr.y: note: rerun with option '-Wcounterexamples' to generate conflict counterexamples
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+/conflicts.at:2079: exit code was 1, expected 0
+249. conflicts.at:2052: 249. -W versus %expect and %expect-rr (conflicts.at:2052): FAILED (conflicts.at:2079)

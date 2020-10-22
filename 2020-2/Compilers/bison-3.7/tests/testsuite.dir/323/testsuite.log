@@ -1,0 +1,10 @@
+#                             -*- compilation -*-
+323. actions.at:1047: testing Printers and Destructors with union ...
+/actions.at:1047: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret  -o input.c input.y
+--- /dev/null	2020-10-21 22:27:40.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/323/stderr	2020-10-21 22:27:47.000000000 +0900
+@@ -0,0 +1,2 @@
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/actions.at:1047: exit code was 1, expected 0
+323. actions.at:1047: 323. Printers and Destructors with union (actions.at:1047): FAILED (actions.at:1047)

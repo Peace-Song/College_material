@@ -1,0 +1,12 @@
+#                             -*- compilation -*-
+118. output.at:256: testing Conflicting output files: %defines "foo.output" -v ...
+/output.at:256: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -v foo.y
+--- -	2020-10-21 22:27:33.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/118/stderr	2020-10-21 22:27:33.000000000 +0900
+@@ -1,2 +1,3 @@
+-foo.y: warning: conflicting outputs to file 'foo.output' [-Wother]
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+/output.at:256: exit code was 1, expected 0
+118. output.at:256: 118. Conflicting output files: %defines "foo.output" -v (output.at:256): FAILED (output.at:256)

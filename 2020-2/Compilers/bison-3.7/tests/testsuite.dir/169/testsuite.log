@@ -1,0 +1,40 @@
+#                             -*- compilation -*-
+169. reduce.at:120: testing Useless Rules ...
+/reduce.at:176: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -fcaret input.y
+--- -	2020-10-21 22:27:36.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/169/stderr	2020-10-21 22:27:36.000000000 +0900
+@@ -1,30 +1,3 @@
+-input.y: warning: 9 nonterminals useless in grammar [-Wother]
+-input.y: warning: 9 rules useless in grammar [-Wother]
+-input.y:10.1-8: warning: nonterminal useless in grammar: useless1 [-Wother]
+-   10 | useless1: '1';
+-      | ^~~~~~~~
+-input.y:11.1-8: warning: nonterminal useless in grammar: useless2 [-Wother]
+-   11 | useless2: '2';
+-      | ^~~~~~~~
+-input.y:12.1-8: warning: nonterminal useless in grammar: useless3 [-Wother]
+-   12 | useless3: '3';
+-      | ^~~~~~~~
+-input.y:13.1-8: warning: nonterminal useless in grammar: useless4 [-Wother]
+-   13 | useless4: '4';
+-      | ^~~~~~~~
+-input.y:14.1-8: warning: nonterminal useless in grammar: useless5 [-Wother]
+-   14 | useless5: '5';
+-      | ^~~~~~~~
+-input.y:15.1-8: warning: nonterminal useless in grammar: useless6 [-Wother]
+-   15 | useless6: '6';
+-      | ^~~~~~~~
+-input.y:16.1-8: warning: nonterminal useless in grammar: useless7 [-Wother]
+-   16 | useless7: '7';
+-      | ^~~~~~~~
+-input.y:17.1-8: warning: nonterminal useless in grammar: useless8 [-Wother]
+-   17 | useless8: '8';
+-      | ^~~~~~~~
+-input.y:18.1-8: warning: nonterminal useless in grammar: useless9 [-Wother]
+-   18 | useless9: '9';
+-      | ^~~~~~~~
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+/reduce.at:176: exit code was 1, expected 0
+169. reduce.at:120: 169. Useless Rules (reduce.at:120): FAILED (reduce.at:176)

@@ -1,0 +1,10 @@
+#                             -*- compilation -*-
+155. skeletons.at:85: testing Installed skeleton file names ...
+/skeletons.at:120: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret --skeleton=yacc.c -o input-cmd-line.c input-cmd-line.y
+--- /dev/null	2020-10-21 22:27:26.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/155/stderr	2020-10-21 22:27:35.000000000 +0900
+@@ -0,0 +1,2 @@
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/skeletons.at:120: exit code was 1, expected 0
+155. skeletons.at:85: 155. Installed skeleton file names (skeletons.at:85): FAILED (skeletons.at:120)

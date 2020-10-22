@@ -1,0 +1,23 @@
+
+
+z + q;
+
+T x;
+
+T x = y;
+
+x = y;
+
+T (x) + y;
+
+T (x);
+
+T (y) = z + q;
+
+T (y y) = z + q;
+
+z + q;
+
+@
+
+This is total garbage, but it should be ignored.

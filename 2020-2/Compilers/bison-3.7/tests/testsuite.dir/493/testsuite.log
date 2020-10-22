@@ -1,0 +1,10 @@
+#                             -*- compilation -*-
+493. calc.at:1173: testing Calculator C++ %locations parse.error=verbose %debug api.prefix={calc} %verbose  ...
+/calc.at:1173: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS;  bison --color=no -fno-caret -Wno-deprecated -o calc.cc calc.y
+--- /dev/null	2020-10-21 22:27:51.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/493/stderr	2020-10-21 22:28:02.000000000 +0900
+@@ -0,0 +1,2 @@
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+/calc.at:1173: exit code was 1, expected 0
+493. calc.at:1173: 493. Calculator C++ %locations parse.error=verbose %debug api.prefix={calc} %verbose  (calc.at:1173): FAILED (calc.at:1173)

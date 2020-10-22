@@ -1,0 +1,19 @@
+#                             -*- compilation -*-
+27. input.at:1183: testing Token collisions ...
+/input.at:1202: COLUMNS=1000; export COLUMNS; NO_TERM_HYPERLINKS=1; export NO_TERM_HYPERLINKS; VALGRIND_OPTS="$VALGRIND_OPTS --leak-check=summary --show-reachable=no"; export VALGRIND_OPTS;  bison --color=no -fno-caret -fcaret input.y
+--- -	2020-10-21 22:27:28.000000000 +0900
++++ /Users/peacesong/Workspace/College_Materials/2020-2/Compilers/bison-3.7/tests/testsuite.dir/at-groups/27/stderr	2020-10-21 22:27:28.000000000 +0900
+@@ -1,10 +1,3 @@
+-input.y:2.17-21: warning: symbol "foo" used more than once as a literal string [-Wother]
+-    2 |          BAR 42 "foo"
+-      |                 ^~~~~
+-input.y:2.10-12: error: code 42 reassigned to token BAR
+-    2 |          BAR 42 "foo"
+-      |          ^~~
+-input.y:1.15-19: note: previous declaration for "foo"
+-    1 | %token FOO 42 "foo"
+-      |               ^~~~~
++/Library/Developer/CommandLineTools/usr/bin/bison: unrecognized option `--color=no'
++Try `/Library/Developer/CommandLineTools/usr/bin/bison --help' for more information.
+ 
+27. input.at:1183: 27. Token collisions (input.at:1183): FAILED (input.at:1202)
