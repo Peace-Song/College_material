@@ -1,3 +1,12 @@
 1. SLR and LALR Parsing 
 Didn't properly handled SLR and LALR, why?
 
+2. Syntax Directed Translation p.26
+In E -> TE', shouldn't the semantic rule flipped so that E'.inh  = T.node and E.node = E'.syn? E'.syn will not be evaluated until E's children nodes are constructed.
+
+3. Syntax Directed Translation p.35
+Isn't it using shift-reduce? why top = top - 1 or top - 2?
+
+4. Syntax Directed Translation p.43
+Isn't bottom-up parser supposed to put semantic actions after the body of a production rule? so this shouldn't pose any problem?
+ 

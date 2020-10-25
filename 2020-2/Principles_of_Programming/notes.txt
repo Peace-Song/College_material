@@ -1,0 +1,1 @@
+- closure: f _처럼 쓰면, f라는 name에 바인딩 된 expression에 현재의 환경, 정보, 클로져를 추가해 줌
