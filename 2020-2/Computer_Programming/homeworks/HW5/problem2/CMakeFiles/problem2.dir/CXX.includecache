@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/peacesong/Workspace/College_Materials/2020-2/Computer_Programming/homeworks/HW5/problem2/main.cpp
+iostream
+-
+string
+-
+utility
+-
+set
+-
+vector
+-
+tuple
+-
+util.h
+/Users/peacesong/Workspace/College_Materials/2020-2/Computer_Programming/homeworks/HW5/problem2/util.h
+
+/Users/peacesong/Workspace/College_Materials/2020-2/Computer_Programming/homeworks/HW5/problem2/util.cpp
+iostream
+-
+set
+-
+util.h
+/Users/peacesong/Workspace/College_Materials/2020-2/Computer_Programming/homeworks/HW5/problem2/util.h
+
+/Users/peacesong/Workspace/College_Materials/2020-2/Computer_Programming/homeworks/HW5/problem2/util.h
+set
+-
+vector
+-
+map
+-
+

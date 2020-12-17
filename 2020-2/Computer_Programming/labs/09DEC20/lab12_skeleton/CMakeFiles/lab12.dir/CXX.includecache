@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/peacesong/Workspace/College_Materials/2020-2/Computer_Programming/labs/09DEC20/lab12_skeleton/restaurant_app.cpp
+iostream
+-
+iomanip
+-
+algorithm
+-
+restaurant_app.h
+/Users/peacesong/Workspace/College_Materials/2020-2/Computer_Programming/labs/09DEC20/lab12_skeleton/restaurant_app.h
+
+/Users/peacesong/Workspace/College_Materials/2020-2/Computer_Programming/labs/09DEC20/lab12_skeleton/restaurant_app.h
+vector
+-
+map
+-
+string
+-
+utility
+-
+memory
+-
+

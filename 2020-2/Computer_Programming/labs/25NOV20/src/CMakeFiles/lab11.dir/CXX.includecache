@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/peacesong/Workspace/College_Materials/2020-2/Computer_Programming/labs/25NOV20/src/main.cpp
+iostream
+-
+ctime
+-
+player.h
+/Users/peacesong/Workspace/College_Materials/2020-2/Computer_Programming/labs/25NOV20/src/player.h
+
+/Users/peacesong/Workspace/College_Materials/2020-2/Computer_Programming/labs/25NOV20/src/monster.h
+
+/Users/peacesong/Workspace/College_Materials/2020-2/Computer_Programming/labs/25NOV20/src/player.h
+monster.h
+/Users/peacesong/Workspace/College_Materials/2020-2/Computer_Programming/labs/25NOV20/src/monster.h
+

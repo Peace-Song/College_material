@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/peacesong/Workspace/College_Materials/2020-2/Computer_Programming/homeworks/HW5/problem1/CSI.cpp
+CSI.h
+/Users/peacesong/Workspace/College_Materials/2020-2/Computer_Programming/homeworks/HW5/problem1/CSI.h
+fstream
+-
+iostream
+-
+
+/Users/peacesong/Workspace/College_Materials/2020-2/Computer_Programming/homeworks/HW5/problem1/CSI.h
+iostream
+-
+string
+-
+cmath
+-
+
