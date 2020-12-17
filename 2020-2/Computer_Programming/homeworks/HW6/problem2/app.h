@@ -1,5 +1,6 @@
 #include "user_interface.h"
 
+
 #ifndef PROBLEM2_APP_H
 #define PROBLEM2_APP_H
 
@@ -10,9 +11,9 @@ public:
 private:
     std::istream& is;
     std::ostream& os;
-    static UserInterface *ui;
-    static FrontEnd *fe;
-    static BackEnd *be;
+    UserInterface *ui;
+    FrontEnd *fe;
+    BackEnd *be;
 };
 
 #endif //PROBLEM2_APP_H

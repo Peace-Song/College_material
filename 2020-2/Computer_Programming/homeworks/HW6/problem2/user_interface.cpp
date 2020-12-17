@@ -10,13 +10,6 @@ void UserInterface::create_ui(FrontEnd *frontend) {
     this->main_view = this->auth_view;
 }
 
-void UserInterface::create_ui_test(FrontEnd *frontend, string auth_input, string post_input) {
-    this->frontend = frontend;
-    this->auth_view = new AuthView(is, os, auth_input);
-    this->post_view = new PostView(is, os, post_input);
-    this->main_view = this->auth_view;
-}
-
 void UserInterface::println(string str) {
     main_view->println(str);
 }
@@ -36,7 +29,7 @@ void UserInterface::run() {
                 "search <keyword> : List post entries whose contents contain <keyword>\n" +
                 "exit : Terminate this program\n" +
                 "-----------------------------------\n" +
-                "Command : "
+                "Command="
             );
         } while (query(command));
     } else {
@@ -52,7 +45,6 @@ string UserInterface::parse_instruction(string command) {
 
 bool UserInterface::query(string command) {
     string instruction = parse_instruction(command);
-
     if (instruction == "exit") {
         return false;
     } else if (instruction == "post") {
@@ -69,12 +61,13 @@ bool UserInterface::query(string command) {
 }
 
 void UserInterface::post() {
+    frontend->post(post_view->get_post("New Post"));
 }
 
 void UserInterface::search(string command) {
-
+    frontend->search(command);
 }
 
 void UserInterface::recommend() {
-
+    frontend->recommend();
 }

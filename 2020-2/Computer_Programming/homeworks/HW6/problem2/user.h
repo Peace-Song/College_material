@@ -1,3 +1,7 @@
+#include <string>
+
+using namespace std;
+
 class User {
 public:
     string id;

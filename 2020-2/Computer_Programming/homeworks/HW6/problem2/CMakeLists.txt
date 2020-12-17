@@ -4,11 +4,11 @@ project(problem2 VERSION 0.1.0)
 include(CTest)
 enable_testing()
 
-add_executable(problem2_main main.cpp app.cpp)
-add_executable(problem2_test test.cpp app.cpp)
+add_executable(problem2_main main.cpp app.cpp user_interface.cpp user.cpp post.cpp frontend.cpp backend.cpp view.cpp config.h)
+add_executable(problem2_test test.cpp app.cpp user_interface.cpp user.cpp post.cpp frontend.cpp backend.cpp view.cpp config.h)
 
-# file(REMOVE_RECURSE ${CMAKE_BINARY_DIR}/data)
-# file(REMOVE_RECURSE ${CMAKE_BINARY_DIR}/test)
+file(REMOVE_RECURSE ${CMAKE_BINARY_DIR}/data)
+file(REMOVE_RECURSE ${CMAKE_BINARY_DIR}/test)
 file(COPY data DESTINATION .)
 file(COPY test DESTINATION .)
 

@@ -1,1 +1,0 @@
-/usr/local/bin/g++-9 -std=c++17 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/problem2_main.dir/main.cpp.o CMakeFiles/problem2_main.dir/app.cpp.o -o problem2_main 

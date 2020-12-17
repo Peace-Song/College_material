@@ -12,7 +12,6 @@ public:
 
     UserInterface(istream& is, ostream& os);
     void create_ui(FrontEnd *frontend);
-    void create_ui_test(FrontEnd *frontend, string auth_input, string post_input);
     void println(string str);
     void run();
     
